@@ -1,19 +1,646 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nonsense Lab</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nonsense Lab | 創新研究始於此處</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Inter & Noto Sans TC) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0B0F19',
+                            card: '#131A2A',
+                            border: '#1E293B',
+                            accent: '#10B981',
+                            accentHover: '#059669',
+                            glow: 'rgba(16, 185, 129, 0.15)',
+                            textMuted: '#94A3B8'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Background Gradients & Glow Effects */
+        body {
+            background-color: #0B0F19;
+            color: #E2E8F0;
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .hero-glow {
+            background: radial-gradient(circle at 50% 30%, rgba(16, 185, 129, 0.12) 0%, rgba(15, 23, 42, 0) 70%);
+        }
+
+        .card-glass {
+            background: rgba(19, 26, 42, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .card-glass:hover {
+            border-color: rgba(16, 185, 129, 0.4);
+            box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.2);
+        }
+
+        .node-circle {
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .node-circle:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Animated Pulse Ring */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 0.4; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+        .pulse-badge {
+            animation: pulse-ring 3s infinite ease-in-out;
+        }
+
+        /* Language Fade Effect */
+        .lang-text {
+            transition: opacity 0.25s ease-in-out;
+        }
+    </style>
 </head>
-<body>
-  <main class="container">
-    <div class="card">
-      <div class="pulse-indicator"></div>
-      <h1>Nonsense Lab</h1>
-      <p class="subtitle">Something new is cooking.</p>
-      <div class="status-badge">Site Online</div>
-    </div>
-  </main>
+<body class="antialiased selection:bg-brand-accent selection:text-black">
+
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 right-0 z-50 card-glass border-b border-slate-800/80 bg-brand-dark/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Brand Logo -->
+            <a href="#hero" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-cyan-500 flex items-center justify-center font-bold text-black text-xl shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform">
+                    N
+                </div>
+                <span class="text-xl font-bold tracking-tight text-white group-hover:text-emerald-400 transition-colors">Nonsense Lab</span>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="#hero" class="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors" data-i18n="nav_home">Homepage</a>
+                <a href="#about" class="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors" data-i18n="nav_about">About Us</a>
+                <a href="#mission" class="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors" data-i18n="nav_mission">Mission</a>
+                <a href="#program" class="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors" data-i18n="nav_program">Program Information</a>
+                <a href="#contact" class="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors" data-i18n="nav_contact">Contact</a>
+            </nav>
+
+            <!-- Language Switcher & Controls -->
+            <div class="flex items-center gap-4">
+                <div class="relative">
+                    <button id="langToggleBtn" onclick="toggleLangDropdown()" class="flex items-center gap-2 bg-slate-800/90 hover:bg-slate-700/80 border border-slate-700 text-emerald-400 font-medium text-xs sm:text-sm px-4 py-2 rounded-xl transition-all shadow-inner">
+                        <i class="fa-solid me-1 fa-globe text-emerald-400"></i>
+                        <span id="currentLangLabel">Language: EN | 中文</span>
+                        <i class="fa-solid fa-chevron-down text-xs text-slate-400"></i>
+                    </button>
+
+                    <!-- Language Dropdown Menu -->
+                    <div id="langDropdown" class="hidden absolute right-0 mt-2 w-44 bg-slate-900 border border-slate-800 rounded-xl shadow-2xl py-2 z-50">
+                        <button onclick="setLanguage('en')" class="w-full text-left px-4 py-2 text-sm text-slate-300 hover:bg-emerald-500/10 hover:text-emerald-400 flex items-center justify-between">
+                            <span>English (EN)</span>
+                            <i id="check-en" class="fa-solid fa-check text-xs text-emerald-400"></i>
+                        </button>
+                        <button onclick="setLanguage('tc')" class="w-full text-left px-4 py-2 text-sm text-slate-300 hover:bg-emerald-500/10 hover:text-emerald-400 flex items-center justify-between">
+                            <span>繁體中文 (TC)</span>
+                            <i id="check-tc" class="fa-solid fa-check text-xs text-emerald-400 hidden"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden text-slate-400 hover:text-white p-2">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-slate-900/95 border-b border-slate-800 px-6 py-4 flex flex-col gap-4">
+            <a href="#hero" onclick="toggleMobileMenu()" class="text-slate-300 hover:text-emerald-400 py-1" data-i18n="nav_home">Homepage</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="text-slate-300 hover:text-emerald-400 py-1" data-i18n="nav_about">About Us</a>
+            <a href="#mission" onclick="toggleMobileMenu()" class="text-slate-300 hover:text-emerald-400 py-1" data-i18n="nav_mission">Mission</a>
+            <a href="#program" onclick="toggleMobileMenu()" class="text-slate-300 hover:text-emerald-400 py-1" data-i18n="nav_program">Program Information</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="text-slate-300 hover:text-emerald-400 py-1" data-i18n="nav_contact">Contact</a>
+        </div>
+    </header>
+
+    <!-- SECTION 1: HERO / HOMEPAGE -->
+    <section id="hero" class="relative pt-32 pb-20 md:pt-40 md:pb-32 hero-glow min-h-[90vh] flex items-center justify-center">
+        <div class="max-w-5xl mx-auto px-4 text-center relative z-10">
+            
+            <!-- Site Online Status Badge -->
+            <div class="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 px-4 py-1.5 rounded-full text-emerald-400 text-xs sm:text-sm font-semibold mb-8 pulse-badge">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                <span data-i18n="status_online">Site Online</span>
+            </div>
+
+            <!-- Title & Subtitle -->
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white mb-6">
+                Nonsense Lab
+            </h1>
+            <p class="text-lg sm:text-2xl text-slate-300 font-light max-w-2xl mx-auto mb-10 leading-relaxed" data-i18n="hero_tagline">
+                Where Innovative Research Begins
+            </p>
+
+            <!-- Tech Graphic / Interactive Particle Illustration Box -->
+            <div class="relative w-full max-w-3xl mx-auto rounded-2xl overflow-hidden card-glass p-2 border border-slate-800 shadow-2xl">
+                <div class="relative h-64 sm:h-80 md:h-96 w-full rounded-xl overflow-hidden bg-slate-950 flex items-center justify-center">
+                    <!-- Overlay Tech Grid/Network graphic -->
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80" 
+                         alt="Nonsense Lab Tech Mesh" 
+                         class="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-luminosity filter brightness-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+                    
+                    <!-- Decorative Floating Node Badge -->
+                    <div class="relative z-10 text-center p-6 max-w-lg bg-slate-900/80 rounded-2xl border border-slate-800 backdrop-blur-md">
+                        <p class="text-xs uppercase tracking-widest text-emerald-400 font-semibold mb-2" data-i18n="hero_card_sub">RESEARCH & DEVELOPMENT</p>
+                        <h3 class="text-lg sm:text-xl font-bold text-white mb-2" data-i18n="hero_card_title">Pioneering Digital Solutions</h3>
+                        <p class="text-xs sm:text-sm text-slate-400" data-i18n="hero_card_desc">Combining technology research, strategy, and fine mechanics to turn visionary concepts into functional realities.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 2: WHAT WE DO / ABOUT US -->
+    <section id="about" class="py-24 bg-slate-950/60 border-t border-slate-900 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4" data-i18n="section_about_heading">What We Do / About Us</h2>
+                <div class="w-16 h-1 bg-emerald-500 mx-auto rounded-full"></div>
+            </div>
+
+            <!-- Sketch Layout Feature: 3 Connected Circular Icon Nodes -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative mb-20">
+                
+                <!-- Node 1 -->
+                <div class="flex flex-col items-center text-center group">
+                    <div class="w-24 h-24 rounded-full bg-slate-900 border-2 border-emerald-500/50 flex items-center justify-center text-emerald-400 text-3xl mb-6 node-circle group-hover:border-emerald-400">
+                        <i class="fa-regular fa-lightbulb"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2" data-i18n="node1_title">Idea Generation</h3>
+                    <p class="text-sm text-slate-400 max-w-xs" data-i18n="node1_desc">Transforming abstract concepts into structured, workable tech strategies and models.</p>
+                </div>
+
+                <!-- Node 2 -->
+                <div class="flex flex-col items-center text-center group relative">
+                    <div class="w-24 h-24 rounded-full bg-slate-900 border-2 border-emerald-500/50 flex items-center justify-center text-emerald-400 text-3xl mb-6 node-circle group-hover:border-emerald-400">
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2" data-i18n="node2_title">Research & Dev</h3>
+                    <p class="text-sm text-slate-400 max-w-xs" data-i18n="node2_desc">Executing rigorous experiments, prototyping, and refined algorithmic testing.</p>
+                </div>
+
+                <!-- Node 3 -->
+                <div class="flex flex-col items-center text-center group">
+                    <div class="w-24 h-24 rounded-full bg-slate-900 border-2 border-emerald-500/50 flex items-center justify-center text-emerald-400 text-3xl mb-6 node-circle group-hover:border-emerald-400">
+                        <i class="fa-solid fa-network-wired"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2" data-i18n="node3_title">Network Integration</h3>
+                    <p class="text-sm text-slate-400 max-w-xs" data-i18n="node3_desc">Deploying scalable applications directly into production environments securely.</p>
+                </div>
+
+            </div>
+
+            <!-- Detailed About Us Block (Image + Description) -->
+            <div class="card-glass rounded-2xl p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-5 rounded-xl overflow-hidden h-64 sm:h-80 shadow-lg border border-slate-800">
+                    <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80" 
+                         alt="Nonsense Lab Laboratory Team" 
+                         class="w-full h-full object-cover filter brightness-90 hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="lg:col-span-7 flex flex-col justify-center">
+                    <span class="text-xs font-semibold text-emerald-400 tracking-wider uppercase mb-2" data-i18n="about_sub">Our Foundation</span>
+                    <h3 class="text-2xl sm:text-3xl font-bold text-white mb-4" data-i18n="about_block_title">Welcome to Nonsense Lab</h3>
+                    <p class="text-slate-300 leading-relaxed mb-6" data-i18n="about_block_body">
+                        At Nonsense Lab, we explore unconventional ideas to produce groundbreaking technology solutions. Our team bridges research, software engineering, and systems architecture to build tools that solve complex digital challenges.
+                    </p>
+                    <div>
+                        <a href="#contact" class="inline-flex items-center gap-2 bg-emerald-500 text-slate-950 font-bold px-6 py-3 rounded-xl hover:bg-emerald-400 transition-colors" data-i18n="about_btn">
+                            Get In Touch <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 3: WHY WE DO / MISSION -->
+    <section id="mission" class="py-24 bg-brand-dark relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4" data-i18n="section_mission_heading">Why We Do / Mission</h2>
+                <div class="w-16 h-1 bg-emerald-500 mx-auto rounded-full"></div>
+            </div>
+
+            <!-- Mission Layout: Descriptive Text + Photo Cards -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                <!-- Image Gallery Grid -->
+                <div class="lg:col-span-6 grid grid-cols-2 gap-4">
+                    <div class="rounded-2xl overflow-hidden h-48 sm:h-64 card-glass border border-slate-800">
+                        <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=600&q=80" 
+                             alt="Scientific Research" class="w-full h-full object-cover hover:scale-105 transition-transform">
+                    </div>
+                    <div class="rounded-2xl overflow-hidden h-48 sm:h-64 card-glass border border-slate-800 mt-6">
+                        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80" 
+                             alt="Digital Code & Data" class="w-full h-full object-cover hover:scale-105 transition-transform">
+                    </div>
+                </div>
+
+                <!-- Text Content -->
+                <div class="lg:col-span-6 card-glass p-8 sm:p-10 rounded-2xl">
+                    <h3 class="text-2xl font-bold text-white mb-4" data-i18n="mission_title">Empowering the Future Through Discovery</h3>
+                    <p class="text-slate-300 leading-relaxed mb-6" data-i18n="mission_body1">
+                        Our mission is to challenge conventional boundaries in technology and research. We believe that what often seems like "nonsense" at first glance holds the key to major technological breakthroughs.
+                    </p>
+                    <p class="text-slate-400 leading-relaxed mb-6 text-sm" data-i18n="mission_body2">
+                        By providing open frameworks, experimental methodologies, and collaborative environments, Nonsense Lab strives to turn raw curiosity into meaningful impact.
+                    </p>
+                    <div class="flex items-center gap-4 text-emerald-400 font-semibold text-sm">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span data-i18n="mission_check">Open Source Innovation & Research Excellence</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 4: HOW WE DO / PROGRAM FLOW -->
+    <section id="program" class="py-24 bg-slate-950/80 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4" data-i18n="section_program_heading">How We Do (Program Flow)</h2>
+                <p class="text-slate-400 max-w-xl mx-auto text-sm sm:text-base" data-i18n="program_subtitle">Our structured three-stage methodology designed for optimal execution.</p>
+                <div class="w-16 h-1 bg-emerald-500 mx-auto rounded-full mt-4"></div>
+            </div>
+
+            <!-- Program Flow Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Step 1: Discover -->
+                <div class="card-glass rounded-2xl p-6 flex flex-col justify-between border border-slate-800">
+                    <div>
+                        <div class="h-44 rounded-xl overflow-hidden mb-6 bg-slate-900 relative">
+                            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80" 
+                                 alt="Discover Phase" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-slate-950/80 text-emerald-400 text-xs font-bold px-3 py-1 rounded-full border border-slate-800">
+                                01. STEP
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3" data-i18n="step1_title">Discover</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed" data-i18n="step1_desc">
+                            In-depth analysis, market research, and identifying core technical bottlenecks before writing a single line of code.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 2: Test -->
+                <div class="card-glass rounded-2xl p-6 flex flex-col justify-between border border-slate-800">
+                    <div>
+                        <div class="h-44 rounded-xl overflow-hidden mb-6 bg-slate-900 relative">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" 
+                                 alt="Test Phase" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-slate-950/80 text-emerald-400 text-xs font-bold px-3 py-1 rounded-full border border-slate-800">
+                                02. STEP
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3" data-i18n="step2_title">Test & Refine</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed" data-i18n="step2_desc">
+                            Rapid prototyping and stress-testing prototypes in sandbox environments to ensure performance and accuracy.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 3: Deploy -->
+                <div class="card-glass rounded-2xl p-6 flex flex-col justify-between border border-slate-800">
+                    <div>
+                        <div class="h-44 rounded-xl overflow-hidden mb-6 bg-slate-900 relative">
+                            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80" 
+                                 alt="Deploy Phase" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-slate-950/80 text-emerald-400 text-xs font-bold px-3 py-1 rounded-full border border-slate-800">
+                                03. STEP
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3" data-i18n="step3_title">Deploy</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed" data-i18n="step3_desc">
+                            Seamless integration into active networks with ongoing monitoring, security audits, and lifecycle support.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 5: CONTACT US -->
+    <section id="contact" class="py-24 bg-brand-dark relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4" data-i18n="section_contact_heading">Contact Us</h2>
+                <div class="w-16 h-1 bg-emerald-500 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Contact Form (Fill-in Form) -->
+                <div class="lg:col-span-7 card-glass p-8 sm:p-10 rounded-2xl border border-slate-800">
+                    <form onsubmit="handleFormSubmit(event)" class="space-y-6">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 uppercase mb-2" data-i18n="form_name">Name</label>
+                            <input type="text" required placeholder="Your Name" 
+                                   class="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-400 transition-colors">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 uppercase mb-2" data-i18n="form_email">Email</label>
+                            <input type="email" required placeholder="name@example.com" 
+                                   class="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-400 transition-colors">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 uppercase mb-2" data-i18n="form_subject">Subject</label>
+                            <input type="text" required placeholder="Inquiry Subject" 
+                                   class="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-400 transition-colors">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 uppercase mb-2" data-i18n="form_message">Message</label>
+                            <textarea rows="4" required placeholder="Write your message here..." 
+                                      class="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-400 transition-colors"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3.5 px-6 rounded-xl transition-colors" data-i18n="form_btn">
+                            Send Message
+                        </button>
+                    </form>
+
+                    <!-- Form Status Toast -->
+                    <div id="formToast" class="hidden mt-4 p-4 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-sm text-center">
+                        Message sent successfully! We will get back to you soon.
+                    </div>
+                </div>
+
+                <!-- Right Column: Where to Find Us + Stay Connected -->
+                <div class="lg:col-span-5 flex flex-col justify-between space-y-8">
+                    
+                    <!-- Where to Find Us (Location Card) -->
+                    <div class="card-glass p-8 rounded-2xl border border-slate-800">
+                        <h3 class="text-xl font-bold text-white mb-4" data-i18n="find_title">Where to Find Us</h3>
+                        <div class="h-44 rounded-xl overflow-hidden bg-slate-900 mb-4 relative border border-slate-800">
+                            <!-- Styled Map Graphic Placeholder -->
+                            <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=600&q=80" 
+                                 alt="Hong Kong Map Location" class="w-full h-full object-cover opacity-60">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-8 h-8 rounded-full bg-emerald-500 text-black flex items-center justify-center shadow-lg animate-bounce">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-sm text-slate-300 flex items-center gap-2">
+                            <i class="fa-solid fa-building text-emerald-400"></i>
+                            <span data-i18n="find_address">Cyberport / Science Park, Hong Kong</span>
+                        </p>
+                    </div>
+
+                    <!-- Stay Connected / Follow Us -->
+                    <div class="card-glass p-8 rounded-2xl border border-slate-800">
+                        <h3 class="text-xl font-bold text-white mb-4" data-i18n="social_title">Stay Connected / Follow Us</h3>
+                        <p class="text-sm text-slate-400 mb-6" data-i18n="social_desc">Follow our channels for the latest research releases and technology updates.</p>
+                        
+                        <div class="flex items-center gap-4">
+                            <a href="#" class="w-12 h-12 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-emerald-400 hover:border-emerald-500 transition-all">
+                                <i class="fa-brands fa-facebook-f text-lg"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-emerald-400 hover:border-emerald-500 transition-all">
+                                <i class="fa-brands fa-instagram text-lg"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-emerald-400 hover:border-emerald-500 transition-all">
+                                <i class="fa-brands fa-linkedin-in text-lg"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-emerald-400 hover:border-emerald-500 transition-all">
+                                <i class="fa-brands fa-github text-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 bg-slate-950 border-t border-slate-900 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+                <a href="#" class="hover:text-slate-400" data-i18n="footer_legal">Legal</a>
+                <span>|</span>
+                <a href="#" class="hover:text-slate-400" data-i18n="footer_links">Links</a>
+                <span>|</span>
+                <a href="#" class="hover:text-slate-400" data-i18n="footer_copyright">Copyright</a>
+            </div>
+            <div>
+                © 2026 <span class="text-slate-400">Nonsense Lab</span>. All rights reserved. nonsenselab.hk
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Dictionary for English (EN) and Traditional Chinese (TC)
+        const i18nData = {
+            en: {
+                nav_home: "Homepage",
+                nav_about: "About Us",
+                nav_mission: "Mission",
+                nav_program: "Program Information",
+                nav_contact: "Contact",
+                status_online: "Site Online",
+                hero_tagline: "Where Innovative Research Begins",
+                hero_card_sub: "RESEARCH & DEVELOPMENT",
+                hero_card_title: "Pioneering Digital Solutions",
+                hero_card_desc: "Combining technology research, strategy, and fine mechanics to turn visionary concepts into functional realities.",
+                section_about_heading: "What We Do / About Us",
+                node1_title: "Idea Generation",
+                node1_desc: "Transforming abstract concepts into structured, workable tech strategies and models.",
+                node2_title: "Research & Dev",
+                node2_desc: "Executing rigorous experiments, prototyping, and refined algorithmic testing.",
+                node3_title: "Network Integration",
+                node3_desc: "Deploying scalable applications directly into production environments securely.",
+                about_sub: "OUR FOUNDATION",
+                about_block_title: "Welcome to Nonsense Lab",
+                about_block_body: "At Nonsense Lab, we explore unconventional ideas to produce groundbreaking technology solutions. Our team bridges research, software engineering, and systems architecture to build tools that solve complex digital challenges.",
+                about_btn: "Get In Touch",
+                section_mission_heading: "Why We Do / Mission",
+                mission_title: "Empowering the Future Through Discovery",
+                mission_body1: "Our mission is to challenge conventional boundaries in technology and research. We believe that what often seems like 'nonsense' at first glance holds the key to major technological breakthroughs.",
+                mission_body2: "By providing open frameworks, experimental methodologies, and collaborative environments, Nonsense Lab strives to turn raw curiosity into meaningful impact.",
+                mission_check: "Open Source Innovation & Research Excellence",
+                section_program_heading: "How We Do (Program Flow)",
+                program_subtitle: "Our structured three-stage methodology designed for optimal execution.",
+                step1_title: "Discover",
+                step1_desc: "In-depth analysis, market research, and identifying core technical bottlenecks before writing a single line of code.",
+                step2_title: "Test & Refine",
+                step2_desc: "Rapid prototyping and stress-testing prototypes in sandbox environments to ensure performance and accuracy.",
+                step3_title: "Deploy",
+                step3_desc: "Seamless integration into active networks with ongoing monitoring, security audits, and lifecycle support.",
+                section_contact_heading: "Contact Us",
+                form_name: "Name",
+                form_email: "Email",
+                form_subject: "Subject",
+                form_message: "Message",
+                form_btn: "Send Message",
+                find_title: "Where to Find Us",
+                find_address: "Cyberport / Science Park, Hong Kong",
+                social_title: "Stay Connected / Follow Us",
+                social_desc: "Follow our channels for the latest research releases and technology updates.",
+                footer_legal: "Legal",
+                footer_links: "Links",
+                footer_copyright: "Copyright"
+            },
+            tc: {
+                nav_home: "主頁",
+                nav_about: "關於我們",
+                nav_mission: "使命理念",
+                nav_program: "項目資訊",
+                nav_contact: "聯絡我們",
+                status_online: "網站正常運行中",
+                hero_tagline: "創新研究始於此處",
+                hero_card_sub: "技術研究與開發",
+                hero_card_title: "開創性數位解決方案",
+                hero_card_desc: "結合前沿科技研究、戰略規劃與精密工程，將前瞻構想轉化為具體的應用技術。",
+                section_about_heading: "業務範疇 / 關於我們",
+                node1_title: "創意發想",
+                node1_desc: "將抽象構想轉化為結構化、可行的科技技術模型。",
+                node2_title: "研究與開發",
+                node2_desc: "執行嚴謹的科技實驗、原型製作與演算法測試。",
+                node3_title: "網絡整合",
+                node3_desc: "將高擴展性應用程式安全部署至生產環境。",
+                about_sub: "我們的基石",
+                about_block_title: "歡迎來到 Nonsense Lab",
+                about_block_body: "在 Nonsense Lab，我們探索非傳統概念，創造突破性的科技解決方案。團隊跨越科研、軟體工程與系統架構，打造解決複雜數位挑戰的工具。",
+                about_btn: "聯絡我們",
+                section_mission_heading: "立意與使命",
+                mission_title: "以探索精神賦能未來",
+                mission_body1: "我們的使命是打破科技與研究的傳統邊界。我們相信，初看似乎是「荒謬 (nonsense)」的點子，往往蘊含著重大技術突破的鑰匙。",
+                mission_body2: "透過提供開放架構、實驗性方法論與協同合作環境，Nonsense Lab 致力於將好奇心轉化為有實質影響力的成果。",
+                mission_check: "開源創新與卓越研究品質",
+                section_program_heading: "執行流程 (Program Flow)",
+                program_subtitle: "為最佳執行成效而設計的結構化三階段方法論。",
+                step1_title: "探索發現 (Discover)",
+                step1_desc: "在撰寫任何程式碼前，進行深度需求分析、市場研究與核心技術瓶頸識別。",
+                step2_title: "測試與優化 (Test & Refine)",
+                step2_desc: "於沙盒環境中進行快速原型製作與壓力測試，確保效能與精確度。",
+                step3_title: "部署實施 (Deploy)",
+                step3_desc: "無縫整合至運行網絡，並提供持續監控、安全審計與系統維護支援。",
+                section_contact_heading: "聯絡我們",
+                form_name: "姓名",
+                form_email: "電郵地址",
+                form_subject: "主旨",
+                form_message: "訊息內容",
+                form_btn: "送出訊息",
+                find_title: "我們的地址",
+                find_address: "香港數碼港 / 科學園",
+                social_title: "保持連繫 / 追蹤我們",
+                social_desc: "追蹤我們的社群頻道，獲取最新研究成果與技術動態。",
+                footer_legal: "法律聲明",
+                footer_links: "實用連結",
+                footer_copyright: "版權所有"
+            }
+        };
+
+        let currentLang = 'en';
+
+        // Toggle Language Dropdown
+        function toggleLangDropdown() {
+            const dropdown = document.getElementById('langDropdown');
+            dropdown.classList.toggle('hidden');
+        }
+
+        // Close dropdown when clicking outside
+        window.addEventListener('click', function(e) {
+            const btn = document.getElementById('langToggleBtn');
+            const dropdown = document.getElementById('langDropdown');
+            if (btn && dropdown && !btn.contains(e.target) && !dropdown.contains(e.target)) {
+                dropdown.classList.add('hidden');
+            }
+        });
+
+        // Set Active Language
+        function setLanguage(lang) {
+            currentLang = lang;
+            
+            // Update UI Checklist icons
+            document.getElementById('check-en').classList.toggle('hidden', lang !== 'en');
+            document.getElementById('check-tc').classList.toggle('hidden', lang !== 'tc');
+
+            // Update Label text
+            document.getElementById('currentLangLabel').innerText = lang === 'en' ? 'Language: EN | 中文' : '語言: 繁體中文';
+
+            // Hide dropdown
+            document.getElementById('langDropdown').classList.add('hidden');
+
+            // Update all translated elements
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18nData[lang][key]) {
+                    el.innerText = i18nData[lang][key];
+                }
+            });
+        }
+
+        // Mobile Navigation Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Mock Form Submission
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const toast = document.getElementById('formToast');
+            toast.classList.remove('hidden');
+            event.target.reset();
+
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 4000);
+        }
+    </script>
 </body>
 </html>
