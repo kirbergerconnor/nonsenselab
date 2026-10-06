@@ -3,182 +3,225 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nonsense Lab | 創新研究始於此處</title>
+    <title>Nonsense Lab | Inclusive Kids Art Studio</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts (Inter & Noto Sans TC) -->
+    <!-- Google Fonts (Fredoka for playful headers, Inter & Noto Sans TC for readable body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        brand: {
-                            dark: '#0B0F19',
-                            card: '#131A2A',
-                            border: '#1E293B',
-                            accent: '#10B981',
-                            accentHover: '#059669',
-                            glow: 'rgba(16, 185, 129, 0.15)',
-                            textMuted: '#94A3B8'
+                        art: {
+                            yellow: '#FFD166',
+                            yellowLight: '#FFF8E7',
+                            coral: '#FF70A6',
+                            coralSoft: '#FFEFF5',
+                            mint: '#06D6A0',
+                            mintLight: '#E6FAF5',
+                            sky: '#4EA8DE',
+                            skyLight: '#EBF6FC',
+                            purple: '#9B5DE5',
+                            purpleLight: '#F5EEFC',
+                            charcoal: '#2B2D42',
+                            slate: '#5C677D'
                         }
                     },
                     fontFamily: {
+                        display: ['Fredoka', 'Noto Sans TC', 'sans-serif'],
                         sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        '4xl': '2rem',
+                        '5xl': '2.5rem',
                     }
                 }
             }
         }
     </script>
+
     <style>
-        /* Custom Background Gradients & Glow Effects */
         body {
-            background-color: #0B0F19;
-            color: #E2E8F0;
+            background-color: #FFFFFF;
+            color: #2B2D42;
             font-family: 'Inter', 'Noto Sans TC', sans-serif;
             overflow-x: hidden;
         }
 
-        .hero-glow {
-            background: radial-gradient(circle at 50% 30%, rgba(16, 185, 129, 0.12) 0%, rgba(15, 23, 42, 0) 70%);
+        h1, h2, h3, .font-display {
+            font-family: 'Fredoka', 'Noto Sans TC', sans-serif;
         }
 
-        .card-glass {
-            background: rgba(19, 26, 42, 0.75);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+        /* Playful Paint Splash & Organic Blob Backgrounds */
+        .art-blob-1 {
+            background: radial-gradient(circle, rgba(255, 209, 102, 0.35) 0%, rgba(255, 255, 255, 0) 70%);
+        }
+        
+        .art-blob-2 {
+            background: radial-gradient(circle, rgba(155, 93, 229, 0.25) 0%, rgba(255, 255, 255, 0) 70%);
         }
 
-        .card-glass:hover {
-            border-color: rgba(16, 185, 129, 0.4);
-            box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.2);
+        .art-blob-3 {
+            background: radial-gradient(circle, rgba(6, 214, 160, 0.25) 0%, rgba(255, 255, 255, 0) 70%);
+        }
+
+        /* Soft Card Shadows and Playful Borders */
+        .art-card {
+            background: #FFFFFF;
+            border: 2px solid #F1F5F9;
+            box-shadow: 0 10px 30px -10px rgba(43, 45, 66, 0.06);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .art-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 35px -10px rgba(43, 45, 66, 0.12);
         }
 
         .node-circle {
-            box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         .node-circle:hover {
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 0 30px rgba(16, 185, 129, 0.4);
+            transform: scale(1.08) rotate(3deg);
         }
 
-        /* Animated Pulse Ring */
-        @keyframes pulse-ring {
-            0% { transform: scale(0.95); opacity: 0.8; }
-            50% { transform: scale(1.05); opacity: 0.4; }
-            100% { transform: scale(0.95); opacity: 0.8; }
-        }
-        .pulse-badge {
-            animation: pulse-ring 3s infinite ease-in-out;
+        /* Wavy Border Dividers */
+        .wavy-badge {
+            animation: gentle-bounce 3s infinite ease-in-out;
         }
 
-        /* Language Fade Effect */
-        .lang-text {
-            transition: opacity 0.25s ease-in-out;
+        @keyframes gentle-bounce {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(1deg); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FFF8E7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #FFD166;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FF70A6;
         }
     </style>
 </head>
-<body class="antialiased selection:bg-brand-accent selection:text-black">
+<body class="antialiased selection:bg-art-yellow selection:text-art-charcoal">
 
     <!-- Navigation Bar -->
-    <header class="fixed top-0 left-0 right-0 z-50 card-glass border-b border-slate-800/80 bg-brand-dark/80 backdrop-blur-md">
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b-2 border-slate-100 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             
             <!-- Brand Logo -->
             <a href="#hero" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-cyan-500 flex items-center justify-center font-bold text-black text-xl shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform">
-                    N
+                <div class="w-11 h-11 rounded-2xl bg-art-yellow flex items-center justify-center font-bold text-art-charcoal text-2xl shadow-md group-hover:rotate-12 transition-transform border-2 border-art-charcoal/10">
+                    <i class="fa-solid fa-palette text-art-coral"></i>
                 </div>
-                <span class="text-xl font-bold tracking-tight text-white group-hover:text-emerald-400 transition-colors">Nonsense Lab</span>
+                <div class="flex flex-col">
+                    <span class="text-2xl font-bold tracking-tight text-art-charcoal font-display group-hover:text-art-coral transition-colors">Nonsense Lab</span>
+                    <span class="text-[10px] uppercase font-bold tracking-widest text-art-sky -mt-1" data-i18n="nav_subtitle">Inclusive Kids Art Studio</span>
+                </div>
             </a>
 
             <!-- Desktop Nav Links -->
-            <nav class="hidden md:flex items-center gap-8">
-                <a href="#hero" class="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors" data-i18n="nav_home">Homepage</a>
-                <a href="#about" class="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors" data-i18n="nav_about">About Us</a>
-                <a href="#mission" class="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors" data-i18n="nav_mission">Mission</a>
-                <a href="#program" class="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors" data-i18n="nav_program">Program Information</a>
-                <a href="#contact" class="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors" data-i18n="nav_contact">Contact</a>
+            <nav class="hidden md:flex items-center gap-7">
+                <a href="#hero" class="text-sm font-semibold text-art-charcoal hover:text-art-coral transition-colors py-1" data-i18n="nav_home">Homepage</a>
+                <a href="#about" class="text-sm font-semibold text-art-charcoal hover:text-art-coral transition-colors py-1" data-i18n="nav_about">About Us</a>
+                <a href="#mission" class="text-sm font-semibold text-art-charcoal hover:text-art-coral transition-colors py-1" data-i18n="nav_mission">Mission</a>
+                <a href="#program" class="text-sm font-semibold text-art-charcoal hover:text-art-coral transition-colors py-1" data-i18n="nav_program">Program Flow</a>
+                <a href="#contact" class="text-sm font-semibold text-art-charcoal hover:text-art-coral transition-colors py-1" data-i18n="nav_contact">Contact</a>
             </nav>
 
             <!-- Language Switcher & Controls -->
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-3">
                 <div class="relative">
-                    <button id="langToggleBtn" onclick="toggleLangDropdown()" class="flex items-center gap-2 bg-slate-800/90 hover:bg-slate-700/80 border border-slate-700 text-emerald-400 font-medium text-xs sm:text-sm px-4 py-2 rounded-xl transition-all shadow-inner">
-                        <i class="fa-solid me-1 fa-globe text-emerald-400"></i>
-                        <span id="currentLangLabel">Language: EN | 中文</span>
-                        <i class="fa-solid fa-chevron-down text-xs text-slate-400"></i>
+                    <button id="langToggleBtn" onclick="toggleLangDropdown()" class="flex items-center gap-2 bg-art-yellowLight hover:bg-art-yellow/30 border-2 border-art-yellow/50 text-art-charcoal font-bold text-xs sm:text-sm px-4 py-2 rounded-2xl transition-all shadow-sm">
+                        <i class="fa-solid fa-globe text-art-coral"></i>
+                        <span id="currentLangLabel">EN | 繁中</span>
+                        <i class="fa-solid fa-chevron-down text-xs text-art-slate"></i>
                     </button>
 
                     <!-- Language Dropdown Menu -->
-                    <div id="langDropdown" class="hidden absolute right-0 mt-2 w-44 bg-slate-900 border border-slate-800 rounded-xl shadow-2xl py-2 z-50">
-                        <button onclick="setLanguage('en')" class="w-full text-left px-4 py-2 text-sm text-slate-300 hover:bg-emerald-500/10 hover:text-emerald-400 flex items-center justify-between">
+                    <div id="langDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white border-2 border-slate-100 rounded-2xl shadow-xl py-2 z-50 overflow-hidden">
+                        <button onclick="setLanguage('en')" class="w-full text-left px-4 py-2.5 text-sm font-semibold text-art-charcoal hover:bg-art-yellowLight flex items-center justify-between">
                             <span>English (EN)</span>
-                            <i id="check-en" class="fa-solid fa-check text-xs text-emerald-400"></i>
+                            <i id="check-en" class="fa-solid fa-circle-check text-art-mint text-sm"></i>
                         </button>
-                        <button onclick="setLanguage('tc')" class="w-full text-left px-4 py-2 text-sm text-slate-300 hover:bg-emerald-500/10 hover:text-emerald-400 flex items-center justify-between">
+                        <button onclick="setLanguage('tc')" class="w-full text-left px-4 py-2.5 text-sm font-semibold text-art-charcoal hover:bg-art-yellowLight flex items-center justify-between">
                             <span>繁體中文 (TC)</span>
-                            <i id="check-tc" class="fa-solid fa-check text-xs text-emerald-400 hidden"></i>
+                            <i id="check-tc" class="fa-solid fa-circle-check text-art-mint text-sm hidden"></i>
                         </button>
                     </div>
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <button onclick="toggleMobileMenu()" class="md:hidden text-slate-400 hover:text-white p-2">
+                <button onclick="toggleMobileMenu()" class="md:hidden text-art-charcoal hover:text-art-coral p-2 rounded-xl bg-slate-50">
                     <i class="fa-solid fa-bars text-xl"></i>
                 </button>
             </div>
         </div>
 
         <!-- Mobile Nav Menu -->
-        <div id="mobileMenu" class="hidden md:hidden bg-slate-900/95 border-b border-slate-800 px-6 py-4 flex flex-col gap-4">
-            <a href="#hero" onclick="toggleMobileMenu()" class="text-slate-300 hover:text-emerald-400 py-1" data-i18n="nav_home">Homepage</a>
-            <a href="#about" onclick="toggleMobileMenu()" class="text-slate-300 hover:text-emerald-400 py-1" data-i18n="nav_about">About Us</a>
-            <a href="#mission" onclick="toggleMobileMenu()" class="text-slate-300 hover:text-emerald-400 py-1" data-i18n="nav_mission">Mission</a>
-            <a href="#program" onclick="toggleMobileMenu()" class="text-slate-300 hover:text-emerald-400 py-1" data-i18n="nav_program">Program Information</a>
-            <a href="#contact" onclick="toggleMobileMenu()" class="text-slate-300 hover:text-emerald-400 py-1" data-i18n="nav_contact">Contact</a>
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-b-2 border-slate-100 px-6 py-4 flex flex-col gap-3 font-semibold text-art-charcoal">
+            <a href="#hero" onclick="toggleMobileMenu()" class="hover:text-art-coral py-2 border-b border-slate-50" data-i18n="nav_home">Homepage</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="hover:text-art-coral py-2 border-b border-slate-50" data-i18n="nav_about">About Us</a>
+            <a href="#mission" onclick="toggleMobileMenu()" class="hover:text-art-coral py-2 border-b border-slate-50" data-i18n="nav_mission">Mission</a>
+            <a href="#program" onclick="toggleMobileMenu()" class="hover:text-art-coral py-2 border-b border-slate-50" data-i18n="nav_program">Program Flow</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="hover:text-art-coral py-2" data-i18n="nav_contact">Contact</a>
         </div>
     </header>
 
     <!-- SECTION 1: HERO / HOMEPAGE -->
-    <section id="hero" class="relative pt-32 pb-20 md:pt-40 md:pb-32 hero-glow min-h-[90vh] flex items-center justify-center">
-        <div class="max-w-5xl mx-auto px-4 text-center relative z-10">
+    <section id="hero" class="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
+        <!-- Floating Artistic Decorative Blobs -->
+        <div class="absolute top-10 left-10 w-96 h-96 art-blob-1 rounded-full filter blur-3xl pointer-events-none"></div>
+        <div class="absolute top-40 right-10 w-96 h-96 art-blob-2 rounded-full filter blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-6xl mx-auto px-4 text-center relative z-10">
             
             <!-- Site Online Status Badge -->
-            <div class="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 px-4 py-1.5 rounded-full text-emerald-400 text-xs sm:text-sm font-semibold mb-8 pulse-badge">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                <span data-i18n="status_online">Site Online</span>
+            <div class="inline-flex items-center gap-2 bg-art-yellowLight border-2 border-art-yellow px-5 py-2 rounded-full text-art-charcoal text-xs sm:text-sm font-bold mb-8 wavy-badge shadow-sm">
+                <span class="w-2.5 h-2.5 rounded-full bg-art-coral animate-ping"></span>
+                <i class="fa-solid fa-hands-holding-child text-art-coral"></i>
+                <span data-i18n="status_online">Open for SEN Kids Art Classes & Workshops</span>
             </div>
 
             <!-- Title & Subtitle -->
-            <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white mb-6">
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold text-art-charcoal mb-6 tracking-tight font-display leading-tight">
                 Nonsense Lab
             </h1>
-            <p class="text-lg sm:text-2xl text-slate-300 font-light max-w-2xl mx-auto mb-10 leading-relaxed" data-i18n="hero_tagline">
-                Where Innovative Research Begins
+            <p class="text-xl sm:text-3xl font-bold text-art-coral mb-4 font-display" data-i18n="hero_tagline">
+                Where Art Has No Limits
+            </p>
+            <p class="text-base sm:text-lg text-art-slate max-w-2xl mx-auto mb-10 leading-relaxed font-medium" data-i18n="hero_subtext">
+                Unleashing creative possibilities for children with Special Educational Needs (SEN) through tailored sensory painting, tactile crafts, and joy-filled art exploration.
             </p>
 
-            <!-- Tech Graphic / Interactive Particle Illustration Box -->
-            <div class="relative w-full max-w-3xl mx-auto rounded-2xl overflow-hidden card-glass p-2 border border-slate-800 shadow-2xl">
-                <div class="relative h-64 sm:h-80 md:h-96 w-full rounded-xl overflow-hidden bg-slate-950 flex items-center justify-center">
-                    <!-- Overlay Tech Grid/Network graphic -->
-                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80" 
-                         alt="Nonsense Lab Tech Mesh" 
-                         class="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-luminosity filter brightness-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+            <!-- Hero Art Presentation Box -->
+            <div class="relative w-full max-w-4xl mx-auto rounded-4xl p-4 bg-white border-4 border-art-yellow/40 shadow-xl">
+                <div class="relative h-72 sm:h-96 md:h-[420px] w-full rounded-3xl overflow-hidden bg-art-purpleLight flex items-center justify-center">
+                    <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1200&q=80" 
+                         alt="Children playing with vibrant colorful paints" 
+                         class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-art-charcoal/80 via-art-charcoal/20 to-transparent"></div>
                     
-                    <!-- Decorative Floating Node Badge -->
-                    <div class="relative z-10 text-center p-6 max-w-lg bg-slate-900/80 rounded-2xl border border-slate-800 backdrop-blur-md">
-                        <p class="text-xs uppercase tracking-widest text-emerald-400 font-semibold mb-2" data-i18n="hero_card_sub">RESEARCH & DEVELOPMENT</p>
-                        <h3 class="text-lg sm:text-xl font-bold text-white mb-2" data-i18n="hero_card_title">Pioneering Digital Solutions</h3>
-                        <p class="text-xs sm:text-sm text-slate-400" data-i18n="hero_card_desc">Combining technology research, strategy, and fine mechanics to turn visionary concepts into functional realities.</p>
+                    <!-- Decorative Floating Card -->
+                    <div class="absolute bottom-6 left-6 right-6 md:left-10 md:right-auto md:max-w-md text-left p-6 bg-white/95 rounded-3xl border-2 border-slate-100 backdrop-blur-md shadow-lg">
+                        <p class="text-xs uppercase tracking-widest text-art-purple font-bold mb-1" data-i18n="hero_card_sub">SENSORY & ART THERAPY APPROACH</p>
+                        <h3 class="text-lg sm:text-xl font-extrabold text-art-charcoal mb-2 font-display" data-i18n="hero_card_title">Gentle, Adaptive & Joyful Learning</h3>
+                        <p class="text-xs sm:text-sm text-art-slate font-medium" data-i18n="hero_card_desc">Small-group sessions designed specifically for autistic, ADHD, and sensory-sensitive young artists to freely express their inner worlds.</p>
                     </div>
                 </div>
             </div>
@@ -187,12 +230,13 @@
     </section>
 
     <!-- SECTION 2: WHAT WE DO / ABOUT US -->
-    <section id="about" class="py-24 bg-slate-950/60 border-t border-slate-900 relative">
+    <section id="about" class="py-24 bg-slate-50/60 border-t-2 border-slate-100 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             <div class="text-center mb-16">
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4" data-i18n="section_about_heading">What We Do / About Us</h2>
-                <div class="w-16 h-1 bg-emerald-500 mx-auto rounded-full"></div>
+                <span class="text-xs font-bold text-art-sky tracking-wider uppercase bg-art-skyLight px-4 py-1.5 rounded-full" data-i18n="section_about_badge">CREATIVE METHODOLOGY</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-art-charcoal mt-3 mb-4 font-display" data-i18n="section_about_heading">What We Do / Our Art Studio</h2>
+                <div class="w-20 h-2 bg-art-yellow mx-auto rounded-full"></div>
             </div>
 
             <!-- Sketch Layout Feature: 3 Connected Circular Icon Nodes -->
@@ -200,49 +244,49 @@
                 
                 <!-- Node 1 -->
                 <div class="flex flex-col items-center text-center group">
-                    <div class="w-24 h-24 rounded-full bg-slate-900 border-2 border-emerald-500/50 flex items-center justify-center text-emerald-400 text-3xl mb-6 node-circle group-hover:border-emerald-400">
-                        <i class="fa-regular fa-lightbulb"></i>
+                    <div class="w-28 h-28 rounded-full bg-art-yellowLight border-4 border-art-yellow flex items-center justify-center text-art-charcoal text-4xl mb-6 node-circle shadow-md">
+                        <i class="fa-solid fa-hand-sparkles text-art-coral"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-white mb-2" data-i18n="node1_title">Idea Generation</h3>
-                    <p class="text-sm text-slate-400 max-w-xs" data-i18n="node1_desc">Transforming abstract concepts into structured, workable tech strategies and models.</p>
+                    <h3 class="text-xl font-bold text-art-charcoal mb-2 font-display" data-i18n="node1_title">Sensory Exploration</h3>
+                    <p class="text-sm text-art-slate max-w-xs font-medium" data-i18n="node1_desc">Tactile engagement through textured clay, finger painting, and safe sensory art mediums.</p>
                 </div>
 
                 <!-- Node 2 -->
                 <div class="flex flex-col items-center text-center group relative">
-                    <div class="w-24 h-24 rounded-full bg-slate-900 border-2 border-emerald-500/50 flex items-center justify-center text-emerald-400 text-3xl mb-6 node-circle group-hover:border-emerald-400">
-                        <i class="fa-solid fa-microchip"></i>
+                    <div class="w-28 h-28 rounded-full bg-art-mintLight border-4 border-art-mint flex items-center justify-center text-art-charcoal text-4xl mb-6 node-circle shadow-md">
+                        <i class="fa-solid fa-wand-magic-sparkles text-art-mint"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-white mb-2" data-i18n="node2_title">Research & Dev</h3>
-                    <p class="text-sm text-slate-400 max-w-xs" data-i18n="node2_desc">Executing rigorous experiments, prototyping, and refined algorithmic testing.</p>
+                    <h3 class="text-xl font-bold text-art-charcoal mb-2 font-display" data-i18n="node2_title">Hands-On Creation</h3>
+                    <p class="text-sm text-art-slate max-w-xs font-medium" data-i18n="node2_desc">Tailored multi-sensory crafts and expressive painting tailored to each child's rhythm.</p>
                 </div>
 
                 <!-- Node 3 -->
                 <div class="flex flex-col items-center text-center group">
-                    <div class="w-24 h-24 rounded-full bg-slate-900 border-2 border-emerald-500/50 flex items-center justify-center text-emerald-400 text-3xl mb-6 node-circle group-hover:border-emerald-400">
-                        <i class="fa-solid fa-network-wired"></i>
+                    <div class="w-28 h-28 rounded-full bg-art-purpleLight border-4 border-art-purple flex items-center justify-center text-art-charcoal text-4xl mb-6 node-circle shadow-md">
+                        <i class="fa-solid fa-heart-circle-plus text-art-purple"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-white mb-2" data-i18n="node3_title">Network Integration</h3>
-                    <p class="text-sm text-slate-400 max-w-xs" data-i18n="node3_desc">Deploying scalable applications directly into production environments securely.</p>
+                    <h3 class="text-xl font-bold text-art-charcoal mb-2 font-display" data-i18n="node3_title">Emotional Expression</h3>
+                    <p class="text-sm text-art-slate max-w-xs font-medium" data-i18n="node3_desc">Building self-confidence, motor skills, and emotional calm through non-verbal creative play.</p>
                 </div>
 
             </div>
 
             <!-- Detailed About Us Block (Image + Description) -->
-            <div class="card-glass rounded-2xl p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <div class="lg:col-span-5 rounded-xl overflow-hidden h-64 sm:h-80 shadow-lg border border-slate-800">
-                    <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80" 
-                         alt="Nonsense Lab Laboratory Team" 
-                         class="w-full h-full object-cover filter brightness-90 hover:scale-105 transition-transform duration-500">
+            <div class="art-card rounded-4xl p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white border-2 border-slate-100">
+                <div class="lg:col-span-5 rounded-3xl overflow-hidden h-72 sm:h-80 shadow-md">
+                    <img src="https://images.unsplash.com/photo-1560421683-6856ea585c78?auto=format&fit=crop&w=800&q=80" 
+                         alt="SEN Child enthusiastically painting" 
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
                 </div>
                 <div class="lg:col-span-7 flex flex-col justify-center">
-                    <span class="text-xs font-semibold text-emerald-400 tracking-wider uppercase mb-2" data-i18n="about_sub">Our Foundation</span>
-                    <h3 class="text-2xl sm:text-3xl font-bold text-white mb-4" data-i18n="about_block_title">Welcome to Nonsense Lab</h3>
-                    <p class="text-slate-300 leading-relaxed mb-6" data-i18n="about_block_body">
-                        At Nonsense Lab, we explore unconventional ideas to produce groundbreaking technology solutions. Our team bridges research, software engineering, and systems architecture to build tools that solve complex digital challenges.
+                    <span class="text-xs font-bold text-art-coral tracking-wider uppercase mb-2" data-i18n="about_sub">WELCOME TO NONSENSE LAB</span>
+                    <h3 class="text-2xl sm:text-4xl font-extrabold text-art-charcoal mb-4 font-display" data-i18n="about_block_title">A Safe Haven for Young Artists</h3>
+                    <p class="text-art-slate leading-relaxed mb-6 font-medium" data-i18n="about_block_body">
+                        Nonsense Lab is an inclusive art sanctuary dedicated to children with special educational needs (SEN). We believe there is no "wrong" way to make art. In our warm and flexible environment, messiness is celebrated, and every splash of paint tells a unique story.
                     </p>
                     <div>
-                        <a href="#contact" class="inline-flex items-center gap-2 bg-emerald-500 text-slate-950 font-bold px-6 py-3 rounded-xl hover:bg-emerald-400 transition-colors" data-i18n="about_btn">
-                            Get In Touch <i class="fa-solid fa-arrow-right text-xs"></i>
+                        <a href="#contact" class="inline-flex items-center gap-3 bg-art-coral hover:bg-pink-600 text-white font-bold px-7 py-3.5 rounded-2xl transition-all shadow-md hover:shadow-lg font-display" data-i18n="about_btn">
+                            Book a Trial Class <i class="fa-solid fa-arrow-right text-xs"></i>
                         </a>
                     </div>
                 </div>
@@ -252,12 +296,13 @@
     </section>
 
     <!-- SECTION 3: WHY WE DO / MISSION -->
-    <section id="mission" class="py-24 bg-brand-dark relative">
+    <section id="mission" class="py-24 bg-white relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             <div class="text-center mb-16">
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4" data-i18n="section_mission_heading">Why We Do / Mission</h2>
-                <div class="w-16 h-1 bg-emerald-500 mx-auto rounded-full"></div>
+                <span class="text-xs font-bold text-art-purple tracking-wider uppercase bg-art-purpleLight px-4 py-1.5 rounded-full" data-i18n="section_mission_badge">OUR CORE VALUES</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-art-charcoal mt-3 mb-4 font-display" data-i18n="section_mission_heading">Why We Do / Mission</h2>
+                <div class="w-20 h-2 bg-art-purple mx-auto rounded-full"></div>
             </div>
 
             <!-- Mission Layout: Descriptive Text + Photo Cards -->
@@ -265,28 +310,28 @@
                 
                 <!-- Image Gallery Grid -->
                 <div class="lg:col-span-6 grid grid-cols-2 gap-4">
-                    <div class="rounded-2xl overflow-hidden h-48 sm:h-64 card-glass border border-slate-800">
-                        <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=600&q=80" 
-                             alt="Scientific Research" class="w-full h-full object-cover hover:scale-105 transition-transform">
+                    <div class="rounded-3xl overflow-hidden h-52 sm:h-64 art-card p-1">
+                        <img src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=600&q=80" 
+                             alt="Kids creating colorful crafts together" class="w-full h-full object-cover rounded-2xl hover:scale-105 transition-transform">
                     </div>
-                    <div class="rounded-2xl overflow-hidden h-48 sm:h-64 card-glass border border-slate-800 mt-6">
-                        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80" 
-                             alt="Digital Code & Data" class="w-full h-full object-cover hover:scale-105 transition-transform">
+                    <div class="rounded-3xl overflow-hidden h-52 sm:h-64 art-card p-1 mt-6">
+                        <img src="https://images.unsplash.com/photo-1460518451285-97b6aa326961?auto=format&fit=crop&w=600&q=80" 
+                             alt="Child making pottery with clay" class="w-full h-full object-cover rounded-2xl hover:scale-105 transition-transform">
                     </div>
                 </div>
 
                 <!-- Text Content -->
-                <div class="lg:col-span-6 card-glass p-8 sm:p-10 rounded-2xl">
-                    <h3 class="text-2xl font-bold text-white mb-4" data-i18n="mission_title">Empowering the Future Through Discovery</h3>
-                    <p class="text-slate-300 leading-relaxed mb-6" data-i18n="mission_body1">
-                        Our mission is to challenge conventional boundaries in technology and research. We believe that what often seems like "nonsense" at first glance holds the key to major technological breakthroughs.
+                <div class="lg:col-span-6 art-card p-8 sm:p-10 rounded-4xl bg-art-yellowLight/50 border-2 border-art-yellow/30">
+                    <h3 class="text-2xl sm:text-3xl font-extrabold text-art-charcoal mb-4 font-display" data-i18n="mission_title">Unlocking Potential Through Inclusive Art</h3>
+                    <p class="text-art-slate leading-relaxed mb-6 font-medium" data-i18n="mission_body1">
+                        Our mission is to empower children with special needs by providing specialized, non-judgmental art therapy-inspired workshops. We transform sensory sensitivities into creative superpowers, giving every child a voice beyond words.
                     </p>
-                    <p class="text-slate-400 leading-relaxed mb-6 text-sm" data-i18n="mission_body2">
-                        By providing open frameworks, experimental methodologies, and collaborative environments, Nonsense Lab strives to turn raw curiosity into meaningful impact.
+                    <p class="text-art-slate leading-relaxed mb-6 text-sm font-medium" data-i18n="mission_body2">
+                        Through low student-to-teacher ratios, experienced SEN art tutors, and individualized pacing, we cultivate joy, focus, fine motor control, and meaningful social connections.
                     </p>
-                    <div class="flex items-center gap-4 text-emerald-400 font-semibold text-sm">
-                        <i class="fa-solid fa-circle-check"></i>
-                        <span data-i18n="mission_check">Open Source Innovation & Research Excellence</span>
+                    <div class="flex items-center gap-3 text-art-coral font-bold text-sm font-display">
+                        <i class="fa-solid fa-certificate text-lg text-art-yellow"></i>
+                        <span data-i18n="mission_check">Experienced Special Education Art Facilitators</span>
                     </div>
                 </div>
 
@@ -296,65 +341,66 @@
     </section>
 
     <!-- SECTION 4: HOW WE DO / PROGRAM FLOW -->
-    <section id="program" class="py-24 bg-slate-950/80 border-t border-slate-900">
+    <section id="program" class="py-24 bg-slate-50/60 border-t-2 border-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             <div class="text-center mb-16">
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4" data-i18n="section_program_heading">How We Do (Program Flow)</h2>
-                <p class="text-slate-400 max-w-xl mx-auto text-sm sm:text-base" data-i18n="program_subtitle">Our structured three-stage methodology designed for optimal execution.</p>
-                <div class="w-16 h-1 bg-emerald-500 mx-auto rounded-full mt-4"></div>
+                <span class="text-xs font-bold text-art-mint tracking-wider uppercase bg-art-mintLight px-4 py-1.5 rounded-full" data-i18n="section_program_badge">STEP-BY-STEP LEARNING</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-art-charcoal mt-3 mb-4 font-display" data-i18n="section_program_heading">How We Do (Program Flow)</h2>
+                <p class="text-art-slate max-w-xl mx-auto text-sm sm:text-base font-medium" data-i18n="program_subtitle">A gentle three-stage journey crafted to encourage self-discovery and fun.</p>
+                <div class="w-20 h-2 bg-art-mint mx-auto rounded-full mt-4"></div>
             </div>
 
             <!-- Program Flow Cards -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 
-                <!-- Step 1: Discover -->
-                <div class="card-glass rounded-2xl p-6 flex flex-col justify-between border border-slate-800">
+                <!-- Step 1: Sensory Art & Discovery -->
+                <div class="art-card rounded-4xl p-6 flex flex-col justify-between border-2 border-slate-100 bg-white">
                     <div>
-                        <div class="h-44 rounded-xl overflow-hidden mb-6 bg-slate-900 relative">
-                            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80" 
-                                 alt="Discover Phase" class="w-full h-full object-cover">
-                            <span class="absolute top-3 left-3 bg-slate-950/80 text-emerald-400 text-xs font-bold px-3 py-1 rounded-full border border-slate-800">
+                        <div class="h-48 rounded-3xl overflow-hidden mb-6 bg-art-yellowLight relative">
+                            <img src="https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=600&q=80" 
+                                 alt="Sensory Art Discovery" class="w-full h-full object-cover">
+                            <span class="absolute top-4 left-4 bg-art-yellow text-art-charcoal text-xs font-extrabold px-3.5 py-1.5 rounded-full shadow-md font-display">
                                 01. STEP
                             </span>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3" data-i18n="step1_title">Discover</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed" data-i18n="step1_desc">
-                            In-depth analysis, market research, and identifying core technical bottlenecks before writing a single line of code.
+                        <h3 class="text-xl font-extrabold text-art-charcoal mb-3 font-display" data-i18n="step1_title">Sensory Art & Discovery</h3>
+                        <p class="text-art-slate text-sm leading-relaxed font-medium" data-i18n="step1_desc">
+                            Children explore diverse textures, colors, and non-toxic materials at their own comfort level without pressure.
                         </p>
                     </div>
                 </div>
 
-                <!-- Step 2: Test -->
-                <div class="card-glass rounded-2xl p-6 flex flex-col justify-between border border-slate-800">
+                <!-- Step 2: Guided Creative Expression -->
+                <div class="art-card rounded-4xl p-6 flex flex-col justify-between border-2 border-slate-100 bg-white">
                     <div>
-                        <div class="h-44 rounded-xl overflow-hidden mb-6 bg-slate-900 relative">
-                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" 
-                                 alt="Test Phase" class="w-full h-full object-cover">
-                            <span class="absolute top-3 left-3 bg-slate-950/80 text-emerald-400 text-xs font-bold px-3 py-1 rounded-full border border-slate-800">
+                        <div class="h-48 rounded-3xl overflow-hidden mb-6 bg-art-coralSoft relative">
+                            <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80" 
+                                 alt="Guided Creative Expression" class="w-full h-full object-cover">
+                            <span class="absolute top-4 left-4 bg-art-coral text-white text-xs font-extrabold px-3.5 py-1.5 rounded-full shadow-md font-display">
                                 02. STEP
                             </span>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3" data-i18n="step2_title">Test & Refine</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed" data-i18n="step2_desc">
-                            Rapid prototyping and stress-testing prototypes in sandbox environments to ensure performance and accuracy.
+                        <h3 class="text-xl font-extrabold text-art-charcoal mb-3 font-display" data-i18n="step2_title">Guided Expression</h3>
+                        <p class="text-art-slate text-sm leading-relaxed font-medium" data-i18n="step2_desc">
+                            Instructors provide step-by-step adaptive guidance, encouraging individual artistic preferences and motor skills.
                         </p>
                     </div>
                 </div>
 
-                <!-- Step 3: Deploy -->
-                <div class="card-glass rounded-2xl p-6 flex flex-col justify-between border border-slate-800">
+                <!-- Step 3: Exhibition & Celebration -->
+                <div class="art-card rounded-4xl p-6 flex flex-col justify-between border-2 border-slate-100 bg-white">
                     <div>
-                        <div class="h-44 rounded-xl overflow-hidden mb-6 bg-slate-900 relative">
-                            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80" 
-                                 alt="Deploy Phase" class="w-full h-full object-cover">
-                            <span class="absolute top-3 left-3 bg-slate-950/80 text-emerald-400 text-xs font-bold px-3 py-1 rounded-full border border-slate-800">
+                        <div class="h-48 rounded-3xl overflow-hidden mb-6 bg-art-purpleLight relative">
+                            <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80" 
+                                 alt="Art Exhibition & Celebration" class="w-full h-full object-cover">
+                            <span class="absolute top-4 left-4 bg-art-purple text-white text-xs font-extrabold px-3.5 py-1.5 rounded-full shadow-md font-display">
                                 03. STEP
                             </span>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3" data-i18n="step3_title">Deploy</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed" data-i18n="step3_desc">
-                            Seamless integration into active networks with ongoing monitoring, security audits, and lifecycle support.
+                        <h3 class="text-xl font-extrabold text-art-charcoal mb-3 font-display" data-i18n="step3_title">Exhibition & Celebration</h3>
+                        <p class="text-art-slate text-sm leading-relaxed font-medium" data-i18n="step3_desc">
+                            We showcase each student's artworks in studio mini-exhibitions to celebrate their unique creative journey.
                         </p>
                     </div>
                 </div>
@@ -365,51 +411,60 @@
     </section>
 
     <!-- SECTION 5: CONTACT US -->
-    <section id="contact" class="py-24 bg-brand-dark relative">
+    <section id="contact" class="py-24 bg-white relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             <div class="text-center mb-16">
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4" data-i18n="section_contact_heading">Contact Us</h2>
-                <div class="w-16 h-1 bg-emerald-500 mx-auto rounded-full"></div>
+                <span class="text-xs font-bold text-art-coral tracking-wider uppercase bg-art-coralSoft px-4 py-1.5 rounded-full" data-i18n="section_contact_badge">GET IN TOUCH</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-art-charcoal mt-3 mb-4 font-display" data-i18n="section_contact_heading">Contact Us & Join a Class</h2>
+                <div class="w-20 h-2 bg-art-coral mx-auto rounded-full"></div>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
                 
-                <!-- Contact Form (Fill-in Form) -->
-                <div class="lg:col-span-7 card-glass p-8 sm:p-10 rounded-2xl border border-slate-800">
+                <!-- Contact Form for Parents -->
+                <div class="lg:col-span-7 art-card p-8 sm:p-10 rounded-4xl border-2 border-slate-100 bg-white">
                     <form onsubmit="handleFormSubmit(event)" class="space-y-6">
                         <div>
-                            <label class="block text-xs font-semibold text-slate-300 uppercase mb-2" data-i18n="form_name">Name</label>
-                            <input type="text" required placeholder="Your Name" 
-                                   class="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-400 transition-colors">
+                            <label class="block text-xs font-bold text-art-charcoal uppercase mb-2 font-display" data-i18n="form_name">Parent / Guardian Name</label>
+                            <input type="text" required placeholder="Your Full Name" 
+                                   class="w-full bg-slate-50 border-2 border-slate-200 rounded-2xl px-5 py-3.5 text-art-charcoal focus:outline-none focus:border-art-coral transition-colors font-medium">
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-bold text-art-charcoal uppercase mb-2 font-display" data-i18n="form_email">Email Address</label>
+                                <input type="email" required placeholder="name@example.com" 
+                                       class="w-full bg-slate-50 border-2 border-slate-200 rounded-2xl px-5 py-3.5 text-art-charcoal focus:outline-none focus:border-art-coral transition-colors font-medium">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-art-charcoal uppercase mb-2 font-display" data-i18n="form_phone">Phone / WhatsApp</label>
+                                <input type="tel" placeholder="+852 9123 4567" 
+                                       class="w-full bg-slate-50 border-2 border-slate-200 rounded-2xl px-5 py-3.5 text-art-charcoal focus:outline-none focus:border-art-coral transition-colors font-medium">
+                            </div>
                         </div>
 
                         <div>
-                            <label class="block text-xs font-semibold text-slate-300 uppercase mb-2" data-i18n="form_email">Email</label>
-                            <input type="email" required placeholder="name@example.com" 
-                                   class="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-400 transition-colors">
+                            <label class="block text-xs font-bold text-art-charcoal uppercase mb-2 font-display" data-i18n="form_child">Child's Age & Special Interests / Needs</label>
+                            <input type="text" placeholder="e.g. 7 years old, loves finger painting & tactile art" 
+                                   class="w-full bg-slate-50 border-2 border-slate-200 rounded-2xl px-5 py-3.5 text-art-charcoal focus:outline-none focus:border-art-coral transition-colors font-medium">
                         </div>
 
                         <div>
-                            <label class="block text-xs font-semibold text-slate-300 uppercase mb-2" data-i18n="form_subject">Subject</label>
-                            <input type="text" required placeholder="Inquiry Subject" 
-                                   class="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-400 transition-colors">
+                            <label class="block text-xs font-bold text-art-charcoal uppercase mb-2 font-display" data-i18n="form_message">Message / Class Inquiry</label>
+                            <textarea rows="4" required placeholder="Tell us about your child or ask any questions about our SEN art classes..." 
+                                      class="w-full bg-slate-50 border-2 border-slate-200 rounded-2xl px-5 py-3.5 text-art-charcoal focus:outline-none focus:border-art-coral transition-colors font-medium"></textarea>
                         </div>
 
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-300 uppercase mb-2" data-i18n="form_message">Message</label>
-                            <textarea rows="4" required placeholder="Write your message here..." 
-                                      class="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-400 transition-colors"></textarea>
-                        </div>
-
-                        <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3.5 px-6 rounded-xl transition-colors" data-i18n="form_btn">
-                            Send Message
+                        <button type="submit" class="w-full bg-art-yellow hover:bg-yellow-400 text-art-charcoal font-extrabold py-4 px-6 rounded-2xl transition-colors shadow-md hover:shadow-lg font-display text-base" data-i18n="form_btn">
+                            Send Class Inquiry
                         </button>
                     </form>
 
                     <!-- Form Status Toast -->
-                    <div id="formToast" class="hidden mt-4 p-4 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-sm text-center">
-                        Message sent successfully! We will get back to you soon.
+                    <div id="formToast" class="hidden mt-4 p-4 rounded-2xl bg-art-mintLight border-2 border-art-mint text-art-charcoal text-sm text-center font-bold">
+                        <i class="fa-solid fa-circle-check text-art-mint me-2"></i>
+                        Thank you! We have received your inquiry and will contact you shortly.
                     </div>
                 </div>
 
@@ -417,41 +472,41 @@
                 <div class="lg:col-span-5 flex flex-col justify-between space-y-8">
                     
                     <!-- Where to Find Us (Location Card) -->
-                    <div class="card-glass p-8 rounded-2xl border border-slate-800">
-                        <h3 class="text-xl font-bold text-white mb-4" data-i18n="find_title">Where to Find Us</h3>
-                        <div class="h-44 rounded-xl overflow-hidden bg-slate-900 mb-4 relative border border-slate-800">
+                    <div class="art-card p-8 rounded-4xl bg-art-skyLight/30 border-2 border-art-sky/30">
+                        <h3 class="text-2xl font-extrabold text-art-charcoal mb-4 font-display" data-i18n="find_title">Where to Find Us</h3>
+                        <div class="h-48 rounded-3xl overflow-hidden bg-slate-100 mb-4 relative border-2 border-slate-200">
                             <!-- Styled Map Graphic Placeholder -->
                             <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=600&q=80" 
-                                 alt="Hong Kong Map Location" class="w-full h-full object-cover opacity-60">
+                                 alt="Hong Kong Studio Location Map" class="w-full h-full object-cover">
                             <div class="absolute inset-0 flex items-center justify-center">
-                                <div class="w-8 h-8 rounded-full bg-emerald-500 text-black flex items-center justify-center shadow-lg animate-bounce">
+                                <div class="w-10 h-10 rounded-full bg-art-coral text-white flex items-center justify-center shadow-lg animate-bounce text-lg">
                                     <i class="fa-solid fa-location-dot"></i>
                                 </div>
                             </div>
                         </div>
-                        <p class="text-sm text-slate-300 flex items-center gap-2">
-                            <i class="fa-solid fa-building text-emerald-400"></i>
-                            <span data-i18n="find_address">Cyberport / Science Park, Hong Kong</span>
+                        <p class="text-sm font-semibold text-art-charcoal flex items-center gap-3">
+                            <i class="fa-solid fa-building text-art-coral text-lg"></i>
+                            <span data-i18n="find_address">Creative Hub, Central / Kwun Tong Studio, Hong Kong</span>
                         </p>
                     </div>
 
                     <!-- Stay Connected / Follow Us -->
-                    <div class="card-glass p-8 rounded-2xl border border-slate-800">
-                        <h3 class="text-xl font-bold text-white mb-4" data-i18n="social_title">Stay Connected / Follow Us</h3>
-                        <p class="text-sm text-slate-400 mb-6" data-i18n="social_desc">Follow our channels for the latest research releases and technology updates.</p>
+                    <div class="art-card p-8 rounded-4xl bg-art-purpleLight/30 border-2 border-art-purple/30">
+                        <h3 class="text-2xl font-extrabold text-art-charcoal mb-2 font-display" data-i18n="social_title">Stay Connected / Follow Us</h3>
+                        <p class="text-sm text-art-slate mb-6 font-medium" data-i18n="social_desc">Follow our community channels to view student artworks, sensory tips, and upcoming workshops.</p>
                         
                         <div class="flex items-center gap-4">
-                            <a href="#" class="w-12 h-12 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-emerald-400 hover:border-emerald-500 transition-all">
+                            <a href="#" class="w-12 h-12 rounded-2xl bg-white border-2 border-slate-200 flex items-center justify-center text-art-charcoal hover:text-art-coral hover:border-art-coral transition-all shadow-sm">
                                 <i class="fa-brands fa-facebook-f text-lg"></i>
                             </a>
-                            <a href="#" class="w-12 h-12 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-emerald-400 hover:border-emerald-500 transition-all">
+                            <a href="#" class="w-12 h-12 rounded-2xl bg-white border-2 border-slate-200 flex items-center justify-center text-art-charcoal hover:text-art-coral hover:border-art-coral transition-all shadow-sm">
                                 <i class="fa-brands fa-instagram text-lg"></i>
                             </a>
-                            <a href="#" class="w-12 h-12 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-emerald-400 hover:border-emerald-500 transition-all">
-                                <i class="fa-brands fa-linkedin-in text-lg"></i>
+                            <a href="#" class="w-12 h-12 rounded-2xl bg-white border-2 border-slate-200 flex items-center justify-center text-art-charcoal hover:text-art-coral hover:border-art-coral transition-all shadow-sm">
+                                <i class="fa-brands fa-whatsapp text-lg"></i>
                             </a>
-                            <a href="#" class="w-12 h-12 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-emerald-400 hover:border-emerald-500 transition-all">
-                                <i class="fa-brands fa-github text-lg"></i>
+                            <a href="#" class="w-12 h-12 rounded-2xl bg-white border-2 border-slate-200 flex items-center justify-center text-art-charcoal hover:text-art-coral hover:border-art-coral transition-all shadow-sm">
+                                <i class="fa-brands fa-youtube text-lg"></i>
                             </a>
                         </div>
                     </div>
@@ -464,17 +519,17 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-10 bg-slate-950 border-t border-slate-900 text-center text-xs text-slate-500">
+    <footer class="py-10 bg-slate-50 border-t-2 border-slate-100 text-center text-xs font-semibold text-art-slate">
         <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex items-center gap-4">
-                <a href="#" class="hover:text-slate-400" data-i18n="footer_legal">Legal</a>
+                <a href="#" class="hover:text-art-coral" data-i18n="footer_legal">Legal & Privacy</a>
                 <span>|</span>
-                <a href="#" class="hover:text-slate-400" data-i18n="footer_links">Links</a>
+                <a href="#" class="hover:text-art-coral" data-i18n="footer_links">Community Links</a>
                 <span>|</span>
-                <a href="#" class="hover:text-slate-400" data-i18n="footer_copyright">Copyright</a>
+                <a href="#" class="hover:text-art-coral" data-i18n="footer_copyright">Copyright Notice</a>
             </div>
-            <div>
-                © 2026 <span class="text-slate-400">Nonsense Lab</span>. All rights reserved. nonsenselab.hk
+            <div class="font-medium">
+                © 2026 <span class="font-extrabold text-art-charcoal font-display">Nonsense Lab</span>. All rights reserved. nonsenselab.hk
             </div>
         </div>
     </footer>
@@ -484,101 +539,115 @@
         // Dictionary for English (EN) and Traditional Chinese (TC)
         const i18nData = {
             en: {
+                nav_subtitle: "Inclusive Kids Art Studio",
                 nav_home: "Homepage",
                 nav_about: "About Us",
                 nav_mission: "Mission",
-                nav_program: "Program Information",
+                nav_program: "Program Flow",
                 nav_contact: "Contact",
-                status_online: "Site Online",
-                hero_tagline: "Where Innovative Research Begins",
-                hero_card_sub: "RESEARCH & DEVELOPMENT",
-                hero_card_title: "Pioneering Digital Solutions",
-                hero_card_desc: "Combining technology research, strategy, and fine mechanics to turn visionary concepts into functional realities.",
-                section_about_heading: "What We Do / About Us",
-                node1_title: "Idea Generation",
-                node1_desc: "Transforming abstract concepts into structured, workable tech strategies and models.",
-                node2_title: "Research & Dev",
-                node2_desc: "Executing rigorous experiments, prototyping, and refined algorithmic testing.",
-                node3_title: "Network Integration",
-                node3_desc: "Deploying scalable applications directly into production environments securely.",
-                about_sub: "OUR FOUNDATION",
-                about_block_title: "Welcome to Nonsense Lab",
-                about_block_body: "At Nonsense Lab, we explore unconventional ideas to produce groundbreaking technology solutions. Our team bridges research, software engineering, and systems architecture to build tools that solve complex digital challenges.",
-                about_btn: "Get In Touch",
+                status_online: "Open for SEN Kids Art Classes & Workshops",
+                hero_tagline: "Where Art Has No Limits",
+                hero_subtext: "Unleashing creative possibilities for children with Special Educational Needs (SEN) through tailored sensory painting, tactile crafts, and joy-filled art exploration.",
+                hero_card_sub: "SENSORY & ART THERAPY APPROACH",
+                hero_card_title: "Gentle, Adaptive & Joyful Learning",
+                hero_card_desc: "Small-group sessions designed specifically for autistic, ADHD, and sensory-sensitive young artists to freely express their inner worlds.",
+                section_about_badge: "CREATIVE METHODOLOGY",
+                section_about_heading: "What We Do / Our Art Studio",
+                node1_title: "Sensory Exploration",
+                node1_desc: "Tactile engagement through textured clay, finger painting, and safe sensory art mediums.",
+                node2_title: "Hands-On Creation",
+                node2_desc: "Tailored multi-sensory crafts and expressive painting tailored to each child's rhythm.",
+                node3_title: "Emotional Expression",
+                node3_desc: "Building self-confidence, motor skills, and emotional calm through non-verbal creative play.",
+                about_sub: "WELCOME TO NONSENSE LAB",
+                about_block_title: "A Safe Haven for Young Artists",
+                about_block_body: "Nonsense Lab is an inclusive art sanctuary dedicated to children with special educational needs (SEN). We believe there is no 'wrong' way to make art. In our warm and flexible environment, messiness is celebrated, and every splash of paint tells a unique story.",
+                about_btn: "Book a Trial Class",
+                section_mission_badge: "OUR CORE VALUES",
                 section_mission_heading: "Why We Do / Mission",
-                mission_title: "Empowering the Future Through Discovery",
-                mission_body1: "Our mission is to challenge conventional boundaries in technology and research. We believe that what often seems like 'nonsense' at first glance holds the key to major technological breakthroughs.",
-                mission_body2: "By providing open frameworks, experimental methodologies, and collaborative environments, Nonsense Lab strives to turn raw curiosity into meaningful impact.",
-                mission_check: "Open Source Innovation & Research Excellence",
+                mission_title: "Unlocking Potential Through Inclusive Art",
+                mission_body1: "Our mission is to empower children with special needs by providing specialized, non-judgmental art therapy-inspired workshops. We transform sensory sensitivities into creative superpowers, giving every child a voice beyond words.",
+                mission_body2: "Through low student-to-teacher ratios, experienced SEN art tutors, and individualized pacing, we cultivate joy, focus, fine motor control, and meaningful social connections.",
+                mission_check: "Experienced Special Education Art Facilitators",
+                section_program_badge: "STEP-BY-STEP LEARNING",
                 section_program_heading: "How We Do (Program Flow)",
-                program_subtitle: "Our structured three-stage methodology designed for optimal execution.",
-                step1_title: "Discover",
-                step1_desc: "In-depth analysis, market research, and identifying core technical bottlenecks before writing a single line of code.",
-                step2_title: "Test & Refine",
-                step2_desc: "Rapid prototyping and stress-testing prototypes in sandbox environments to ensure performance and accuracy.",
-                step3_title: "Deploy",
-                step3_desc: "Seamless integration into active networks with ongoing monitoring, security audits, and lifecycle support.",
-                section_contact_heading: "Contact Us",
-                form_name: "Name",
-                form_email: "Email",
-                form_subject: "Subject",
-                form_message: "Message",
-                form_btn: "Send Message",
+                program_subtitle: "A gentle three-stage journey crafted to encourage self-discovery and fun.",
+                step1_title: "Sensory Art & Discovery",
+                step1_desc: "Children explore diverse textures, colors, and non-toxic materials at their own comfort level without pressure.",
+                step2_title: "Guided Expression",
+                step2_desc: "Instructors provide step-by-step adaptive guidance, encouraging individual artistic preferences and motor skills.",
+                step3_title: "Exhibition & Celebration",
+                step3_desc: "We showcase each student's artworks in studio mini-exhibitions to celebrate their unique creative journey.",
+                section_contact_badge: "GET IN TOUCH",
+                section_contact_heading: "Contact Us & Join a Class",
+                form_name: "Parent / Guardian Name",
+                form_email: "Email Address",
+                form_phone: "Phone / WhatsApp",
+                form_child: "Child's Age & Special Interests / Needs",
+                form_message: "Message / Class Inquiry",
+                form_btn: "Send Class Inquiry",
                 find_title: "Where to Find Us",
-                find_address: "Cyberport / Science Park, Hong Kong",
+                find_address: "Creative Hub, Central / Kwun Tong Studio, Hong Kong",
                 social_title: "Stay Connected / Follow Us",
-                social_desc: "Follow our channels for the latest research releases and technology updates.",
-                footer_legal: "Legal",
-                footer_links: "Links",
-                footer_copyright: "Copyright"
+                social_desc: "Follow our community channels to view student artworks, sensory tips, and upcoming workshops.",
+                footer_legal: "Legal & Privacy",
+                footer_links: "Community Links",
+                footer_copyright: "Copyright Notice"
             },
             tc: {
+                nav_subtitle: "特殊需要兒童包容性藝術工作坊",
                 nav_home: "主頁",
                 nav_about: "關於我們",
                 nav_mission: "使命理念",
-                nav_program: "項目資訊",
+                nav_program: "學習流程",
                 nav_contact: "聯絡我們",
-                status_online: "網站正常運行中",
-                hero_tagline: "創新研究始於此處",
-                hero_card_sub: "技術研究與開發",
-                hero_card_title: "開創性數位解決方案",
-                hero_card_desc: "結合前沿科技研究、戰略規劃與精密工程，將前瞻構想轉化為具體的應用技術。",
-                section_about_heading: "業務範疇 / 關於我們",
-                node1_title: "創意發想",
-                node1_desc: "將抽象構想轉化為結構化、可行的科技技術模型。",
-                node2_title: "研究與開發",
-                node2_desc: "執行嚴謹的科技實驗、原型製作與演算法測試。",
-                node3_title: "網絡整合",
-                node3_desc: "將高擴展性應用程式安全部署至生產環境。",
-                about_sub: "我們的基石",
-                about_block_title: "歡迎來到 Nonsense Lab",
-                about_block_body: "在 Nonsense Lab，我們探索非傳統概念，創造突破性的科技解決方案。團隊跨越科研、軟體工程與系統架構，打造解決複雜數位挑戰的工具。",
-                about_btn: "聯絡我們",
+                status_online: "SEN 兒童藝術工作坊現正接受報名",
+                hero_tagline: "無界創藝 點亮心靈",
+                hero_subtext: "專為特殊教育需要 (SEN) 兒童設計的感官繪畫與創意手作課程，透過多元藝術體驗解放孩子無限潛能。",
+                hero_card_sub: "感官與藝術治療引導理念",
+                hero_card_title: "溫和、適應性強且充滿樂趣",
+                hero_card_desc: "小班教學，特別為自閉症、專注力不足 (ADHD) 及感官敏感的小藝術家提供自由表達內心世界的空間。",
+                section_about_badge: "創意教學法",
+                section_about_heading: "業務範疇 / 我們的藝術畫室",
+                node1_title: "感官探索",
+                node1_desc: "透過觸覺黏土、手指畫及安全多感官藝術媒材進行自由探索。",
+                node2_title: "動手創作",
+                node2_desc: "量身定製的多感官手工與表達性繪畫，順應每位孩子的獨特節奏。",
+                node3_title: "情感抒發",
+                node3_desc: "透過非言語的創意遊戲建立自信心、小肌肉協調及情緒沉澱。",
+                about_sub: "歡迎來到 NONSENSE LAB",
+                about_block_title: "小藝術家的安全避風港",
+                about_block_body: "Nonsense Lab 是一家致力於服務特殊教育需要 (SEN) 兒童的包容性藝術工作室。我們相信創作沒有「對錯」，在溫馨靈活的環境中，隨意揮灑都是值得慶祝的成果。",
+                about_btn: "預約試上體驗課",
+                section_mission_badge: "核心價值",
                 section_mission_heading: "立意與使命",
-                mission_title: "以探索精神賦能未來",
-                mission_body1: "我們的使命是打破科技與研究的傳統邊界。我們相信，初看似乎是「荒謬 (nonsense)」的點子，往往蘊含著重大技術突破的鑰匙。",
-                mission_body2: "透過提供開放架構、實驗性方法論與協同合作環境，Nonsense Lab 致力於將好奇心轉化為有實質影響力的成果。",
-                mission_check: "開源創新與卓越研究品質",
+                mission_title: "以包容性藝術啟發潛能",
+                mission_body1: "我們的使命是透過專業且零審判的藝術體驗，賦能特殊需要兒童。我們將感官敏感轉化為創作靈感，讓每位孩子擁有超越語言的表達管道。",
+                mission_body2: "藉由極低師生比例、經驗豐富的特殊教育藝術導師及個人化進度，我們培養孩子的專注力、手部精細動作與社交自信。",
+                mission_check: "具備特殊教育經驗之資深藝術導師",
+                section_program_badge: "循序漸進的學習過程",
                 section_program_heading: "執行流程 (Program Flow)",
-                program_subtitle: "為最佳執行成效而設計的結構化三階段方法論。",
-                step1_title: "探索發現 (Discover)",
-                step1_desc: "在撰寫任何程式碼前，進行深度需求分析、市場研究與核心技術瓶頸識別。",
-                step2_title: "測試與優化 (Test & Refine)",
-                step2_desc: "於沙盒環境中進行快速原型製作與壓力測試，確保效能與精確度。",
-                step3_title: "部署實施 (Deploy)",
-                step3_desc: "無縫整合至運行網絡，並提供持續監控、安全審計與系統維護支援。",
-                section_contact_heading: "聯絡我們",
-                form_name: "姓名",
+                program_subtitle: "精心設計的三階段學習之旅，鼓勵自我發現與藝術樂趣。",
+                step1_title: "感官藝術與探索",
+                step1_desc: "孩子在沒有壓力的環境中，按照自己的步調探索豐富的質感、色彩與無毒畫材。",
+                step2_title: "引導式創作",
+                step2_desc: "導師提供適應性指導，鼓勵個體藝術偏好與手部肌肉伸展。",
+                step3_title: "展覽與慶祝",
+                step3_desc: "我們在畫室舉辦小型展覽，展示每位學生的藝術作品，慶祝他們的獨特創作歷程。",
+                section_contact_badge: "保持聯絡",
+                section_contact_heading: "聯絡我們與報名課程",
+                form_name: "家長 / 監護人姓名",
                 form_email: "電郵地址",
-                form_subject: "主旨",
-                form_message: "訊息內容",
-                form_btn: "送出訊息",
-                find_title: "我們的地址",
-                find_address: "香港數碼港 / 科學園",
+                form_phone: "聯絡電話 / WhatsApp",
+                form_child: "孩子年齡及特別興趣 / 需求",
+                form_message: "訊息內容 / 課程查詢",
+                form_btn: "送出課程查詢",
+                find_title: "我們的畫室地址",
+                find_address: "香港中環 / 觀塘 創意藝術工作坊",
                 social_title: "保持連繫 / 追蹤我們",
-                social_desc: "追蹤我們的社群頻道，獲取最新研究成果與技術動態。",
-                footer_legal: "法律聲明",
-                footer_links: "實用連結",
+                social_desc: "追蹤我們的社群頻道，欣賞學生藝術作品、獲取感官日常技巧及最新工作坊資訊。",
+                footer_legal: "法律與隱私聲明",
+                footer_links: "社區連結",
                 footer_copyright: "版權所有"
             }
         };
@@ -609,7 +678,7 @@
             document.getElementById('check-tc').classList.toggle('hidden', lang !== 'tc');
 
             // Update Label text
-            document.getElementById('currentLangLabel').innerText = lang === 'en' ? 'Language: EN | 中文' : '語言: 繁體中文';
+            document.getElementById('currentLangLabel').innerText = lang === 'en' ? 'EN | 繁中' : '語言: 繁中';
 
             // Hide dropdown
             document.getElementById('langDropdown').classList.add('hidden');
@@ -618,7 +687,7 @@
             const elements = document.querySelectorAll('[data-i18n]');
             elements.forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (i18nData[lang][key]) {
+                if (i18nData[lang] && i18nData[lang][key]) {
                     el.innerText = i18nData[lang][key];
                 }
             });
@@ -630,7 +699,7 @@
             menu.classList.toggle('hidden');
         }
 
-        // Mock Form Submission
+        // Mock Form Submission Logic
         function handleFormSubmit(event) {
             event.preventDefault();
             const toast = document.getElementById('formToast');
@@ -639,7 +708,7 @@
 
             setTimeout(() => {
                 toast.classList.add('hidden');
-            }, 4000);
+            }, 5000);
         }
     </script>
 </body>
