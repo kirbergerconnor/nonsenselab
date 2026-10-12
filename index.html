@@ -1,715 +1,810 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nonsense Lab | Inclusive Kids Art Studio</title>
-    <!-- Tailwind CSS -->
+    <title>Nonsense Lab | Where nonsense, makes sense</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts (Fredoka for playful headers, Inter & Noto Sans TC for readable body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        art: {
-                            yellow: '#FFD166',
-                            yellowLight: '#FFF8E7',
-                            coral: '#FF70A6',
-                            coralSoft: '#FFEFF5',
-                            mint: '#06D6A0',
-                            mintLight: '#E6FAF5',
-                            sky: '#4EA8DE',
-                            skyLight: '#EBF6FC',
-                            purple: '#9B5DE5',
-                            purpleLight: '#F5EEFC',
-                            charcoal: '#2B2D42',
-                            slate: '#5C677D'
-                        }
-                    },
-                    fontFamily: {
-                        display: ['Fredoka', 'Noto Sans TC', 'sans-serif'],
-                        sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
-                    },
-                    borderRadius: {
-                        '4xl': '2rem',
-                        '5xl': '2.5rem',
-                    }
-                }
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'ns-cream': '#FAF8F2',
+              'ns-yellow': '#E9C440',
+              'ns-light-yellow': '#F3E388',
+              'ns-pink': '#FFB7B2',
+              'ns-blue': '#A3C1AD',
+              'ns-periwinkle': '#A6C1E1',
+              'ns-olive': '#6C7E5A',
+              'ns-rust': '#C85A32',
+              'ns-card-yellow': '#E2CE58',
+              'ns-card-pink': '#F7C1C1',
+              'ns-card-blue': '#98B3DA',
+              'ns-card-olive': '#7D8B6B',
+              'ns-card-rust': '#D0633C',
+              'ns-header-brown': '#A0451B',
+            },
+            fontFamily: {
+              hand: ['Gaegu', 'cursive', 'sans-serif'],
+              sans: ['Plus Jakarta Sans', 'Noto Sans TC', 'sans-serif'],
             }
+          }
         }
+      }
     </script>
-
     <style>
-        body {
-            background-color: #FFFFFF;
-            color: #2B2D42;
-            font-family: 'Inter', 'Noto Sans TC', sans-serif;
-            overflow-x: hidden;
-        }
+      body {
+        background-color: #FAF8F2;
+        color: #1A1A1A;
+        font-family: 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif;
+      }
+      .font-handwriting {
+        font-family: 'Gaegu', cursive, sans-serif;
+      }
+      
+      /* Hand-drawn borders and sketchy styles */
+      .sketchy-border {
+        border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+      }
+      
+      .sketchy-pill {
+        border-radius: 999px;
+      }
+      
+      .wavy-underline {
+        text-decoration-line: underline;
+        text-decoration-style: wavy;
+        text-decoration-color: #A6C1E1;
+      }
 
-        h1, h2, h3, .font-display {
-            font-family: 'Fredoka', 'Noto Sans TC', sans-serif;
-        }
+      /* Custom animations */
+      @keyframes float-slow {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-8px) rotate(2deg); }
+      }
+      
+      .animate-float {
+        animation: float-slow 4s ease-in-out infinite;
+      }
 
-        /* Playful Paint Splash & Organic Blob Backgrounds */
-        .art-blob-1 {
-            background: radial-gradient(circle, rgba(255, 209, 102, 0.35) 0%, rgba(255, 255, 255, 0) 70%);
-        }
-        
-        .art-blob-2 {
-            background: radial-gradient(circle, rgba(155, 93, 229, 0.25) 0%, rgba(255, 255, 255, 0) 70%);
-        }
-
-        .art-blob-3 {
-            background: radial-gradient(circle, rgba(6, 214, 160, 0.25) 0%, rgba(255, 255, 255, 0) 70%);
-        }
-
-        /* Soft Card Shadows and Playful Borders */
-        .art-card {
-            background: #FFFFFF;
-            border: 2px solid #F1F5F9;
-            box-shadow: 0 10px 30px -10px rgba(43, 45, 66, 0.06);
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .art-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 35px -10px rgba(43, 45, 66, 0.12);
-        }
-
-        .node-circle {
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .node-circle:hover {
-            transform: scale(1.08) rotate(3deg);
-        }
-
-        /* Wavy Border Dividers */
-        .wavy-badge {
-            animation: gentle-bounce 3s infinite ease-in-out;
-        }
-
-        @keyframes gentle-bounce {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-5px) rotate(1deg); }
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #FFF8E7;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #FFD166;
-            border-radius: 5px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #FF70A6;
-        }
+      /* Custom scrollbar for clean aesthetic */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #FAF8F2;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #D1CBB8;
+        border-radius: 4px;
+      }
     </style>
 </head>
-<body class="antialiased selection:bg-art-yellow selection:text-art-charcoal">
+<body class="bg-[#FAF8F2] text-gray-900 min-h-screen flex flex-col selection:bg-yellow-200">
 
-    <!-- Navigation Bar -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b-2 border-slate-100 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            
-            <!-- Brand Logo -->
-            <a href="#hero" class="flex items-center gap-3 group">
-                <div class="w-11 h-11 rounded-2xl bg-art-yellow flex items-center justify-center font-bold text-art-charcoal text-2xl shadow-md group-hover:rotate-12 transition-transform border-2 border-art-charcoal/10">
-                    <i class="fa-solid fa-palette text-art-coral"></i>
-                </div>
-                <div class="flex flex-col">
-                    <span class="text-2xl font-bold tracking-tight text-art-charcoal font-display group-hover:text-art-coral transition-colors">Nonsense Lab</span>
-                    <span class="text-[10px] uppercase font-bold tracking-widest text-art-sky -mt-1" data-i18n="nav_subtitle">Inclusive Kids Art Studio</span>
-                </div>
+  <!-- Top Navigation -->
+  <header class="sticky top-0 z-50 bg-[#FAF8F2]/90 backdrop-blur-md px-4 sm:px-8 py-3 transition-all duration-300 border-b border-black/5">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-2">
+      
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-1 group">
+        <div class="bg-[#C4C9D2] px-3 py-1 rounded-full border border-black/80 font-handwriting text-2xl sm:text-3xl font-bold tracking-wider transform -rotate-1 group-hover:scale-105 transition-transform">
+          nonsense LAB
+        </div>
+      </a>
+
+      <!-- Navigation Badges & Buttons -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Sub-tagline badge -->
+        <div class="hidden md:flex items-center bg-[#F7C5C5] px-4 py-1.5 rounded-full border border-black/80 text-sm font-medium">
+          <span data-i18n="tagline">Where nonsense, makes sense</span>
+        </div>
+
+        <!-- Navigation items -->
+        <a href="#about" class="bg-[#EFE383] px-4 sm:px-5 py-1.5 rounded-full border border-black/80 text-sm font-semibold hover:bg-[#ebd95b] transition-colors shadow-sm">
+          <span data-i18n="nav_about">About Us</span>
+        </a>
+
+        <a href="#contact" class="bg-transparent px-4 sm:px-5 py-1.5 rounded-full border border-black/80 text-sm font-semibold hover:bg-black/5 transition-colors">
+          <span data-i18n="nav_contact">Contact</span>
+        </a>
+
+        <!-- Language Switcher -->
+        <button id="lang-toggle" onclick="toggleLanguage()" class="bg-white px-3 py-1.5 rounded-full border border-black/80 text-xs sm:text-sm font-bold flex items-center gap-1 hover:bg-gray-100 transition-colors">
+          <span id="lang-text">繁體中文</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="md:hidden p-1.5 text-gray-800" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown -->
+    <div id="mobile-menu" class="hidden md:hidden pt-3 pb-2 border-t border-gray-200 mt-2 space-y-2 text-center">
+      <div class="bg-[#F7C5C5] px-4 py-1.5 rounded-full border border-black/80 text-sm font-medium inline-block my-1">
+        <span data-i18n="tagline">Where nonsense, makes sense</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow">
+    <!-- Hero Section -->
+    <section class="relative px-4 sm:px-8 pt-8 pb-16 max-w-6xl mx-auto overflow-hidden">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
+        
+        <!-- Left Doodle Character (Moon Singing) -->
+        <div class="w-28 sm:w-36 md:w-44 flex-shrink-0 animate-float hidden sm:block">
+          <svg viewBox="0 0 160 200" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-auto text-black">
+            <!-- Moon Character -->
+            <path d="M 70 30 C 100 30, 110 60, 100 90 C 90 120, 60 130, 40 120 C 60 115, 75 95, 70 70 C 65 45, 50 35, 40 30 C 50 28, 60 28, 70 30 Z" fill="white"/>
+            <!-- Eyes & Mouth -->
+            <ellipse cx="65" cy="55" rx="2" ry="4" fill="black"/>
+            <path d="M 75 62 Q 80 65 72 70" fill="none"/>
+            <path d="M 78 60 L 88 56" />
+            <!-- Feet & Hands -->
+            <path d="M 50 122 L 45 155 L 35 155 M 45 155 L 52 155"/>
+            <path d="M 70 120 L 75 155 L 68 155 M 75 155 L 82 155"/>
+            <path d="M 40 85 L 20 95 L 25 105"/>
+            <path d="M 75 80 L 95 85 M 95 85 L 102 78 M 95 85 L 100 92"/>
+            <!-- Musical Notes -->
+            <path d="M 105 40 Q 115 35 120 45 L 120 25 L 135 20 L 135 40" stroke-width="2"/>
+            <circle cx="118" cy="45" r="4" fill="black"/>
+            <circle cx="133" cy="40" r="4" fill="black"/>
+            <path d="M 125 60 Q 135 55 140 65" stroke-dasharray="2 3"/>
+          </svg>
+        </div>
+
+        <!-- Center Text Content -->
+        <div class="text-center max-w-2xl px-2">
+          <h1 class="text-xl sm:text-2xl md:text-3xl font-medium leading-relaxed text-gray-900 tracking-tight" data-i18n="hero_text">
+            Nonsense Lab creates playful, structured art experiences for children aged 5–10 with special educational needs, while supporting parents with practical insight, confidence, and connection.
+          </h1>
+
+          <!-- CTA Buttons -->
+          <div class="mt-8 flex flex-wrap justify-center gap-4">
+            <a href="#workshops" class="bg-[#FBC4BA] hover:bg-[#f7b0a3] text-gray-900 px-6 py-2.5 rounded-full border border-black/80 font-semibold text-sm sm:text-base transition-transform transform hover:-translate-y-0.5 shadow-sm">
+              <span data-i18n="btn_workshops">Explore Our Workshops</span>
             </a>
-
-            <!-- Desktop Nav Links -->
-            <nav class="hidden md:flex items-center gap-7">
-                <a href="#hero" class="text-sm font-semibold text-art-charcoal hover:text-art-coral transition-colors py-1" data-i18n="nav_home">Homepage</a>
-                <a href="#about" class="text-sm font-semibold text-art-charcoal hover:text-art-coral transition-colors py-1" data-i18n="nav_about">About Us</a>
-                <a href="#mission" class="text-sm font-semibold text-art-charcoal hover:text-art-coral transition-colors py-1" data-i18n="nav_mission">Mission</a>
-                <a href="#program" class="text-sm font-semibold text-art-charcoal hover:text-art-coral transition-colors py-1" data-i18n="nav_program">Program Flow</a>
-                <a href="#contact" class="text-sm font-semibold text-art-charcoal hover:text-art-coral transition-colors py-1" data-i18n="nav_contact">Contact</a>
-            </nav>
-
-            <!-- Language Switcher & Controls -->
-            <div class="flex items-center gap-3">
-                <div class="relative">
-                    <button id="langToggleBtn" onclick="toggleLangDropdown()" class="flex items-center gap-2 bg-art-yellowLight hover:bg-art-yellow/30 border-2 border-art-yellow/50 text-art-charcoal font-bold text-xs sm:text-sm px-4 py-2 rounded-2xl transition-all shadow-sm">
-                        <i class="fa-solid fa-globe text-art-coral"></i>
-                        <span id="currentLangLabel">EN | 繁中</span>
-                        <i class="fa-solid fa-chevron-down text-xs text-art-slate"></i>
-                    </button>
-
-                    <!-- Language Dropdown Menu -->
-                    <div id="langDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white border-2 border-slate-100 rounded-2xl shadow-xl py-2 z-50 overflow-hidden">
-                        <button onclick="setLanguage('en')" class="w-full text-left px-4 py-2.5 text-sm font-semibold text-art-charcoal hover:bg-art-yellowLight flex items-center justify-between">
-                            <span>English (EN)</span>
-                            <i id="check-en" class="fa-solid fa-circle-check text-art-mint text-sm"></i>
-                        </button>
-                        <button onclick="setLanguage('tc')" class="w-full text-left px-4 py-2.5 text-sm font-semibold text-art-charcoal hover:bg-art-yellowLight flex items-center justify-between">
-                            <span>繁體中文 (TC)</span>
-                            <i id="check-tc" class="fa-solid fa-circle-check text-art-mint text-sm hidden"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <button onclick="toggleMobileMenu()" class="md:hidden text-art-charcoal hover:text-art-coral p-2 rounded-xl bg-slate-50">
-                    <i class="fa-solid fa-bars text-xl"></i>
-                </button>
-            </div>
+            <a href="#contact" class="bg-[#A4C2E6] hover:bg-[#92b5e0] text-gray-900 px-8 py-2.5 rounded-full border border-black/80 font-semibold text-sm sm:text-base transition-transform transform hover:-translate-y-0.5 shadow-sm">
+              <span data-i18n="btn_contact">Contact Us</span>
+            </a>
+          </div>
         </div>
 
-        <!-- Mobile Nav Menu -->
-        <div id="mobileMenu" class="hidden md:hidden bg-white border-b-2 border-slate-100 px-6 py-4 flex flex-col gap-3 font-semibold text-art-charcoal">
-            <a href="#hero" onclick="toggleMobileMenu()" class="hover:text-art-coral py-2 border-b border-slate-50" data-i18n="nav_home">Homepage</a>
-            <a href="#about" onclick="toggleMobileMenu()" class="hover:text-art-coral py-2 border-b border-slate-50" data-i18n="nav_about">About Us</a>
-            <a href="#mission" onclick="toggleMobileMenu()" class="hover:text-art-coral py-2 border-b border-slate-50" data-i18n="nav_mission">Mission</a>
-            <a href="#program" onclick="toggleMobileMenu()" class="hover:text-art-coral py-2 border-b border-slate-50" data-i18n="nav_program">Program Flow</a>
-            <a href="#contact" onclick="toggleMobileMenu()" class="hover:text-art-coral py-2" data-i18n="nav_contact">Contact</a>
+        <!-- Right Doodle Character (Cloud monster) -->
+        <div class="w-28 sm:w-36 md:w-44 flex-shrink-0 animate-float hidden sm:block">
+          <svg viewBox="0 0 160 160" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-auto text-black">
+            <!-- Cloud Body -->
+            <path d="M 40 80 C 20 80 15 60 30 45 C 25 25 50 15 70 25 C 85 10 115 15 125 35 C 145 35 150 60 135 75 C 150 95 130 115 110 110 C 95 125 65 120 50 105 C 30 110 20 95 40 80 Z" fill="white"/>
+            <!-- Eyes & Expression -->
+            <circle cx="65" cy="60" r="3" fill="black"/>
+            <circle cx="95" cy="60" r="3" fill="black"/>
+            <path d="M 75 75 Q 80 82 85 75"/>
+            <!-- Multiple Doodle Legs -->
+            <path d="M 45 105 L 40 135 M 40 135 L 33 135 M 40 135 L 45 138"/>
+            <path d="M 60 112 L 58 140 M 58 140 L 52 140"/>
+            <path d="M 78 115 L 80 142 M 80 142 L 87 142"/>
+            <path d="M 95 112 L 100 138 M 100 138 L 95 138"/>
+            <path d="M 115 105 L 122 132 M 122 132 L 128 130"/>
+          </svg>
         </div>
-    </header>
 
-    <!-- SECTION 1: HERO / HOMEPAGE -->
-    <section id="hero" class="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
-        <!-- Floating Artistic Decorative Blobs -->
-        <div class="absolute top-10 left-10 w-96 h-96 art-blob-1 rounded-full filter blur-3xl pointer-events-none"></div>
-        <div class="absolute top-40 right-10 w-96 h-96 art-blob-2 rounded-full filter blur-3xl pointer-events-none"></div>
+      </div>
+    </section>
 
-        <div class="max-w-6xl mx-auto px-4 text-center relative z-10">
-            
-            <!-- Site Online Status Badge -->
-            <div class="inline-flex items-center gap-2 bg-art-yellowLight border-2 border-art-yellow px-5 py-2 rounded-full text-art-charcoal text-xs sm:text-sm font-bold mb-8 wavy-badge shadow-sm">
-                <span class="w-2.5 h-2.5 rounded-full bg-art-coral animate-ping"></span>
-                <i class="fa-solid fa-hands-holding-child text-art-coral"></i>
-                <span data-i18n="status_online">Open for SEN Kids Art Classes & Workshops</span>
-            </div>
+    <!-- Yellow Banner Section (Audience Breakdown) -->
+    <section id="workshops" class="bg-[#E4C333] pt-6 pb-12 px-4 sm:px-8 border-t-2 border-b-2 border-black/10">
+      <div class="max-w-6xl mx-auto">
+        
+        <!-- Header Strip Tabs -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
+          <div class="bg-[#B64319] text-white text-center py-3 px-4 rounded-lg border border-black/80 font-bold text-lg sm:text-xl tracking-wide shadow-sm">
+            <span data-i18n="tab_children">For Children</span>
+          </div>
+          <div class="bg-[#B64319] text-white text-center py-3 px-4 rounded-lg border border-black/80 font-bold text-lg sm:text-xl tracking-wide shadow-sm">
+            <span data-i18n="tab_parents">For Parents</span>
+          </div>
+          <div class="bg-[#B64319] text-white text-center py-3 px-4 rounded-lg border border-black/80 font-bold text-lg sm:text-xl tracking-wide shadow-sm">
+            <span data-i18n="tab_communities">For Communities</span>
+          </div>
+        </div>
 
-            <!-- Title & Subtitle -->
-            <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold text-art-charcoal mb-6 tracking-tight font-display leading-tight">
-                Nonsense Lab
-            </h1>
-            <p class="text-xl sm:text-3xl font-bold text-art-coral mb-4 font-display" data-i18n="hero_tagline">
-                Where Art Has No Limits
+        <!-- Content Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-gray-900 text-sm sm:text-base leading-relaxed px-2">
+          <div class="text-center md:text-left px-2">
+            <p data-i18n="desc_children">
+              Creative workshops designed for children aged 5–10 with special educational needs. Each session encourages imagination, self-expression, sensory exploration, and confidence through art-based activities.
             </p>
-            <p class="text-base sm:text-lg text-art-slate max-w-2xl mx-auto mb-10 leading-relaxed font-medium" data-i18n="hero_subtext">
-                Unleashing creative possibilities for children with Special Educational Needs (SEN) through tailored sensory painting, tactile crafts, and joy-filled art exploration.
+          </div>
+          <div class="text-center md:text-left px-2">
+            <p data-i18n="desc_parents">
+              We help parents understand their child's creative process, communication style, and emotional world through observation, discussion, and practical take-home ideas.
             </p>
-
-            <!-- Hero Art Presentation Box -->
-            <div class="relative w-full max-w-4xl mx-auto rounded-4xl p-4 bg-white border-4 border-art-yellow/40 shadow-xl">
-                <div class="relative h-72 sm:h-96 md:h-[420px] w-full rounded-3xl overflow-hidden bg-art-purpleLight flex items-center justify-center">
-                    <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1200&q=80" 
-                         alt="Children playing with vibrant colorful paints" 
-                         class="absolute inset-0 w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-art-charcoal/80 via-art-charcoal/20 to-transparent"></div>
-                    
-                    <!-- Decorative Floating Card -->
-                    <div class="absolute bottom-6 left-6 right-6 md:left-10 md:right-auto md:max-w-md text-left p-6 bg-white/95 rounded-3xl border-2 border-slate-100 backdrop-blur-md shadow-lg">
-                        <p class="text-xs uppercase tracking-widest text-art-purple font-bold mb-1" data-i18n="hero_card_sub">SENSORY & ART THERAPY APPROACH</p>
-                        <h3 class="text-lg sm:text-xl font-extrabold text-art-charcoal mb-2 font-display" data-i18n="hero_card_title">Gentle, Adaptive & Joyful Learning</h3>
-                        <p class="text-xs sm:text-sm text-art-slate font-medium" data-i18n="hero_card_desc">Small-group sessions designed specifically for autistic, ADHD, and sensory-sensitive young artists to freely express their inner worlds.</p>
-                    </div>
-                </div>
-            </div>
-
+          </div>
+          <div class="text-center md:text-left px-2">
+            <p data-i18n="desc_communities">
+              We collaborate with schools, museums, farms, heritage sites, and community spaces to create meaningful learning experiences beyond the classroom.
+            </p>
+          </div>
         </div>
+
+        <!-- Handwritten Quote Banner -->
+        <div class="mt-12 text-center relative max-w-3xl mx-auto">
+          <p class="font-handwriting text-2xl sm:text-3xl md:text-4xl text-white font-bold tracking-wide drop-shadow-sm leading-snug" data-i18n="quote">
+            We turn “I don’t know how to say it” into color, shape, texture, movement, and play.
+          </p>
+          <!-- Wavy Arrow Doodle -->
+          <div class="absolute -bottom-6 right-4 sm:right-12 w-16 sm:w-24">
+            <svg viewBox="0 0 100 40" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+              <path d="M 5 15 Q 30 35 60 15 T 85 20 M 85 20 L 75 10 M 85 20 L 75 28"/>
+            </svg>
+          </div>
+        </div>
+
+      </div>
     </section>
 
-    <!-- SECTION 2: WHAT WE DO / ABOUT US -->
-    <section id="about" class="py-24 bg-slate-50/60 border-t-2 border-slate-100 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <div class="text-center mb-16">
-                <span class="text-xs font-bold text-art-sky tracking-wider uppercase bg-art-skyLight px-4 py-1.5 rounded-full" data-i18n="section_about_badge">CREATIVE METHODOLOGY</span>
-                <h2 class="text-3xl sm:text-5xl font-extrabold text-art-charcoal mt-3 mb-4 font-display" data-i18n="section_about_heading">What We Do / Our Art Studio</h2>
-                <div class="w-20 h-2 bg-art-yellow mx-auto rounded-full"></div>
-            </div>
+    <!-- Philosophy & Narrative Section -->
+    <section id="about" class="py-16 px-4 sm:px-8 max-w-5xl mx-auto relative overflow-hidden">
+      
+      <!-- Surrounding Doodles -->
+      <!-- Flower & Stick Doodle (Top Left) -->
+      <div class="absolute top-6 left-2 sm:left-6 w-20 sm:w-32 opacity-80 pointer-events-none">
+        <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="2">
+          <!-- Flower Head -->
+          <circle cx="80" cy="35" r="8"/>
+          <path d="M 80 20 Q 80 27 80 27 M 80 43 Q 80 50 80 50 M 65 35 Q 72 35 72 35 M 88 35 Q 95 35 95 35"/>
+          <path d="M 70 25 Q 75 30 75 30 M 85 40 Q 90 45 90 45 M 70 45 Q 75 40 75 40 M 85 30 Q 90 25 90 25"/>
+          <!-- Curved Arm Stick -->
+          <path d="M 20 85 C 40 90, 70 70, 80 35"/>
+          <path d="M 15 75 Q 30 80 45 70"/>
+        </svg>
+      </div>
 
-            <!-- Sketch Layout Feature: 3 Connected Circular Icon Nodes -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative mb-20">
-                
-                <!-- Node 1 -->
-                <div class="flex flex-col items-center text-center group">
-                    <div class="w-28 h-28 rounded-full bg-art-yellowLight border-4 border-art-yellow flex items-center justify-center text-art-charcoal text-4xl mb-6 node-circle shadow-md">
-                        <i class="fa-solid fa-hand-sparkles text-art-coral"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-art-charcoal mb-2 font-display" data-i18n="node1_title">Sensory Exploration</h3>
-                    <p class="text-sm text-art-slate max-w-xs font-medium" data-i18n="node1_desc">Tactile engagement through textured clay, finger painting, and safe sensory art mediums.</p>
-                </div>
+      <!-- Star Character (Top Right) -->
+      <div class="absolute top-6 right-2 sm:right-6 w-24 sm:w-36 opacity-80 pointer-events-none">
+        <svg viewBox="0 0 140 120" fill="none" stroke="currentColor" stroke-width="2">
+          <!-- Arms stretched -->
+          <path d="M 10 30 L 45 45 M 130 30 L 95 45"/>
+          <!-- Hands -->
+          <path d="M 10 30 L 5 22 M 10 30 L 2 32 M 10 30 L 5 40"/>
+          <path d="M 130 30 L 138 22 M 130 30 L 140 32 M 130 30 L 135 40"/>
+          <!-- Star Body -->
+          <path d="M 70 30 L 78 48 L 98 48 L 82 60 L 88 78 L 70 66 L 52 78 L 58 60 L 42 48 L 62 48 Z" fill="white"/>
+          <circle cx="65" cy="50" r="1.5" fill="black"/>
+          <circle cx="75" cy="50" r="1.5" fill="black"/>
+          <path d="M 67 57 Q 70 60 73 57"/>
+        </svg>
+      </div>
 
-                <!-- Node 2 -->
-                <div class="flex flex-col items-center text-center group relative">
-                    <div class="w-28 h-28 rounded-full bg-art-mintLight border-4 border-art-mint flex items-center justify-center text-art-charcoal text-4xl mb-6 node-circle shadow-md">
-                        <i class="fa-solid fa-wand-magic-sparkles text-art-mint"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-art-charcoal mb-2 font-display" data-i18n="node2_title">Hands-On Creation</h3>
-                    <p class="text-sm text-art-slate max-w-xs font-medium" data-i18n="node2_desc">Tailored multi-sensory crafts and expressive painting tailored to each child's rhythm.</p>
-                </div>
+      <!-- Scissors Doodle (Bottom Left) -->
+      <div class="absolute bottom-4 left-0 sm:left-4 w-32 sm:w-48 opacity-80 pointer-events-none">
+        <svg viewBox="0 0 160 160" fill="none" stroke="currentColor" stroke-width="2">
+          <!-- Scissors Blades -->
+          <path d="M 30 110 L 130 40 M 30 70 L 130 140"/>
+          <circle cx="80" cy="90" r="3" fill="black"/>
+          <!-- Handles with faces -->
+          <circle cx="25" cy="115" r="12"/>
+          <circle cx="25" cy="65" r="12"/>
+          <circle cx="23" cy="113" r="1" fill="black"/><circle cx="28" cy="113" r="1" fill="black"/>
+          <path d="M 23 118 Q 25 120 27 118"/>
+          <circle cx="23" cy="63" r="1" fill="black"/><circle cx="28" cy="63" r="1" fill="black"/>
+          <path d="M 23 68 Q 25 70 27 68"/>
+        </svg>
+      </div>
 
-                <!-- Node 3 -->
-                <div class="flex flex-col items-center text-center group">
-                    <div class="w-28 h-28 rounded-full bg-art-purpleLight border-4 border-art-purple flex items-center justify-center text-art-charcoal text-4xl mb-6 node-circle shadow-md">
-                        <i class="fa-solid fa-heart-circle-plus text-art-purple"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-art-charcoal mb-2 font-display" data-i18n="node3_title">Emotional Expression</h3>
-                    <p class="text-sm text-art-slate max-w-xs font-medium" data-i18n="node3_desc">Building self-confidence, motor skills, and emotional calm through non-verbal creative play.</p>
-                </div>
+      <!-- Sparkle Marks (Bottom Right) -->
+      <div class="absolute bottom-8 right-6 w-12 sm:w-16 opacity-80 pointer-events-none">
+        <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M 30 10 L 30 50 M 10 30 L 50 30 M 16 16 L 44 44 M 44 16 L 16 44"/>
+          <path d="M 48 40 L 48 56 M 40 48 L 56 48"/>
+        </svg>
+      </div>
 
-            </div>
+      <!-- Section Main Content -->
+      <div class="max-w-2xl mx-auto text-center space-y-8 relative z-10 py-6">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight" data-i18n="space_title">
+          A Creative Space Between<br>Learning, Play & Understanding
+        </h2>
 
-            <!-- Detailed About Us Block (Image + Description) -->
-            <div class="art-card rounded-4xl p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white border-2 border-slate-100">
-                <div class="lg:col-span-5 rounded-3xl overflow-hidden h-72 sm:h-80 shadow-md">
-                    <img src="https://images.unsplash.com/photo-1560421683-6856ea585c78?auto=format&fit=crop&w=800&q=80" 
-                         alt="SEN Child enthusiastically painting" 
-                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                </div>
-                <div class="lg:col-span-7 flex flex-col justify-center">
-                    <span class="text-xs font-bold text-art-coral tracking-wider uppercase mb-2" data-i18n="about_sub">WELCOME TO NONSENSE LAB</span>
-                    <h3 class="text-2xl sm:text-4xl font-extrabold text-art-charcoal mb-4 font-display" data-i18n="about_block_title">A Safe Haven for Young Artists</h3>
-                    <p class="text-art-slate leading-relaxed mb-6 font-medium" data-i18n="about_block_body">
-                        Nonsense Lab is an inclusive art sanctuary dedicated to children with special educational needs (SEN). We believe there is no "wrong" way to make art. In our warm and flexible environment, messiness is celebrated, and every splash of paint tells a unique story.
-                    </p>
-                    <div>
-                        <a href="#contact" class="inline-flex items-center gap-3 bg-art-coral hover:bg-pink-600 text-white font-bold px-7 py-3.5 rounded-2xl transition-all shadow-md hover:shadow-lg font-display" data-i18n="about_btn">
-                            Book a Trial Class <i class="fa-solid fa-arrow-right text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+        <p class="text-base sm:text-lg text-gray-800 leading-relaxed" data-i18n="space_p1">
+          At Nonsense Lab, we believe creativity helps children express <strong class="font-bold">what words cannot always explain.</strong> Our workshops combine visual arts, sensory exploration, storytelling, movement, and reflection to support children with different learning needs in a safe, welcoming environment.
+        </p>
 
-        </div>
+        <p class="text-base sm:text-lg text-gray-800 leading-relaxed" data-i18n="space_p2">
+          We are not a clinical therapy service. We are a creative learning space designed to help children explore, communicate, and grow — while helping parents better understand their child's unique way of seeing the world.
+        </p>
+      </div>
     </section>
 
-    <!-- SECTION 3: WHY WE DO / MISSION -->
-    <section id="mission" class="py-24 bg-white relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <div class="text-center mb-16">
-                <span class="text-xs font-bold text-art-purple tracking-wider uppercase bg-art-purpleLight px-4 py-1.5 rounded-full" data-i18n="section_mission_badge">OUR CORE VALUES</span>
-                <h2 class="text-3xl sm:text-5xl font-extrabold text-art-charcoal mt-3 mb-4 font-display" data-i18n="section_mission_heading">Why We Do / Mission</h2>
-                <div class="w-20 h-2 bg-art-purple mx-auto rounded-full"></div>
+    <!-- Vision, Mission & Values Block -->
+    <section class="bg-[#ECEAE2] py-16 px-4 sm:px-8 border-t border-black/5">
+      <div class="max-w-5xl mx-auto">
+        
+        <!-- Crayon Burst Title Badge -->
+        <div class="text-center mb-12 relative flex justify-center">
+          <div class="relative inline-block px-8 py-4">
+            <!-- Crayon style sketch background -->
+            <svg class="absolute inset-0 w-full h-full text-black overflow-visible" viewBox="0 0 320 60" preserveAspectRatio="none" fill="none">
+              <!-- Radial Crayon Hatching Lines around title -->
+              <path d="M -10 30 L -25 25 M -8 15 L -20 5 M 10 -5 L 12 -20 M 50 -10 L 52 -25 M 160 -10 L 160 -25 M 270 -10 L 275 -22 M 330 15 L 345 8 M 330 35 L 348 40 M 310 65 L 320 78 M 160 65 L 160 80 M 30 65 L 20 78" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+              <path d="M 0 10 Q 160 -10 320 10 Q 330 30 320 50 Q 160 70 0 50 Q -10 30 0 10 Z" fill="white" stroke="currentColor" stroke-width="3" stroke-dasharray="120 4 80 3"/>
+            </svg>
+            <h2 class="relative z-10 text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-900 tracking-wide" data-i18n="vmv_title">
+              Our Vision, Mission & Values
+            </h2>
+          </div>
+        </div>
+
+        <!-- Vision & Mission Top Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          <!-- Vision Card -->
+          <div class="bg-[#E4CE52] p-6 sm:p-8 rounded-2xl border border-black/80 shadow-sm flex flex-col justify-center">
+            <h3 class="text-xl font-bold text-center mb-3 text-gray-900" data-i18n="vision_title">Vision</h3>
+            <p class="text-center text-sm sm:text-base text-gray-900 leading-relaxed" data-i18n="vision_desc">
+              To create a world where different ways of thinking, feeling, and expressing are understood, celebrated, and supported.
+            </p>
+          </div>
+
+          <!-- Mission Card -->
+          <div class="bg-[#FBC4BA] p-6 sm:p-8 rounded-2xl border border-black/80 shadow-sm flex flex-col justify-center">
+            <h3 class="text-xl font-bold text-center mb-3 text-gray-900" data-i18n="mission_title">Mission</h3>
+            <p class="text-center text-sm sm:text-base text-gray-900 leading-relaxed" data-i18n="mission_desc">
+              To provide playful, structured creative workshops that help children with special educational needs express themselves, build confidence, and connect with others — while giving parents tools and insight to support their child's growth.
+            </p>
+          </div>
+        </div>
+
+        <!-- 5 Values Cards Row -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          
+          <!-- Card 1: Curiosity (Yellow) -->
+          <div class="bg-[#E4CE52] p-4 rounded-xl border border-black/80 flex flex-col justify-between min-h-[260px] shadow-sm">
+            <div>
+              <div class="flex items-baseline gap-1 mb-2">
+                <span class="text-4xl font-black text-black">C</span>
+                <span class="text-sm font-bold text-gray-900" data-i18n="val_curiosity">Curiosity</span>
+              </div>
+              <p class="text-xs text-gray-900 leading-tight" data-i18n="val_curiosity_desc">
+                We follow questions, ideas, textures, mistakes, and unexpected discoveries.
+              </p>
             </div>
-
-            <!-- Mission Layout: Descriptive Text + Photo Cards -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                
-                <!-- Image Gallery Grid -->
-                <div class="lg:col-span-6 grid grid-cols-2 gap-4">
-                    <div class="rounded-3xl overflow-hidden h-52 sm:h-64 art-card p-1">
-                        <img src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=600&q=80" 
-                             alt="Kids creating colorful crafts together" class="w-full h-full object-cover rounded-2xl hover:scale-105 transition-transform">
-                    </div>
-                    <div class="rounded-3xl overflow-hidden h-52 sm:h-64 art-card p-1 mt-6">
-                        <img src="https://images.unsplash.com/photo-1460518451285-97b6aa326961?auto=format&fit=crop&w=600&q=80" 
-                             alt="Child making pottery with clay" class="w-full h-full object-cover rounded-2xl hover:scale-105 transition-transform">
-                    </div>
-                </div>
-
-                <!-- Text Content -->
-                <div class="lg:col-span-6 art-card p-8 sm:p-10 rounded-4xl bg-art-yellowLight/50 border-2 border-art-yellow/30">
-                    <h3 class="text-2xl sm:text-3xl font-extrabold text-art-charcoal mb-4 font-display" data-i18n="mission_title">Unlocking Potential Through Inclusive Art</h3>
-                    <p class="text-art-slate leading-relaxed mb-6 font-medium" data-i18n="mission_body1">
-                        Our mission is to empower children with special needs by providing specialized, non-judgmental art therapy-inspired workshops. We transform sensory sensitivities into creative superpowers, giving every child a voice beyond words.
-                    </p>
-                    <p class="text-art-slate leading-relaxed mb-6 text-sm font-medium" data-i18n="mission_body2">
-                        Through low student-to-teacher ratios, experienced SEN art tutors, and individualized pacing, we cultivate joy, focus, fine motor control, and meaningful social connections.
-                    </p>
-                    <div class="flex items-center gap-3 text-art-coral font-bold text-sm font-display">
-                        <i class="fa-solid fa-certificate text-lg text-art-yellow"></i>
-                        <span data-i18n="mission_check">Experienced Special Education Art Facilitators</span>
-                    </div>
-                </div>
-
+            <div class="mt-4 flex justify-center">
+              <!-- Flower character doodle -->
+              <svg class="w-16 h-16 text-black" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.8">
+                <circle cx="40" cy="40" r="14" fill="white"/>
+                <path d="M 40 12 C 32 12 32 26 40 26 C 48 26 48 12 40 12 Z"/>
+                <path d="M 40 54 C 32 54 32 68 40 68 C 48 68 48 54 40 54 Z"/>
+                <path d="M 12 40 C 12 32 26 32 26 40 C 26 48 12 48 12 40 Z"/>
+                <path d="M 54 40 C 54 32 68 32 68 40 C 68 48 54 48 54 40 Z"/>
+                <!-- Face -->
+                <circle cx="35" cy="38" r="1.5" fill="black"/>
+                <circle cx="45" cy="38" r="1.5" fill="black"/>
+                <path d="M 37 44 Q 40 47 43 44"/>
+                <path d="M 52 20 Q 56 16 60 22"/>
+              </svg>
             </div>
+          </div>
+
+          <!-- Card 2: Respect (Pink) -->
+          <div class="bg-[#FBC4BA] p-4 rounded-xl border border-black/80 flex flex-col justify-between min-h-[260px] shadow-sm">
+            <div>
+              <div class="flex items-baseline gap-1 mb-2">
+                <span class="text-4xl font-black text-black">R</span>
+                <span class="text-sm font-bold text-gray-900" data-i18n="val_respect">Respect</span>
+              </div>
+              <p class="text-xs text-gray-900 leading-tight" data-i18n="val_respect_desc">
+                Every child's pace, preference, and communication style matters.
+              </p>
+            </div>
+            <div class="mt-4 flex justify-center">
+              <!-- Party hat doodle -->
+              <svg class="w-16 h-16 text-black" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M 25 65 L 40 20 L 60 60 Z" fill="white"/>
+                <circle cx="40" cy="16" r="4" fill="white"/>
+                <path d="M 30 52 Q 42 48 55 54"/>
+                <path d="M 33 40 Q 42 36 50 42"/>
+                <path d="M 55 58 L 65 65 L 58 70 M 62 60 L 72 62"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Card 3: Creativity (Blue) -->
+          <div class="bg-[#A4C2E6] p-4 rounded-xl border border-black/80 flex flex-col justify-between min-h-[260px] shadow-sm">
+            <div>
+              <div class="flex items-baseline gap-1 mb-2">
+                <span class="text-4xl font-black text-black">C</span>
+                <span class="text-sm font-bold text-gray-900" data-i18n="val_creativity">Creativity</span>
+              </div>
+              <p class="text-xs text-gray-900 leading-tight" data-i18n="val_creativity_desc">
+                We use art as a language for expression, imagination, and connection.
+              </p>
+            </div>
+            <div class="mt-4 flex justify-center">
+              <!-- Beaker with stars doodle -->
+              <svg class="w-16 h-16 text-black" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M 32 20 L 48 20 M 36 20 L 36 35 L 20 62 C 16 68, 24 72, 40 72 C 56 72, 64 68, 60 62 L 44 35 L 44 20" fill="white"/>
+                <path d="M 26 52 Q 40 48 54 52" stroke-dasharray="2 2"/>
+                <polygon points="40,54 42,59 47,59 43,62 45,67 40,64 35,67 37,62 33,59 38,59" fill="black"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Card 4: Confidence (Olive) -->
+          <div class="bg-[#788863] p-4 rounded-xl border border-black/80 text-white flex flex-col justify-between min-h-[260px] shadow-sm">
+            <div>
+              <div class="flex items-baseline gap-1 mb-2">
+                <span class="text-4xl font-black text-white">C</span>
+                <span class="text-sm font-bold text-white" data-i18n="val_confidence">Confidence</span>
+              </div>
+              <p class="text-xs text-gray-100 leading-tight" data-i18n="val_confidence_desc">
+                We create low-pressure spaces where children can try, choose, and grow.
+              </p>
+            </div>
+            <div class="mt-4 flex justify-center">
+              <!-- Pencil box doodle -->
+              <svg class="w-16 h-16 text-white" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.8">
+                <rect x="20" y="35" width="40" height="32" rx="3" fill="#606E4E"/>
+                <path d="M 26 35 L 26 18 L 32 18 L 32 35"/>
+                <path d="M 36 35 L 36 12 L 42 12 L 42 35"/>
+                <path d="M 46 35 L 46 22 L 52 22 L 52 35"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Card 5: Connection (Terracotta/Rust) -->
+          <div class="bg-[#C85A32] p-4 rounded-xl border border-black/80 text-white flex flex-col justify-between min-h-[260px] shadow-sm">
+            <div>
+              <div class="flex items-baseline gap-1 mb-2">
+                <span class="text-4xl font-black text-white">C</span>
+                <span class="text-sm font-bold text-white" data-i18n="val_connection">Connection</span>
+              </div>
+              <p class="text-xs text-gray-100 leading-tight" data-i18n="val_connection_desc">
+                We help children, parents, and communities understand one another better.
+              </p>
+            </div>
+            <div class="mt-4 flex justify-center">
+              <!-- Friendly cloud puddle doodle -->
+              <svg class="w-16 h-16 text-white" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M 20 50 C 15 40 25 30 40 32 C 50 25 68 35 62 48 C 72 55 60 68 45 65 C 30 68 15 62 20 50 Z" fill="#B04923"/>
+                <circle cx="35" cy="46" r="1.5" fill="white"/>
+                <circle cx="48" cy="46" r="1.5" fill="white"/>
+                <path d="M 38 52 Q 41 55 45 52"/>
+              </svg>
+            </div>
+          </div>
 
         </div>
+
+      </div>
     </section>
 
-    <!-- SECTION 4: HOW WE DO / PROGRAM FLOW -->
-    <section id="program" class="py-24 bg-slate-50/60 border-t-2 border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <div class="text-center mb-16">
-                <span class="text-xs font-bold text-art-mint tracking-wider uppercase bg-art-mintLight px-4 py-1.5 rounded-full" data-i18n="section_program_badge">STEP-BY-STEP LEARNING</span>
-                <h2 class="text-3xl sm:text-5xl font-extrabold text-art-charcoal mt-3 mb-4 font-display" data-i18n="section_program_heading">How We Do (Program Flow)</h2>
-                <p class="text-art-slate max-w-xl mx-auto text-sm sm:text-base font-medium" data-i18n="program_subtitle">A gentle three-stage journey crafted to encourage self-discovery and fun.</p>
-                <div class="w-20 h-2 bg-art-mint mx-auto rounded-full mt-4"></div>
-            </div>
+    <!-- Our Team Section -->
+    <section class="py-16 px-4 sm:px-8 max-w-5xl mx-auto text-center">
+      <!-- Sparkle Doodles Top -->
+      <div class="flex justify-center gap-2 mb-2 text-black">
+        <svg class="w-8 h-8" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M 20 5 L 20 35 M 5 20 L 35 20 M 10 10 L 30 30 M 30 10 L 10 30"/>
+        </svg>
+      </div>
 
-            <!-- Program Flow Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                
-                <!-- Step 1: Sensory Art & Discovery -->
-                <div class="art-card rounded-4xl p-6 flex flex-col justify-between border-2 border-slate-100 bg-white">
-                    <div>
-                        <div class="h-48 rounded-3xl overflow-hidden mb-6 bg-art-yellowLight relative">
-                            <img src="https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=600&q=80" 
-                                 alt="Sensory Art Discovery" class="w-full h-full object-cover">
-                            <span class="absolute top-4 left-4 bg-art-yellow text-art-charcoal text-xs font-extrabold px-3.5 py-1.5 rounded-full shadow-md font-display">
-                                01. STEP
-                            </span>
-                        </div>
-                        <h3 class="text-xl font-extrabold text-art-charcoal mb-3 font-display" data-i18n="step1_title">Sensory Art & Discovery</h3>
-                        <p class="text-art-slate text-sm leading-relaxed font-medium" data-i18n="step1_desc">
-                            Children explore diverse textures, colors, and non-toxic materials at their own comfort level without pressure.
-                        </p>
-                    </div>
-                </div>
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3" data-i18n="team_title">Our Team</h2>
+      <p class="text-sm sm:text-base text-gray-800 max-w-2xl mx-auto mb-10 leading-relaxed" data-i18n="team_subtitle">
+        Nonsense Lab is led by artists, educators, and creative thinkers who believe art can open new ways of learning and connecting.
+      </p>
 
-                <!-- Step 2: Guided Creative Expression -->
-                <div class="art-card rounded-4xl p-6 flex flex-col justify-between border-2 border-slate-100 bg-white">
-                    <div>
-                        <div class="h-48 rounded-3xl overflow-hidden mb-6 bg-art-coralSoft relative">
-                            <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80" 
-                                 alt="Guided Creative Expression" class="w-full h-full object-cover">
-                            <span class="absolute top-4 left-4 bg-art-coral text-white text-xs font-extrabold px-3.5 py-1.5 rounded-full shadow-md font-display">
-                                02. STEP
-                            </span>
-                        </div>
-                        <h3 class="text-xl font-extrabold text-art-charcoal mb-3 font-display" data-i18n="step2_title">Guided Expression</h3>
-                        <p class="text-art-slate text-sm leading-relaxed font-medium" data-i18n="step2_desc">
-                            Instructors provide step-by-step adaptive guidance, encouraging individual artistic preferences and motor skills.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Step 3: Exhibition & Celebration -->
-                <div class="art-card rounded-4xl p-6 flex flex-col justify-between border-2 border-slate-100 bg-white">
-                    <div>
-                        <div class="h-48 rounded-3xl overflow-hidden mb-6 bg-art-purpleLight relative">
-                            <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80" 
-                                 alt="Art Exhibition & Celebration" class="w-full h-full object-cover">
-                            <span class="absolute top-4 left-4 bg-art-purple text-white text-xs font-extrabold px-3.5 py-1.5 rounded-full shadow-md font-display">
-                                03. STEP
-                            </span>
-                        </div>
-                        <h3 class="text-xl font-extrabold text-art-charcoal mb-3 font-display" data-i18n="step3_title">Exhibition & Celebration</h3>
-                        <p class="text-art-slate text-sm leading-relaxed font-medium" data-i18n="step3_desc">
-                            We showcase each student's artworks in studio mini-exhibitions to celebrate their unique creative journey.
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
+      <!-- Team Members Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+        
+        <!-- Sandy Wang -->
+        <div class="bg-white rounded-2xl border border-black/80 overflow-hidden flex flex-col sm:flex-row shadow-sm">
+          <!-- Pink Face Box -->
+          <div class="bg-[#FBC4BA] p-6 sm:w-2/5 flex items-center justify-center border-b sm:border-b-0 sm:border-r border-black/80 min-h-[160px]">
+            <svg class="w-24 h-24 text-black" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5">
+              <circle cx="50" cy="50" r="40" fill="none"/>
+              <line x1="32" y1="40" x2="32" y2="52" stroke-linecap="round"/>
+              <line x1="68" y1="40" x2="68" y2="52" stroke-linecap="round"/>
+              <path d="M 30 62 Q 50 82 70 62" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <!-- Bio Box -->
+          <div class="p-5 sm:w-3/5 flex flex-col justify-center">
+            <h3 class="font-bold text-base text-gray-900">Sandy Wang</h3>
+            <p class="text-xs font-semibold text-gray-700 mb-2" data-i18n="sandy_role">Co-Founder | Visual Artist | Educator</p>
+            <p class="text-xs text-gray-600 leading-relaxed" data-i18n="sandy_bio">
+              Sandy Wang has a background in visual arts, academic research, and education. Her practice explores how creativity can support learning, communication, and self-expression. At Nonsense Lab, Sandy designs thoughtful experiences that combine structure, imagination, and sensory exploration.
+            </p>
+          </div>
         </div>
+
+        <!-- Un Cheng -->
+        <div class="bg-white rounded-2xl border border-black/80 overflow-hidden flex flex-col sm:flex-row shadow-sm">
+          <!-- Blue Face Box -->
+          <div class="bg-[#A4C2E6] p-6 sm:w-2/5 flex items-center justify-center border-b sm:border-b-0 sm:border-r border-black/80 min-h-[160px]">
+            <svg class="w-24 h-24 text-black" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M 50 10 C 20 10 10 30 10 50 C 10 75 30 90 50 90 C 75 90 90 70 90 50 C 90 25 75 10 50 10 Z"/>
+              <circle cx="35" cy="45" r="2.5" fill="black"/>
+              <circle cx="65" cy="45" r="2.5" fill="black"/>
+              <path d="M 35 62 Q 50 75 65 62" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <!-- Bio Box -->
+          <div class="p-5 sm:w-3/5 flex flex-col justify-center">
+            <h3 class="font-bold text-base text-gray-900">Un Cheng</h3>
+            <p class="text-xs font-semibold text-gray-700 mb-2" data-i18n="un_role">Co-Founder | Artist | Art Historian | Educator</p>
+            <p class="text-xs text-gray-600 leading-relaxed" data-i18n="un_bio">
+              Un Cheng has a background in art history, visual arts, oil painting, and education. Her work brings together artistic practice, cultural understanding, and hands-on learning. At Nonsense Lab, Un develops creative workshops that help children engage with art, stories, places, and materials in meaningful ways.
+            </p>
+          </div>
+        </div>
+
+      </div>
     </section>
 
-    <!-- SECTION 5: CONTACT US -->
-    <section id="contact" class="py-24 bg-white relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <div class="text-center mb-16">
-                <span class="text-xs font-bold text-art-coral tracking-wider uppercase bg-art-coralSoft px-4 py-1.5 rounded-full" data-i18n="section_contact_badge">GET IN TOUCH</span>
-                <h2 class="text-3xl sm:text-5xl font-extrabold text-art-charcoal mt-3 mb-4 font-display" data-i18n="section_contact_heading">Contact Us & Join a Class</h2>
-                <div class="w-20 h-2 bg-art-coral mx-auto rounded-full"></div>
+    <!-- Sketchy Circular Frames Grid Banner -->
+    <section class="bg-[#ECEAE2] py-12 px-4 sm:px-8 border-t border-black/5">
+      <div class="max-w-5xl mx-auto bg-[#E2CD52] p-8 sm:p-12 rounded-3xl border border-black/80 shadow-sm">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          
+          <!-- Frame 1 -->
+          <div class="aspect-square relative flex items-center justify-center p-2 group cursor-pointer">
+            <svg class="w-full h-full text-black" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3">
+              <path d="M 100 15 C 150 12, 185 45, 188 98 C 190 150, 155 188, 98 185 C 45 182, 12 150, 15 98 C 18 45, 50 18, 100 15 Z"/>
+              <path d="M 102 10 C 158 15, 192 50, 182 105 C 175 155, 145 192, 92 180 C 40 175, 8 142, 20 90 C 25 40, 52 8, 102 10 Z" opacity="0.6"/>
+            </svg>
+            <div class="absolute inset-0 flex items-center justify-center p-8">
+              <span class="text-xs font-handwriting text-gray-800 text-center font-bold text-lg opacity-60 group-hover:opacity-100 transition-opacity" data-i18n="frame_1">Sensory Art</span>
             </div>
+          </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-                
-                <!-- Contact Form for Parents -->
-                <div class="lg:col-span-7 art-card p-8 sm:p-10 rounded-4xl border-2 border-slate-100 bg-white">
-                    <form onsubmit="handleFormSubmit(event)" class="space-y-6">
-                        <div>
-                            <label class="block text-xs font-bold text-art-charcoal uppercase mb-2 font-display" data-i18n="form_name">Parent / Guardian Name</label>
-                            <input type="text" required placeholder="Your Full Name" 
-                                   class="w-full bg-slate-50 border-2 border-slate-200 rounded-2xl px-5 py-3.5 text-art-charcoal focus:outline-none focus:border-art-coral transition-colors font-medium">
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-xs font-bold text-art-charcoal uppercase mb-2 font-display" data-i18n="form_email">Email Address</label>
-                                <input type="email" required placeholder="name@example.com" 
-                                       class="w-full bg-slate-50 border-2 border-slate-200 rounded-2xl px-5 py-3.5 text-art-charcoal focus:outline-none focus:border-art-coral transition-colors font-medium">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold text-art-charcoal uppercase mb-2 font-display" data-i18n="form_phone">Phone / WhatsApp</label>
-                                <input type="tel" placeholder="+852 9123 4567" 
-                                       class="w-full bg-slate-50 border-2 border-slate-200 rounded-2xl px-5 py-3.5 text-art-charcoal focus:outline-none focus:border-art-coral transition-colors font-medium">
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-bold text-art-charcoal uppercase mb-2 font-display" data-i18n="form_child">Child's Age & Special Interests / Needs</label>
-                            <input type="text" placeholder="e.g. 7 years old, loves finger painting & tactile art" 
-                                   class="w-full bg-slate-50 border-2 border-slate-200 rounded-2xl px-5 py-3.5 text-art-charcoal focus:outline-none focus:border-art-coral transition-colors font-medium">
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-bold text-art-charcoal uppercase mb-2 font-display" data-i18n="form_message">Message / Class Inquiry</label>
-                            <textarea rows="4" required placeholder="Tell us about your child or ask any questions about our SEN art classes..." 
-                                      class="w-full bg-slate-50 border-2 border-slate-200 rounded-2xl px-5 py-3.5 text-art-charcoal focus:outline-none focus:border-art-coral transition-colors font-medium"></textarea>
-                        </div>
-
-                        <button type="submit" class="w-full bg-art-yellow hover:bg-yellow-400 text-art-charcoal font-extrabold py-4 px-6 rounded-2xl transition-colors shadow-md hover:shadow-lg font-display text-base" data-i18n="form_btn">
-                            Send Class Inquiry
-                        </button>
-                    </form>
-
-                    <!-- Form Status Toast -->
-                    <div id="formToast" class="hidden mt-4 p-4 rounded-2xl bg-art-mintLight border-2 border-art-mint text-art-charcoal text-sm text-center font-bold">
-                        <i class="fa-solid fa-circle-check text-art-mint me-2"></i>
-                        Thank you! We have received your inquiry and will contact you shortly.
-                    </div>
-                </div>
-
-                <!-- Right Column: Where to Find Us + Stay Connected -->
-                <div class="lg:col-span-5 flex flex-col justify-between space-y-8">
-                    
-                    <!-- Where to Find Us (Location Card) -->
-                    <div class="art-card p-8 rounded-4xl bg-art-skyLight/30 border-2 border-art-sky/30">
-                        <h3 class="text-2xl font-extrabold text-art-charcoal mb-4 font-display" data-i18n="find_title">Where to Find Us</h3>
-                        <div class="h-48 rounded-3xl overflow-hidden bg-slate-100 mb-4 relative border-2 border-slate-200">
-                            <!-- Styled Map Graphic Placeholder -->
-                            <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=600&q=80" 
-                                 alt="Hong Kong Studio Location Map" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <div class="w-10 h-10 rounded-full bg-art-coral text-white flex items-center justify-center shadow-lg animate-bounce text-lg">
-                                    <i class="fa-solid fa-location-dot"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-sm font-semibold text-art-charcoal flex items-center gap-3">
-                            <i class="fa-solid fa-building text-art-coral text-lg"></i>
-                            <span data-i18n="find_address">Creative Hub, Central / Kwun Tong Studio, Hong Kong</span>
-                        </p>
-                    </div>
-
-                    <!-- Stay Connected / Follow Us -->
-                    <div class="art-card p-8 rounded-4xl bg-art-purpleLight/30 border-2 border-art-purple/30">
-                        <h3 class="text-2xl font-extrabold text-art-charcoal mb-2 font-display" data-i18n="social_title">Stay Connected / Follow Us</h3>
-                        <p class="text-sm text-art-slate mb-6 font-medium" data-i18n="social_desc">Follow our community channels to view student artworks, sensory tips, and upcoming workshops.</p>
-                        
-                        <div class="flex items-center gap-4">
-                            <a href="#" class="w-12 h-12 rounded-2xl bg-white border-2 border-slate-200 flex items-center justify-center text-art-charcoal hover:text-art-coral hover:border-art-coral transition-all shadow-sm">
-                                <i class="fa-brands fa-facebook-f text-lg"></i>
-                            </a>
-                            <a href="#" class="w-12 h-12 rounded-2xl bg-white border-2 border-slate-200 flex items-center justify-center text-art-charcoal hover:text-art-coral hover:border-art-coral transition-all shadow-sm">
-                                <i class="fa-brands fa-instagram text-lg"></i>
-                            </a>
-                            <a href="#" class="w-12 h-12 rounded-2xl bg-white border-2 border-slate-200 flex items-center justify-center text-art-charcoal hover:text-art-coral hover:border-art-coral transition-all shadow-sm">
-                                <i class="fa-brands fa-whatsapp text-lg"></i>
-                            </a>
-                            <a href="#" class="w-12 h-12 rounded-2xl bg-white border-2 border-slate-200 flex items-center justify-center text-art-charcoal hover:text-art-coral hover:border-art-coral transition-all shadow-sm">
-                                <i class="fa-brands fa-youtube text-lg"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-
+          <!-- Frame 2 -->
+          <div class="aspect-square relative flex items-center justify-center p-2 group cursor-pointer">
+            <svg class="w-full h-full text-black" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3">
+              <path d="M 95 18 C 148 10, 188 52, 182 102 C 178 152, 142 185, 92 182 C 42 180, 15 145, 18 92 C 20 42, 48 22, 95 18 Z"/>
+              <path d="M 98 22 C 142 25, 180 58, 175 108 C 170 148, 138 180, 88 175 C 38 170, 22 138, 25 88 C 28 48, 58 18, 98 22 Z" opacity="0.6"/>
+            </svg>
+            <div class="absolute inset-0 flex items-center justify-center p-8">
+              <span class="text-xs font-handwriting text-gray-800 text-center font-bold text-lg opacity-60 group-hover:opacity-100 transition-opacity" data-i18n="frame_2">Texture & Color</span>
             </div>
+          </div>
+
+          <!-- Frame 3 -->
+          <div class="aspect-square relative flex items-center justify-center p-2 group cursor-pointer">
+            <svg class="w-full h-full text-black" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3">
+              <path d="M 102 20 C 152 22, 182 58, 180 105 C 178 152, 148 182, 98 185 C 48 188, 18 152, 15 102 C 12 52, 52 18, 102 20 Z"/>
+              <path d="M 95 15 C 145 18, 185 48, 185 98 C 185 148, 152 188, 102 182 C 52 178, 12 145, 18 95 C 22 45, 48 12, 95 15 Z" opacity="0.6"/>
+            </svg>
+            <div class="absolute inset-0 flex items-center justify-center p-8">
+              <span class="text-xs font-handwriting text-gray-800 text-center font-bold text-lg opacity-60 group-hover:opacity-100 transition-opacity" data-i18n="frame_3">Storytelling</span>
+            </div>
+          </div>
+
+          <!-- Frame 4 -->
+          <div class="aspect-square relative flex items-center justify-center p-2 group cursor-pointer">
+            <svg class="w-full h-full text-black" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3">
+              <path d="M 98 15 C 145 18, 182 52, 185 100 C 188 148, 152 185, 100 182 C 48 180, 15 148, 18 98 C 20 48, 50 12, 98 15 Z"/>
+              <path d="M 92 20 C 140 22, 178 55, 175 105 C 172 150, 142 180, 95 178 C 45 175, 20 142, 22 92 C 25 45, 52 18, 92 20 Z" opacity="0.6"/>
+            </svg>
+            <div class="absolute inset-0 flex items-center justify-center p-8">
+              <span class="text-xs font-handwriting text-gray-800 text-center font-bold text-lg opacity-60 group-hover:opacity-100 transition-opacity" data-i18n="frame_4">Movement</span>
+            </div>
+          </div>
+
+          <!-- Frame 5 -->
+          <div class="aspect-square relative flex items-center justify-center p-2 group cursor-pointer">
+            <svg class="w-full h-full text-black" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3">
+              <path d="M 100 18 C 150 20, 185 52, 182 102 C 180 152, 148 185, 95 182 C 45 180, 18 148, 15 95 C 12 45, 50 15, 100 18 Z"/>
+              <path d="M 105 12 C 155 15, 188 48, 188 98 C 188 148, 155 188, 100 185 C 48 182, 12 150, 12 98 C 12 48, 55 10, 105 12 Z" opacity="0.6"/>
+            </svg>
+            <div class="absolute inset-0 flex items-center justify-center p-8">
+              <span class="text-xs font-handwriting text-gray-800 text-center font-bold text-lg opacity-60 group-hover:opacity-100 transition-opacity" data-i18n="frame_5">Play & Discovery</span>
+            </div>
+          </div>
+
+          <!-- Frame 6 -->
+          <div class="aspect-square relative flex items-center justify-center p-2 group cursor-pointer">
+            <svg class="w-full h-full text-black" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3">
+              <path d="M 95 20 C 142 22, 180 55, 182 105 C 185 152, 145 182, 98 185 C 48 188, 15 152, 18 100 C 20 50, 48 18, 95 20 Z"/>
+              <path d="M 98 12 C 148 15, 188 45, 185 95 C 182 145, 150 188, 95 182 C 42 178, 10 142, 12 92 C 15 42, 48 10, 98 12 Z" opacity="0.6"/>
+            </svg>
+            <div class="absolute inset-0 flex items-center justify-center p-8">
+              <span class="text-xs font-handwriting text-gray-800 text-center font-bold text-lg opacity-60 group-hover:opacity-100 transition-opacity" data-i18n="frame_6">Reflection</span>
+            </div>
+          </div>
 
         </div>
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-10 bg-slate-50 border-t-2 border-slate-100 text-center text-xs font-semibold text-art-slate">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-4">
-                <a href="#" class="hover:text-art-coral" data-i18n="footer_legal">Legal & Privacy</a>
-                <span>|</span>
-                <a href="#" class="hover:text-art-coral" data-i18n="footer_links">Community Links</a>
-                <span>|</span>
-                <a href="#" class="hover:text-art-coral" data-i18n="footer_copyright">Copyright Notice</a>
-            </div>
-            <div class="font-medium">
-                © 2026 <span class="font-extrabold text-art-charcoal font-display">Nonsense Lab</span>. All rights reserved. nonsenselab.hk
-            </div>
-        </div>
-    </footer>
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 px-4 sm:px-8 max-w-4xl mx-auto">
+      <div class="bg-white rounded-3xl border border-black/80 p-6 sm:p-10 shadow-sm">
+        <h2 class="text-2xl sm:text-3xl font-bold text-center mb-2 text-gray-900" data-i18n="contact_title">Get in Touch</h2>
+        <p class="text-center text-sm text-gray-600 mb-8" data-i18n="contact_desc">Interested in our workshops, school collaborations, or parent consultations? Send us a message!</p>
 
-    <!-- JavaScript Application Logic -->
-    <script>
-        // Dictionary for English (EN) and Traditional Chinese (TC)
-        const i18nData = {
-            en: {
-                nav_subtitle: "Inclusive Kids Art Studio",
-                nav_home: "Homepage",
-                nav_about: "About Us",
-                nav_mission: "Mission",
-                nav_program: "Program Flow",
-                nav_contact: "Contact",
-                status_online: "Open for SEN Kids Art Classes & Workshops",
-                hero_tagline: "Where Art Has No Limits",
-                hero_subtext: "Unleashing creative possibilities for children with Special Educational Needs (SEN) through tailored sensory painting, tactile crafts, and joy-filled art exploration.",
-                hero_card_sub: "SENSORY & ART THERAPY APPROACH",
-                hero_card_title: "Gentle, Adaptive & Joyful Learning",
-                hero_card_desc: "Small-group sessions designed specifically for autistic, ADHD, and sensory-sensitive young artists to freely express their inner worlds.",
-                section_about_badge: "CREATIVE METHODOLOGY",
-                section_about_heading: "What We Do / Our Art Studio",
-                node1_title: "Sensory Exploration",
-                node1_desc: "Tactile engagement through textured clay, finger painting, and safe sensory art mediums.",
-                node2_title: "Hands-On Creation",
-                node2_desc: "Tailored multi-sensory crafts and expressive painting tailored to each child's rhythm.",
-                node3_title: "Emotional Expression",
-                node3_desc: "Building self-confidence, motor skills, and emotional calm through non-verbal creative play.",
-                about_sub: "WELCOME TO NONSENSE LAB",
-                about_block_title: "A Safe Haven for Young Artists",
-                about_block_body: "Nonsense Lab is an inclusive art sanctuary dedicated to children with special educational needs (SEN). We believe there is no 'wrong' way to make art. In our warm and flexible environment, messiness is celebrated, and every splash of paint tells a unique story.",
-                about_btn: "Book a Trial Class",
-                section_mission_badge: "OUR CORE VALUES",
-                section_mission_heading: "Why We Do / Mission",
-                mission_title: "Unlocking Potential Through Inclusive Art",
-                mission_body1: "Our mission is to empower children with special needs by providing specialized, non-judgmental art therapy-inspired workshops. We transform sensory sensitivities into creative superpowers, giving every child a voice beyond words.",
-                mission_body2: "Through low student-to-teacher ratios, experienced SEN art tutors, and individualized pacing, we cultivate joy, focus, fine motor control, and meaningful social connections.",
-                mission_check: "Experienced Special Education Art Facilitators",
-                section_program_badge: "STEP-BY-STEP LEARNING",
-                section_program_heading: "How We Do (Program Flow)",
-                program_subtitle: "A gentle three-stage journey crafted to encourage self-discovery and fun.",
-                step1_title: "Sensory Art & Discovery",
-                step1_desc: "Children explore diverse textures, colors, and non-toxic materials at their own comfort level without pressure.",
-                step2_title: "Guided Expression",
-                step2_desc: "Instructors provide step-by-step adaptive guidance, encouraging individual artistic preferences and motor skills.",
-                step3_title: "Exhibition & Celebration",
-                step3_desc: "We showcase each student's artworks in studio mini-exhibitions to celebrate their unique creative journey.",
-                section_contact_badge: "GET IN TOUCH",
-                section_contact_heading: "Contact Us & Join a Class",
-                form_name: "Parent / Guardian Name",
-                form_email: "Email Address",
-                form_phone: "Phone / WhatsApp",
-                form_child: "Child's Age & Special Interests / Needs",
-                form_message: "Message / Class Inquiry",
-                form_btn: "Send Class Inquiry",
-                find_title: "Where to Find Us",
-                find_address: "Creative Hub, Central / Kwun Tong Studio, Hong Kong",
-                social_title: "Stay Connected / Follow Us",
-                social_desc: "Follow our community channels to view student artworks, sensory tips, and upcoming workshops.",
-                footer_legal: "Legal & Privacy",
-                footer_links: "Community Links",
-                footer_copyright: "Copyright Notice"
-            },
-            tc: {
-                nav_subtitle: "特殊需要兒童包容性藝術工作坊",
-                nav_home: "主頁",
-                nav_about: "關於我們",
-                nav_mission: "使命理念",
-                nav_program: "學習流程",
-                nav_contact: "聯絡我們",
-                status_online: "SEN 兒童藝術工作坊現正接受報名",
-                hero_tagline: "無界創藝 點亮心靈",
-                hero_subtext: "專為特殊教育需要 (SEN) 兒童設計的感官繪畫與創意手作課程，透過多元藝術體驗解放孩子無限潛能。",
-                hero_card_sub: "感官與藝術治療引導理念",
-                hero_card_title: "溫和、適應性強且充滿樂趣",
-                hero_card_desc: "小班教學，特別為自閉症、專注力不足 (ADHD) 及感官敏感的小藝術家提供自由表達內心世界的空間。",
-                section_about_badge: "創意教學法",
-                section_about_heading: "業務範疇 / 我們的藝術畫室",
-                node1_title: "感官探索",
-                node1_desc: "透過觸覺黏土、手指畫及安全多感官藝術媒材進行自由探索。",
-                node2_title: "動手創作",
-                node2_desc: "量身定製的多感官手工與表達性繪畫，順應每位孩子的獨特節奏。",
-                node3_title: "情感抒發",
-                node3_desc: "透過非言語的創意遊戲建立自信心、小肌肉協調及情緒沉澱。",
-                about_sub: "歡迎來到 NONSENSE LAB",
-                about_block_title: "小藝術家的安全避風港",
-                about_block_body: "Nonsense Lab 是一家致力於服務特殊教育需要 (SEN) 兒童的包容性藝術工作室。我們相信創作沒有「對錯」，在溫馨靈活的環境中，隨意揮灑都是值得慶祝的成果。",
-                about_btn: "預約試上體驗課",
-                section_mission_badge: "核心價值",
-                section_mission_heading: "立意與使命",
-                mission_title: "以包容性藝術啟發潛能",
-                mission_body1: "我們的使命是透過專業且零審判的藝術體驗，賦能特殊需要兒童。我們將感官敏感轉化為創作靈感，讓每位孩子擁有超越語言的表達管道。",
-                mission_body2: "藉由極低師生比例、經驗豐富的特殊教育藝術導師及個人化進度，我們培養孩子的專注力、手部精細動作與社交自信。",
-                mission_check: "具備特殊教育經驗之資深藝術導師",
-                section_program_badge: "循序漸進的學習過程",
-                section_program_heading: "執行流程 (Program Flow)",
-                program_subtitle: "精心設計的三階段學習之旅，鼓勵自我發現與藝術樂趣。",
-                step1_title: "感官藝術與探索",
-                step1_desc: "孩子在沒有壓力的環境中，按照自己的步調探索豐富的質感、色彩與無毒畫材。",
-                step2_title: "引導式創作",
-                step2_desc: "導師提供適應性指導，鼓勵個體藝術偏好與手部肌肉伸展。",
-                step3_title: "展覽與慶祝",
-                step3_desc: "我們在畫室舉辦小型展覽，展示每位學生的藝術作品，慶祝他們的獨特創作歷程。",
-                section_contact_badge: "保持聯絡",
-                section_contact_heading: "聯絡我們與報名課程",
-                form_name: "家長 / 監護人姓名",
-                form_email: "電郵地址",
-                form_phone: "聯絡電話 / WhatsApp",
-                form_child: "孩子年齡及特別興趣 / 需求",
-                form_message: "訊息內容 / 課程查詢",
-                form_btn: "送出課程查詢",
-                find_title: "我們的畫室地址",
-                find_address: "香港中環 / 觀塘 創意藝術工作坊",
-                social_title: "保持連繫 / 追蹤我們",
-                social_desc: "追蹤我們的社群頻道，欣賞學生藝術作品、獲取感官日常技巧及最新工作坊資訊。",
-                footer_legal: "法律與隱私聲明",
-                footer_links: "社區連結",
-                footer_copyright: "版權所有"
-            }
-        };
+        <form onsubmit="event.preventDefault(); alert('Thank you for reaching out! Nonsense Lab will get back to you shortly.');" class="space-y-4 max-w-xl mx-auto">
+          <div>
+            <label class="block text-xs font-bold text-gray-700 uppercase mb-1" data-i18n="form_name">Name</label>
+            <input type="text" required class="w-full px-4 py-2.5 rounded-xl border border-black/70 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-sm">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-gray-700 uppercase mb-1" data-i18n="form_email">Email</label>
+            <input type="email" required class="w-full px-4 py-2.5 rounded-xl border border-black/70 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-sm">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-gray-700 uppercase mb-1" data-i18n="form_role">I am a...</label>
+            <select class="w-full px-4 py-2.5 rounded-xl border border-black/70 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-sm bg-white">
+              <option data-i18n="opt_parent">Parent / Guardian</option>
+              <option data-i18n="opt_school">School / Educator</option>
+              <option data-i18n="opt_org">Community Organization / Heritage Partner</option>
+              <option data-i18n="opt_other">Other</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-gray-700 uppercase mb-1" data-i18n="form_message">Message</label>
+            <textarea rows="4" required class="w-full px-4 py-2.5 rounded-xl border border-black/70 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-sm"></textarea>
+          </div>
+          <button type="submit" class="w-full bg-[#E4CE52] hover:bg-[#d8c143] text-gray-900 font-bold py-3 rounded-full border border-black/80 transition-colors shadow-sm">
+            <span data-i18n="form_submit">Send Message</span>
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
 
-        let currentLang = 'en';
+  <!-- Footer -->
+  <footer class="bg-[#ECEAE2] py-8 px-4 text-center border-t border-black/10 text-xs text-gray-600">
+    <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="bg-[#C4C9D2] px-2.5 py-0.5 rounded-full border border-black/80 font-handwriting text-lg font-bold">nonsense LAB</span>
+        <span>© 2026 Nonsense Lab. All rights reserved.</span>
+      </div>
+      <div class="flex gap-4 text-gray-700 font-medium">
+        <a href="#about" class="hover:underline" data-i18n="nav_about">About Us</a>
+        <a href="#workshops" class="hover:underline" data-i18n="btn_workshops">Workshops</a>
+        <a href="#contact" class="hover:underline" data-i18n="nav_contact">Contact</a>
+      </div>
+    </div>
+  </footer>
 
-        // Toggle Language Dropdown
-        function toggleLangDropdown() {
-            const dropdown = document.getElementById('langDropdown');
-            dropdown.classList.toggle('hidden');
+  <!-- Translation JavaScript Logic -->
+  <script>
+    const translations = {
+      en: {
+        tagline: "Where nonsense, makes sense",
+        nav_about: "About Us",
+        nav_contact: "Contact",
+        hero_text: "Nonsense Lab creates playful, structured art experiences for children aged 5–10 with special educational needs, while supporting parents with practical insight, confidence, and connection.",
+        btn_workshops: "Explore Our Workshops",
+        btn_contact: "Contact Us",
+        tab_children: "For Children",
+        tab_parents: "For Parents",
+        tab_communities: "For Communities",
+        desc_children: "Creative workshops designed for children aged 5–10 with special educational needs. Each session encourages imagination, self-expression, sensory exploration, and confidence through art-based activities.",
+        desc_parents: "We help parents understand their child's creative process, communication style, and emotional world through observation, discussion, and practical take-home ideas.",
+        desc_communities: "We collaborate with schools, museums, farms, heritage sites, and community spaces to create meaningful learning experiences beyond the classroom.",
+        quote: "We turn “I don’t know how to say it” into color, shape, texture, movement, and play.",
+        space_title: "A Creative Space Between\nLearning, Play & Understanding",
+        space_p1: "At Nonsense Lab, we believe creativity helps children express what words cannot always explain. Our workshops combine visual arts, sensory exploration, storytelling, movement, and reflection to support children with different learning needs in a safe, welcoming environment.",
+        space_p2: "We are not a clinical therapy service. We are a creative learning space designed to help children explore, communicate, and grow — while helping parents better understand their child's unique way of seeing the world.",
+        vmv_title: "Our Vision, Mission & Values",
+        vision_title: "Vision",
+        vision_desc: "To create a world where different ways of thinking, feeling, and expressing are understood, celebrated, and supported.",
+        mission_title: "Mission",
+        mission_desc: "To provide playful, structured creative workshops that help children with special educational needs express themselves, build confidence, and connect with others — while giving parents tools and insight to support their child's growth.",
+        val_curiosity: "Curiosity",
+        val_curiosity_desc: "We follow questions, ideas, textures, mistakes, and unexpected discoveries.",
+        val_respect: "Respect",
+        val_respect_desc: "Every child's pace, preference, and communication style matters.",
+        val_creativity: "Creativity",
+        val_creativity_desc: "We use art as a language for expression, imagination, and connection.",
+        val_confidence: "Confidence",
+        val_confidence_desc: "We create low-pressure spaces where children can try, choose, and grow.",
+        val_connection: "Connection",
+        val_connection_desc: "We help children, parents, and communities understand one another better.",
+        team_title: "Our Team",
+        team_subtitle: "Nonsense Lab is led by artists, educators, and creative thinkers who believe art can open new ways of learning and connecting.",
+        sandy_role: "Co-Founder | Visual Artist | Educator",
+        sandy_bio: "Sandy Wang has a background in visual arts, academic research, and education. Her practice explores how creativity can support learning, communication, and self-expression. At Nonsense Lab, Sandy designs thoughtful experiences that combine structure, imagination, and sensory exploration.",
+        un_role: "Co-Founder | Artist | Art Historian | Educator",
+        un_bio: "Un Cheng has a background in art history, visual arts, oil painting, and education. Her work brings together artistic practice, cultural understanding, and hands-on learning. At Nonsense Lab, Un develops creative workshops that help children engage with art, stories, places, and materials in meaningful ways.",
+        frame_1: "Sensory Art",
+        frame_2: "Texture & Color",
+        frame_3: "Storytelling",
+        frame_4: "Movement",
+        frame_5: "Play & Discovery",
+        frame_6: "Reflection",
+        contact_title: "Get in Touch",
+        contact_desc: "Interested in our workshops, school collaborations, or parent consultations? Send us a message!",
+        form_name: "Name",
+        form_email: "Email",
+        form_role: "I am a...",
+        opt_parent: "Parent / Guardian",
+        opt_school: "School / Educator",
+        opt_org: "Community Organization / Heritage Partner",
+        opt_other: "Other",
+        form_message: "Message",
+        form_submit: "Send Message"
+      },
+      zh: {
+        tagline: "讓看似無意義的，變得有意義",
+        nav_about: "關於我們",
+        nav_contact: "聯絡我們",
+        hero_text: "Nonsense Lab 為 5 至 10 歲有特殊教育需要的兒童設計充滿樂趣與結構性的藝術體驗，同時為家長提供實用的洞察、信心與連結。",
+        btn_workshops: "探索我們的工作坊",
+        btn_contact: "聯絡我們",
+        tab_children: "給兒童",
+        tab_parents: "給家長",
+        tab_communities: "給社區",
+        desc_children: "專為 5–10 歲有特殊教育需要的兒童設計的創意工作坊。每節課堂透過藝術活動鼓勵想像力、自我表達、感官探索與建立自信。",
+        desc_parents: "我們透過觀察、交流與實用的回家提案，協助家長了解孩子的創意過程、溝通方式與情感世界。",
+        desc_communities: "我們與學校、博物館、農場、文化遺產場所及社區空間合作，在課堂之外創造有意義的學習體驗。",
+        quote: "我們將「我不知該如何表達」轉化為色彩、形狀、質感、律動與遊戲。",
+        space_title: "介於學習、遊戲與理解之間的\n創意空間",
+        space_p1: "在 Nonsense Lab，我們相信創意能幫助孩子表達言語未必能完全解釋的事情。我們的工作坊結合視覺藝術、感官探索、故事講述、肢體律動與反思，在安全包容的環境中支持擁有不同學習需求的兒童。",
+        space_p2: "我們並非臨床治療機構，而是一個旨在協助孩子探索、溝通與成長的創意學習空間 — 同時幫助家長更好地理解孩子看待世界的獨特方式。",
+        vmv_title: "我們的願景、使命與價值觀",
+        vision_title: "願景",
+        vision_desc: "創造一個不同的思考、感受與表達方式都能被理解、慶祝和支持的世界。",
+        mission_title: "使命",
+        mission_desc: "提供富趣味性與結構性的創意工作坊，協助有特殊教育需要的兒童表達自我、建立自信並與他人連結 — 同時為家長提供工具與洞察，支持孩子的成長。",
+        val_curiosity: "好奇心 Curiosity",
+        val_curiosity_desc: "我們追隨提問、想法、質感、錯誤以及意想不到的新發現。",
+        val_respect: "尊重 Respect",
+        val_respect_desc: "每個孩子的步調、偏好與溝通方式都至關重要。",
+        val_creativity: "創造力 Creativity",
+        val_creativity_desc: "我們以藝術作為表達、想像與建立連結的語言。",
+        val_confidence: "自信 Confidence",
+        val_confidence_desc: "我們創造低壓力的空間，讓孩子勇於嘗試、選擇與成長。",
+        val_connection: "連結 Connection",
+        val_connection_desc: "我們幫助兒童、家長與社區更好地彼此理解。",
+        team_title: "我們的團隊",
+        team_subtitle: "Nonsense Lab 由藝術家、教育者與創意思考者共同領導，我們相信藝術能開啟學習與連結的新途徑。",
+        sandy_role: "共同創辦人 | 視覺藝術家 | 教育者",
+        sandy_bio: "Sandy Wang 擁有視覺藝術、學術研究及教育背景。她的實踐探討創意如何支持學習、溝通與自我表達。在 Nonsense Lab，Sandy 設計結合結構、想像力與感官探索的用心體驗。",
+        un_role: "共同創辦人 | 藝術家 | 藝術史學家 | 教育者",
+        un_bio: "Un Cheng 擁有藝術史、視覺藝術、油畫及教育背景。她的工作將藝術實踐、文化理解與手作學習融為一體。在 Nonsense Lab，Un 開展創意工作坊，引導孩子以深刻的方式接觸藝術、故事、場域與材料。",
+        frame_1: "感官藝術",
+        frame_2: "質感與色彩",
+        frame_3: "故事繪本",
+        frame_4: "肢體律動",
+        frame_5: "遊戲與探索",
+        frame_6: "觀察反思",
+        contact_title: "聯絡我們",
+        contact_desc: "對我們的工作坊、學校合作或家長諮詢感興趣？歡迎傳送訊息給我們！",
+        form_name: "姓名",
+        form_email: "電郵",
+        form_role: "我是...",
+        opt_parent: "家長 / 監護人",
+        opt_school: "學校 / 教育工作者",
+        opt_org: "社區機構 / 文化遺產夥伴",
+        opt_other: "其他",
+        form_message: "訊息內容",
+        form_submit: "送出訊息"
+      }
+    };
+
+    let currentLang = 'en';
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'en' ? 'zh' : 'en';
+      document.getElementById('lang-text').innerText = currentLang === 'en' ? '繁體中文' : 'English';
+      
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[currentLang][key]) {
+          el.innerText = translations[currentLang][key];
         }
-
-        // Close dropdown when clicking outside
-        window.addEventListener('click', function(e) {
-            const btn = document.getElementById('langToggleBtn');
-            const dropdown = document.getElementById('langDropdown');
-            if (btn && dropdown && !btn.contains(e.target) && !dropdown.contains(e.target)) {
-                dropdown.classList.add('hidden');
-            }
-        });
-
-        // Set Active Language
-        function setLanguage(lang) {
-            currentLang = lang;
-            
-            // Update UI Checklist icons
-            document.getElementById('check-en').classList.toggle('hidden', lang !== 'en');
-            document.getElementById('check-tc').classList.toggle('hidden', lang !== 'tc');
-
-            // Update Label text
-            document.getElementById('currentLangLabel').innerText = lang === 'en' ? 'EN | 繁中' : '語言: 繁中';
-
-            // Hide dropdown
-            document.getElementById('langDropdown').classList.add('hidden');
-
-            // Update all translated elements
-            const elements = document.querySelectorAll('[data-i18n]');
-            elements.forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (i18nData[lang] && i18nData[lang][key]) {
-                    el.innerText = i18nData[lang][key];
-                }
-            });
-        }
-
-        // Mobile Navigation Menu Toggle
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('hidden');
-        }
-
-        // Mock Form Submission Logic
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            const toast = document.getElementById('formToast');
-            toast.classList.remove('hidden');
-            event.target.reset();
-
-            setTimeout(() => {
-                toast.classList.add('hidden');
-            }, 5000);
-        }
-    </script>
+      });
+    }
+  </script>
 </body>
 </html>
