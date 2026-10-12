@@ -1,434 +1,810 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nonsense Lab | Where nonsense, makes sense</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nonsense Lab | Where nonsense, makes sense</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'ns-cream': '#FAF8F2',
+              'ns-yellow': '#E9C440',
+              'ns-light-yellow': '#F3E388',
+              'ns-pink': '#FFB7B2',
+              'ns-blue': '#A3C1AD',
+              'ns-periwinkle': '#A6C1E1',
+              'ns-olive': '#6C7E5A',
+              'ns-rust': '#C85A32',
+              'ns-card-yellow': '#E2CE58',
+              'ns-card-pink': '#F7C1C1',
+              'ns-card-blue': '#98B3DA',
+              'ns-card-olive': '#7D8B6B',
+              'ns-card-rust': '#D0633C',
+              'ns-header-brown': '#A0451B',
+            },
+            fontFamily: {
+              hand: ['Gaegu', 'cursive', 'sans-serif'],
+              sans: ['Plus Jakarta Sans', 'Noto Sans TC', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #FAF8F2;
+        color: #1A1A1A;
+        font-family: 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif;
+      }
+      .font-handwriting {
+        font-family: 'Gaegu', cursive, sans-serif;
+      }
+      
+      /* Hand-drawn borders and sketchy styles */
+      .sketchy-border {
+        border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+      }
+      
+      .sketchy-pill {
+        border-radius: 999px;
+      }
+      
+      .wavy-underline {
+        text-decoration-line: underline;
+        text-decoration-style: wavy;
+        text-decoration-color: #A6C1E1;
+      }
+
+      /* Custom animations */
+      @keyframes float-slow {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-8px) rotate(2deg); }
+      }
+      
+      .animate-float {
+        animation: float-slow 4s ease-in-out infinite;
+      }
+
+      /* Custom scrollbar for clean aesthetic */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #FAF8F2;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #D1CBB8;
+        border-radius: 4px;
+      }
+    </style>
 </head>
-<body>
+<body class="bg-[#FAF8F2] text-gray-900 min-h-screen flex flex-col selection:bg-yellow-200">
 
-  <!-- NAVIGATION BAR -->
-  <header class="navbar">
-    <div class="logo-box">
-      <div class="logo-text">nonsense LAB</div>
+  <!-- Top Navigation -->
+  <header class="sticky top-0 z-50 bg-[#FAF8F2]/90 backdrop-blur-md px-4 sm:px-8 py-3 transition-all duration-300 border-b border-black/5">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-2">
+      
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-1 group">
+        <div class="bg-[#C4C9D2] px-3 py-1 rounded-full border border-black/80 font-handwriting text-2xl sm:text-3xl font-bold tracking-wider transform -rotate-1 group-hover:scale-105 transition-transform">
+          nonsense LAB
+        </div>
+      </a>
+
+      <!-- Navigation Badges & Buttons -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Sub-tagline badge -->
+        <div class="hidden md:flex items-center bg-[#F7C5C5] px-4 py-1.5 rounded-full border border-black/80 text-sm font-medium">
+          <span data-i18n="tagline">Where nonsense, makes sense</span>
+        </div>
+
+        <!-- Navigation items -->
+        <a href="#about" class="bg-[#EFE383] px-4 sm:px-5 py-1.5 rounded-full border border-black/80 text-sm font-semibold hover:bg-[#ebd95b] transition-colors shadow-sm">
+          <span data-i18n="nav_about">About Us</span>
+        </a>
+
+        <a href="#contact" class="bg-transparent px-4 sm:px-5 py-1.5 rounded-full border border-black/80 text-sm font-semibold hover:bg-black/5 transition-colors">
+          <span data-i18n="nav_contact">Contact</span>
+        </a>
+
+        <!-- Language Switcher -->
+        <button id="lang-toggle" onclick="toggleLanguage()" class="bg-white px-3 py-1.5 rounded-full border border-black/80 text-xs sm:text-sm font-bold flex items-center gap-1 hover:bg-gray-100 transition-colors">
+          <span id="lang-text">繁體中文</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="md:hidden p-1.5 text-gray-800" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+      </div>
     </div>
-    
-    <div class="tagline-badge" data-en="Where nonsense, makes sense" data-zh="讓看似無意義的，變得有意義">
-      Where nonsense, makes sense
-    </div>
 
-    <nav class="nav-links" id="navLinks">
-      <a href="#about" class="nav-btn bg-yellow" data-en="About Us" data-zh="關於我們">About Us</a>
-      <a href="#contact" class="nav-btn transparent" data-en="Contact" data-zh="聯絡我們">Contact</a>
-      <button class="lang-toggle-btn" id="langToggleBtn" onclick="toggleLanguage()">
-        🌐 <span id="langLabel">中文</span>
-      </button>
-    </nav>
-
-    <div class="hamburger" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
+    <!-- Mobile Dropdown -->
+    <div id="mobile-menu" class="hidden md:hidden pt-3 pb-2 border-t border-gray-200 mt-2 space-y-2 text-center">
+      <div class="bg-[#F7C5C5] px-4 py-1.5 rounded-full border border-black/80 text-sm font-medium inline-block my-1">
+        <span data-i18n="tagline">Where nonsense, makes sense</span>
+      </div>
     </div>
   </header>
 
-  <main>
-    <!-- HERO SECTION -->
-    <section class="hero-section">
-      <div class="hero-container">
+  <main class="flex-grow">
+    <!-- Hero Section -->
+    <section class="relative px-4 sm:px-8 pt-8 pb-16 max-w-6xl mx-auto overflow-hidden">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
         
-        <div class="hero-doodle doodle-left">
-          <svg viewBox="0 0 160 160" class="doodle-svg">
-            <path class="sketch-line" d="M 50 120 C 30 110, 20 80, 30 50 C 40 20, 80 15, 100 40 C 120 65, 110 110, 80 125 C 65 132, 50 120, 50 120 Z" />
-            <path class="sketch-line" d="M 60 55 C 62 48, 68 48, 70 55 C 72 62, 60 62, 60 55 Z" />
-            <path class="sketch-line" d="M 85 60 C 87 53, 93 53, 95 60 C 97 67, 85 67, 85 60 Z" />
-            <path class="sketch-line" d="M 65 85 Q 75 100 90 82" />
-            <path class="sketch-line" d="M 98 42 C 105 35, 115 32, 122 38 C 128 44, 120 52, 110 48" />
-            <path class="sketch-line" d="M 125 30 L 132 20 M 130 40 L 142 38 M 120 18 L 122 8" />
-            <path class="sketch-line" d="M 45 120 L 38 145 M 80 125 L 85 148" />
-            <path class="sketch-line" d="M 32 145 L 45 145 M 78 148 L 92 148" />
+        <!-- Left Doodle Character (Moon Singing) -->
+        <div class="w-28 sm:w-36 md:w-44 flex-shrink-0 animate-float hidden sm:block">
+          <svg viewBox="0 0 160 200" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-auto text-black">
+            <!-- Moon Character -->
+            <path d="M 70 30 C 100 30, 110 60, 100 90 C 90 120, 60 130, 40 120 C 60 115, 75 95, 70 70 C 65 45, 50 35, 40 30 C 50 28, 60 28, 70 30 Z" fill="white"/>
+            <!-- Eyes & Mouth -->
+            <ellipse cx="65" cy="55" rx="2" ry="4" fill="black"/>
+            <path d="M 75 62 Q 80 65 72 70" fill="none"/>
+            <path d="M 78 60 L 88 56" />
+            <!-- Feet & Hands -->
+            <path d="M 50 122 L 45 155 L 35 155 M 45 155 L 52 155"/>
+            <path d="M 70 120 L 75 155 L 68 155 M 75 155 L 82 155"/>
+            <path d="M 40 85 L 20 95 L 25 105"/>
+            <path d="M 75 80 L 95 85 M 95 85 L 102 78 M 95 85 L 100 92"/>
+            <!-- Musical Notes -->
+            <path d="M 105 40 Q 115 35 120 45 L 120 25 L 135 20 L 135 40" stroke-width="2"/>
+            <circle cx="118" cy="45" r="4" fill="black"/>
+            <circle cx="133" cy="40" r="4" fill="black"/>
+            <path d="M 125 60 Q 135 55 140 65" stroke-dasharray="2 3"/>
           </svg>
         </div>
 
-        <div class="hero-content">
-          <h1 class="hero-title" data-en="Nonsense Lab creates playful, structured art experiences for children aged 5–10 with special educational needs, while supporting parents with practical insight, confidence, and connection." data-zh="Nonsense Lab 為 5 至 10 歲有特殊教育需要的兒童設計富有趣味且具結構性的藝術體驗，同時為家長提供實用的洞見、信心與連結。">
+        <!-- Center Text Content -->
+        <div class="text-center max-w-2xl px-2">
+          <h1 class="text-xl sm:text-2xl md:text-3xl font-medium leading-relaxed text-gray-900 tracking-tight" data-i18n="hero_text">
             Nonsense Lab creates playful, structured art experiences for children aged 5–10 with special educational needs, while supporting parents with practical insight, confidence, and connection.
           </h1>
 
-          <div class="hero-buttons">
-            <a href="#workshops" class="btn btn-pink" data-en="Explore Our Workshops" data-zh="探索我們的工作坊">Explore Our Workshops</a>
-            <a href="#contact" class="btn btn-blue" data-en="Contact Us" data-zh="聯絡我們">Contact Us</a>
+          <!-- CTA Buttons -->
+          <div class="mt-8 flex flex-wrap justify-center gap-4">
+            <a href="#workshops" class="bg-[#FBC4BA] hover:bg-[#f7b0a3] text-gray-900 px-6 py-2.5 rounded-full border border-black/80 font-semibold text-sm sm:text-base transition-transform transform hover:-translate-y-0.5 shadow-sm">
+              <span data-i18n="btn_workshops">Explore Our Workshops</span>
+            </a>
+            <a href="#contact" class="bg-[#A4C2E6] hover:bg-[#92b5e0] text-gray-900 px-8 py-2.5 rounded-full border border-black/80 font-semibold text-sm sm:text-base transition-transform transform hover:-translate-y-0.5 shadow-sm">
+              <span data-i18n="btn_contact">Contact Us</span>
+            </a>
           </div>
         </div>
 
-        <div class="hero-doodle doodle-right">
-          <svg viewBox="0 0 160 160" class="doodle-svg">
-            <path class="sketch-line" d="M 40 80 C 35 55, 60 35, 85 40 C 110 45, 125 70, 115 95 C 105 120, 75 125, 50 110 C 35 100, 40 80, 40 80 Z" />
-            <circle cx="65" cy="70" r="3" fill="none" stroke="#1c1917" stroke-width="2.5" />
-            <circle cx="90" cy="73" r="3" fill="none" stroke="#1c1917" stroke-width="2.5" />
-            <path class="sketch-line" d="M 70 90 Q 78 98 86 88" />
-            <path class="sketch-line" d="M 38 85 C 20 82, 15 95, 25 102 M 118 85 C 135 88, 140 100, 130 108" />
-            <path class="sketch-line" d="M 52 112 L 48 135 M 68 118 L 68 138 M 88 116 L 90 138 M 105 106 L 112 132" />
+        <!-- Right Doodle Character (Cloud monster) -->
+        <div class="w-28 sm:w-36 md:w-44 flex-shrink-0 animate-float hidden sm:block">
+          <svg viewBox="0 0 160 160" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-auto text-black">
+            <!-- Cloud Body -->
+            <path d="M 40 80 C 20 80 15 60 30 45 C 25 25 50 15 70 25 C 85 10 115 15 125 35 C 145 35 150 60 135 75 C 150 95 130 115 110 110 C 95 125 65 120 50 105 C 30 110 20 95 40 80 Z" fill="white"/>
+            <!-- Eyes & Expression -->
+            <circle cx="65" cy="60" r="3" fill="black"/>
+            <circle cx="95" cy="60" r="3" fill="black"/>
+            <path d="M 75 75 Q 80 82 85 75"/>
+            <!-- Multiple Doodle Legs -->
+            <path d="M 45 105 L 40 135 M 40 135 L 33 135 M 40 135 L 45 138"/>
+            <path d="M 60 112 L 58 140 M 58 140 L 52 140"/>
+            <path d="M 78 115 L 80 142 M 80 142 L 87 142"/>
+            <path d="M 95 112 L 100 138 M 100 138 L 95 138"/>
+            <path d="M 115 105 L 122 132 M 122 132 L 128 130"/>
           </svg>
         </div>
 
       </div>
     </section>
 
-    <!-- 3-COLUMNS BENEFIT BANNER -->
-    <section class="banner-3col">
-      <div class="banner-col">
-        <h3 class="col-header" data-en="For Children" data-zh="給兒童">For Children</h3>
-        <p class="col-text" data-en="Creative workshops designed for children aged 5–10 with special educational needs. Each session encourages imagination, self-expression, sensory exploration, and confidence through art-based activities." data-zh="專為 5 至 10 歲有特殊教育需要的兒童設計的創意工作坊。每節課程均透過藝術活動鼓勵想象力、自我表達、感官探索及自信心建立。">
-          Creative workshops designed for children aged 5–10 with special educational needs. Each session encourages imagination, self-expression, sensory exploration, and confidence through art-based activities.
-        </p>
-      </div>
-
-      <div class="banner-col">
-        <h3 class="col-header" data-en="For Parents" data-zh="給家長">For Parents</h3>
-        <p class="col-text" data-en="We help parents understand their child's creative process, communication style, and emotional world through observation, discussion, and practical take-home ideas." data-zh="我們透過觀察、討論和實用的回家實踐建議，幫助家長了解孩子獨特的創作過程、溝通方式與情感世界。">
-          We help parents understand their child's creative process, communication style, and emotional world through observation, discussion, and practical take-home ideas.
-        </p>
-      </div>
-
-      <div class="banner-col">
-        <h3 class="col-header" data-en="For Communities" data-zh="給社區">For Communities</h3>
-        <p class="col-text" data-en="We collaborate with schools, museums, farms, heritage sites, and community spaces to create meaningful learning experiences beyond the classroom." data-zh="我們與學校、博物館、農場、古蹟及社區空間合作，課室之外創造意義深遠的學習體驗。">
-          We collaborate with schools, museums, farms, heritage sites, and community spaces to create meaningful learning experiences beyond the classroom.
-        </p>
-      </div>
-    </section>
-
-    <!-- CURVED BRIDGE STATEMENT BANNER -->
-    <section class="bridge-banner">
-      <div class="bridge-container">
-        <p class="bridge-quote" data-en="We turn “I don’t know how to say it” into color, shape, texture, movement, and play." data-zh="我們將「我不知道該怎麼說」轉化為色彩、形狀、質感、律動與遊戲。">
-          We turn “I don’t know how to say it” into color, shape, texture, movement, and play.
-        </p>
-        <svg class="hand-arrow" viewBox="0 0 100 40">
-          <path class="sketch-line" d="M 10 15 Q 50 35 80 15 M 80 15 L 68 12 M 80 15 L 72 25" />
-        </svg>
-      </div>
-    </section>
-
-    <!-- CREATIVE SPACE / PHILOSOPHY -->
-    <section class="philosophy-section" id="about">
-      <div class="philosophy-container">
+    <!-- Yellow Banner Section (Audience Breakdown) -->
+    <section id="workshops" class="bg-[#E4C333] pt-6 pb-12 px-4 sm:px-8 border-t-2 border-b-2 border-black/10">
+      <div class="max-w-6xl mx-auto">
         
-        <div class="doodle-scissors">
-          <svg viewBox="0 0 200 200" class="doodle-svg">
-            <path class="sketch-line" d="M 40 150 C 20 150, 10 170, 25 185 C 40 200, 60 180, 50 165 Z" />
-            <path class="sketch-line" d="M 60 165 C 50 175, 55 195, 75 190 C 90 180, 75 160, 65 160 Z" />
-            <circle cx="32" cy="172" r="2" fill="#1c1917" />
-            <circle cx="42" cy="172" r="2" fill="#1c1917" />
-            <path class="sketch-line" d="M 37 178 Q 42 182 47 178" />
-            <path class="sketch-line" d="M 52 160 L 160 60" />
-            <path class="sketch-line" d="M 62 165 L 180 80" />
-            <circle cx="85" cy="130" r="4" fill="none" stroke="#1c1917" stroke-width="2" />
-            <path class="sketch-line" d="M 20 60 C 10 30, 40 10, 60 30 C 80 50, 40 90, 20 60 Z" />
-            <circle cx="38" cy="40" r="2" fill="#1c1917" />
-            <circle cx="50" cy="42" r="2" fill="#1c1917" />
-            <path class="sketch-line" d="M 40 52 Q 46 56 52 50" />
-            <path class="sketch-line" d="M 60 40 Q 100 20 140 30" />
-          </svg>
-        </div>
-
-        <div class="philosophy-content">
-          <h2 class="section-title" data-en="A Creative Space Between Learning, Play & Understanding" data-zh="融合學習、遊戲與理解的創意空間">
-            A Creative Space Between Learning, Play & Understanding
-          </h2>
-
-          <p class="lead-text" data-en="At Nonsense Lab, we believe creativity helps children express <strong class='highlight-dark'>what words cannot always explain</strong>. Our workshops combine visual arts, sensory exploration, storytelling, movement, and reflection to support children with different learning needs in a safe, welcoming environment." data-zh="在 Nonsense Lab，我們相信創意能幫助孩子表達<strong class='highlight-dark'>言語無法完全說清的感受</strong>。我們的工作坊結合視覺藝術、感官探索、繪本故事、身體律動與引導反思，在安全包容的環境中支持擁有不同學習需要的兒童。">
-            At Nonsense Lab, we believe creativity helps children express <strong class="highlight-dark">what words cannot always explain</strong>. Our workshops combine visual arts, sensory exploration, storytelling, movement, and reflection to support children with different learning needs in a safe, welcoming environment.
-          </p>
-
-          <p class="body-text" data-en="We are not a clinical therapy service. We are a creative learning space designed to help children explore, communicate, and grow — while helping parents better understand their child's unique way of seeing the world." data-zh="我們並非臨床治療機構，而是一個為啟發而設的創意學習空間——旨在幫助孩子探索、溝通與成長，同時協助家長更深刻地理解孩子觀察世界的獨特视角。">
-            We are not a clinical therapy service. We are a creative learning space designed to help children explore, communicate, and grow — while helping parents better understand their child's unique way of seeing the world.
-          </p>
-        </div>
-
-        <div class="doodle-star-person">
-          <svg viewBox="0 0 160 160" class="doodle-svg">
-            <path class="sketch-line" d="M 80 30 L 92 55 L 120 58 L 98 78 L 105 105 L 80 90 L 55 105 L 62 78 L 40 58 L 68 55 Z" />
-            <circle cx="72" cy="62" r="2.5" fill="#1c1917" />
-            <circle cx="88" cy="62" r="2.5" fill="#1c1917" />
-            <path class="sketch-line" d="M 75 72 Q 80 77 85 72" />
-            <path class="sketch-line" d="M 40 58 C 20 45, 10 30, 25 20 M 120 58 C 140 45, 150 30, 135 20" />
-            <path class="sketch-line" d="M 130 110 L 140 100 M 125 125 L 142 122 M 140 85 L 152 80" />
-          </svg>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- VISION, MISSION & VALUES -->
-    <section class="vmv-section" id="workshops">
-      
-      <div class="sunburst-header">
-        <svg class="sunburst-svg" viewBox="0 0 300 60">
-          <path class="sketch-line" d="M 20 40 Q 150 10 280 40" stroke-width="3" />
-          <path class="sketch-line" d="M 50 25 L 42 10 M 80 20 L 78 5 M 120 18 L 120 2 M 160 18 L 162 2 M 200 20 L 205 5 M 240 25 L 250 10" />
-        </svg>
-        <h2 class="section-title text-center" data-en="Our Vision, Mission & Values" data-zh="我們的願景、使命與價值">
-          Our Vision, Mission & Values
-        </h2>
-      </div>
-
-      <!-- VISION & MISSION DUAL CARDS -->
-      <div class="vm-grid">
-        <div class="vm-card bg-yellow-soft">
-          <h3 class="vm-title" data-en="Vision" data-zh="願景">Vision</h3>
-          <p class="vm-text" data-en="To create a world where different ways of thinking, feeling, and expressing are understood, celebrated, and supported." data-zh="創造一個理解、頌揚並支持各種不同思考、感受與表達方式的世界。">
-            To create a world where different ways of thinking, feeling, and expressing are understood, celebrated, and supported.
-          </p>
-        </div>
-
-        <div class="vm-card bg-pink-soft">
-          <h3 class="vm-title" data-en="Mission" data-zh="使命">Mission</h3>
-          <p class="vm-text" data-en="To provide playful, structured creative workshops that help children with special educational needs express themselves, build confidence, and connect with others — while giving parents tools and insight to support their child's growth." data-zh="提供富有趣味且具結構性的創意工作坊，協助有特殊教育需要的兒童表達自我、建立自信，並與他人連結；同時為家長提供陪伴孩子成長的工具與洞見。">
-            To provide playful, structured creative workshops that help children with special educational needs express themselves, build confidence, and connect with others — while giving parents tools and insight to support their child's growth.
-          </p>
-        </div>
-      </div>
-
-      <!-- 5 VALUES GRID (C-R-C-C-C) -->
-      <div class="values-grid">
-        
-        <!-- C: Curiosity -->
-        <div class="value-card val-yellow">
-          <div class="value-letter">C</div>
-          <h4 class="value-name" data-en="Curiosity" data-zh="好奇心 Curiosity">Curiosity</h4>
-          <p class="value-desc" data-en="We follow questions, ideas, textures, mistakes, and unexpected discoveries." data-zh="我們追隨疑問、想法、質感、錯誤與意料之外的發現。">
-            We follow questions, ideas, textures, mistakes, and unexpected discoveries.
-          </p>
-          <div class="value-doodle">
-            <svg viewBox="0 0 80 80" class="doodle-svg">
-              <path class="sketch-line" d="M 40 25 C 25 25, 20 40, 30 50 C 40 60, 50 45, 40 35 C 32 28, 50 20, 55 32 C 60 45, 35 55, 45 68" />
-              <circle cx="45" cy="74" r="2" fill="#1c1917" />
-            </svg>
+        <!-- Header Strip Tabs -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
+          <div class="bg-[#B64319] text-white text-center py-3 px-4 rounded-lg border border-black/80 font-bold text-lg sm:text-xl tracking-wide shadow-sm">
+            <span data-i18n="tab_children">For Children</span>
+          </div>
+          <div class="bg-[#B64319] text-white text-center py-3 px-4 rounded-lg border border-black/80 font-bold text-lg sm:text-xl tracking-wide shadow-sm">
+            <span data-i18n="tab_parents">For Parents</span>
+          </div>
+          <div class="bg-[#B64319] text-white text-center py-3 px-4 rounded-lg border border-black/80 font-bold text-lg sm:text-xl tracking-wide shadow-sm">
+            <span data-i18n="tab_communities">For Communities</span>
           </div>
         </div>
 
-        <!-- R: Respect -->
-        <div class="value-card val-pink">
-          <div class="value-letter">R</div>
-          <h4 class="value-name" data-en="Respect" data-zh="尊重 Respect">Respect</h4>
-          <p class="value-desc" data-en="Every child's pace, preference, and communication style matters." data-zh="每個孩子的節奏、偏好與溝通方式都值得被認真對待。">
-            Every child's pace, preference, and communication style matters.
-          </p>
-          <div class="value-doodle">
-            <svg viewBox="0 0 80 80" class="doodle-svg">
-              <polygon points="40,15 65,65 15,65" class="sketch-line" />
-              <path class="sketch-line" d="M 30 45 Q 40 35 50 45" />
-              <circle cx="40" cy="30" r="3" fill="none" stroke="#1c1917" stroke-width="2" />
-            </svg>
-          </div>
-        </div>
-
-        <!-- C: Creativity -->
-        <div class="value-card val-blue">
-          <div class="value-letter">C</div>
-          <h4 class="value-name" data-en="Creativity" data-zh="創意 Creativity">Creativity</h4>
-          <p class="value-desc" data-en="We use art as a language for expression, imagination, and connection." data-zh="我們將藝術作為表達、想像與建立連結的共通語言。">
-            We use art as a language for expression, imagination, and connection.
-          </p>
-          <div class="value-doodle">
-            <svg viewBox="0 0 80 80" class="doodle-svg">
-              <path class="sketch-line" d="M 30 20 L 50 20 L 50 35 L 60 65 L 20 65 L 30 35 Z" />
-              <path class="sketch-line" d="M 32 45 L 48 45 M 26 55 L 54 55" />
-              <circle cx="40" cy="50" r="2" fill="#1c1917" />
-            </svg>
-          </div>
-        </div>
-
-        <!-- C: Confidence -->
-        <div class="value-card val-olive">
-          <div class="value-letter">C</div>
-          <h4 class="value-name" data-en="Confidence" data-zh="自信 Confidence">Confidence</h4>
-          <p class="value-desc" data-en="We create low-pressure spaces where children can try, choose, and grow." data-zh="我們營造無壓力的空間，讓孩子勇於嘗試、自主選擇並快樂成長。">
-            We create low-pressure spaces where children can try, choose, and grow.
-          </p>
-          <div class="value-doodle">
-            <svg viewBox="0 0 80 80" class="doodle-svg">
-              <rect x="25" y="35" width="30" height="35" class="sketch-line" />
-              <path class="sketch-line" d="M 30 35 L 30 15 L 35 15 L 35 35 M 40 35 L 40 10 L 45 10 L 45 35 M 50 35 L 50 20 L 55 20 L 55 35" />
-            </svg>
-          </div>
-        </div>
-
-        <!-- C: Connection -->
-        <div class="value-card val-rust">
-          <div class="value-letter">C</div>
-          <h4 class="value-name" data-en="Connection" data-zh="連結 Connection">Connection</h4>
-          <p class="value-desc" data-en="We help children, parents, and communities understand one another better." data-zh="我們幫助兒童、家長與社區建立更深厚的互相理解。">
-            We help children, parents, and communities understand one another better.
-          </p>
-          <div class="value-doodle">
-            <svg viewBox="0 0 80 80" class="doodle-svg">
-              <path class="sketch-line" d="M 20 45 C 15 30, 35 20, 45 35 C 55 20, 75 30, 65 50 C 55 65, 30 60, 20 45 Z" />
-              <circle cx="35" cy="38" r="2" fill="#1c1917" />
-              <circle cx="50" cy="40" r="2" fill="#1c1917" />
-              <path class="sketch-line" d="M 38 48 Q 42 52 48 47" />
-            </svg>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- OUR TEAM SECTION -->
-    <section class="team-section">
-      <div class="team-header">
-        <div class="sparkles-icon">
-          <svg viewBox="0 0 60 40" class="doodle-svg">
-            <path class="sketch-line" d="M 20 20 L 30 5 L 40 20 L 55 30 L 40 40 L 30 55 L 20 40 L 5 30 Z" />
-            <path class="sketch-line" d="M 45 10 L 50 2 L 55 10 L 63 15 L 55 20 L 50 28 L 45 20 L 37 15 Z" />
-          </svg>
-        </div>
-        <h2 class="section-title text-center" data-en="Our Team" data-zh="團隊成員">Our Team</h2>
-        <p class="team-subtext" data-en="Nonsense Lab is led by artists, educators, and creative thinkers who believe art can open new ways of learning and connecting." data-zh="Nonsense Lab 由藝術家、教育工作者及創意思考者共同領導，我們深信藝術能開啟學習與連結的全新可能。">
-          Nonsense Lab is led by artists, educators, and creative thinkers who believe art can open new ways of learning and connecting.
-        </p>
-      </div>
-
-      <div class="team-grid">
-        <!-- TEAM MEMBER 1 -->
-        <div class="team-card">
-          <div class="team-avatar avatar-pink">
-            <svg viewBox="0 0 100 100" class="doodle-svg">
-              <circle cx="50" cy="50" r="40" class="sketch-line" />
-              <path class="sketch-line" d="M 32 45 Q 38 38 44 45 M 56 45 Q 62 38 68 45" />
-              <path class="sketch-line" d="M 35 62 Q 50 78 65 62" />
-            </svg>
-          </div>
-          <div class="team-info">
-            <h3 class="team-name">Sandy Wang</h3>
-            <p class="team-role" data-en="Co-Founder | Visual Artist | Educator" data-zh="共同創辦人 | 視覺藝術家 | 教育工作者">
-              Co-Founder | Visual Artist | Educator
+        <!-- Content Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-gray-900 text-sm sm:text-base leading-relaxed px-2">
+          <div class="text-center md:text-left px-2">
+            <p data-i18n="desc_children">
+              Creative workshops designed for children aged 5–10 with special educational needs. Each session encourages imagination, self-expression, sensory exploration, and confidence through art-based activities.
             </p>
-            <p class="team-bio" data-en="Sandy Wang has a background in visual arts, academic research, and education. Her practice explores how creativity can support learning, communication, and self-expression. At Nonsense Lab, Sandy designs thoughtful experiences that combine structure, imagination, and sensory exploration." data-zh="Sandy Wang 擁有視覺藝術、學術研究及教育背景。她的實踐致力於探索創意如何支持學習、溝通與自我表達。在 Nonsense Lab，Sandy 主導設計兼具結構、想像力與感官探索的深遠體驗。">
+          </div>
+          <div class="text-center md:text-left px-2">
+            <p data-i18n="desc_parents">
+              We help parents understand their child's creative process, communication style, and emotional world through observation, discussion, and practical take-home ideas.
+            </p>
+          </div>
+          <div class="text-center md:text-left px-2">
+            <p data-i18n="desc_communities">
+              We collaborate with schools, museums, farms, heritage sites, and community spaces to create meaningful learning experiences beyond the classroom.
+            </p>
+          </div>
+        </div>
+
+        <!-- Handwritten Quote Banner -->
+        <div class="mt-12 text-center relative max-w-3xl mx-auto">
+          <p class="font-handwriting text-2xl sm:text-3xl md:text-4xl text-white font-bold tracking-wide drop-shadow-sm leading-snug" data-i18n="quote">
+            We turn “I don’t know how to say it” into color, shape, texture, movement, and play.
+          </p>
+          <!-- Wavy Arrow Doodle -->
+          <div class="absolute -bottom-6 right-4 sm:right-12 w-16 sm:w-24">
+            <svg viewBox="0 0 100 40" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+              <path d="M 5 15 Q 30 35 60 15 T 85 20 M 85 20 L 75 10 M 85 20 L 75 28"/>
+            </svg>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Philosophy & Narrative Section -->
+    <section id="about" class="py-16 px-4 sm:px-8 max-w-5xl mx-auto relative overflow-hidden">
+      
+      <!-- Surrounding Doodles -->
+      <!-- Flower & Stick Doodle (Top Left) -->
+      <div class="absolute top-6 left-2 sm:left-6 w-20 sm:w-32 opacity-80 pointer-events-none">
+        <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="2">
+          <!-- Flower Head -->
+          <circle cx="80" cy="35" r="8"/>
+          <path d="M 80 20 Q 80 27 80 27 M 80 43 Q 80 50 80 50 M 65 35 Q 72 35 72 35 M 88 35 Q 95 35 95 35"/>
+          <path d="M 70 25 Q 75 30 75 30 M 85 40 Q 90 45 90 45 M 70 45 Q 75 40 75 40 M 85 30 Q 90 25 90 25"/>
+          <!-- Curved Arm Stick -->
+          <path d="M 20 85 C 40 90, 70 70, 80 35"/>
+          <path d="M 15 75 Q 30 80 45 70"/>
+        </svg>
+      </div>
+
+      <!-- Star Character (Top Right) -->
+      <div class="absolute top-6 right-2 sm:right-6 w-24 sm:w-36 opacity-80 pointer-events-none">
+        <svg viewBox="0 0 140 120" fill="none" stroke="currentColor" stroke-width="2">
+          <!-- Arms stretched -->
+          <path d="M 10 30 L 45 45 M 130 30 L 95 45"/>
+          <!-- Hands -->
+          <path d="M 10 30 L 5 22 M 10 30 L 2 32 M 10 30 L 5 40"/>
+          <path d="M 130 30 L 138 22 M 130 30 L 140 32 M 130 30 L 135 40"/>
+          <!-- Star Body -->
+          <path d="M 70 30 L 78 48 L 98 48 L 82 60 L 88 78 L 70 66 L 52 78 L 58 60 L 42 48 L 62 48 Z" fill="white"/>
+          <circle cx="65" cy="50" r="1.5" fill="black"/>
+          <circle cx="75" cy="50" r="1.5" fill="black"/>
+          <path d="M 67 57 Q 70 60 73 57"/>
+        </svg>
+      </div>
+
+      <!-- Scissors Doodle (Bottom Left) -->
+      <div class="absolute bottom-4 left-0 sm:left-4 w-32 sm:w-48 opacity-80 pointer-events-none">
+        <svg viewBox="0 0 160 160" fill="none" stroke="currentColor" stroke-width="2">
+          <!-- Scissors Blades -->
+          <path d="M 30 110 L 130 40 M 30 70 L 130 140"/>
+          <circle cx="80" cy="90" r="3" fill="black"/>
+          <!-- Handles with faces -->
+          <circle cx="25" cy="115" r="12"/>
+          <circle cx="25" cy="65" r="12"/>
+          <circle cx="23" cy="113" r="1" fill="black"/><circle cx="28" cy="113" r="1" fill="black"/>
+          <path d="M 23 118 Q 25 120 27 118"/>
+          <circle cx="23" cy="63" r="1" fill="black"/><circle cx="28" cy="63" r="1" fill="black"/>
+          <path d="M 23 68 Q 25 70 27 68"/>
+        </svg>
+      </div>
+
+      <!-- Sparkle Marks (Bottom Right) -->
+      <div class="absolute bottom-8 right-6 w-12 sm:w-16 opacity-80 pointer-events-none">
+        <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M 30 10 L 30 50 M 10 30 L 50 30 M 16 16 L 44 44 M 44 16 L 16 44"/>
+          <path d="M 48 40 L 48 56 M 40 48 L 56 48"/>
+        </svg>
+      </div>
+
+      <!-- Section Main Content -->
+      <div class="max-w-2xl mx-auto text-center space-y-8 relative z-10 py-6">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight" data-i18n="space_title">
+          A Creative Space Between<br>Learning, Play & Understanding
+        </h2>
+
+        <p class="text-base sm:text-lg text-gray-800 leading-relaxed" data-i18n="space_p1">
+          At Nonsense Lab, we believe creativity helps children express <strong class="font-bold">what words cannot always explain.</strong> Our workshops combine visual arts, sensory exploration, storytelling, movement, and reflection to support children with different learning needs in a safe, welcoming environment.
+        </p>
+
+        <p class="text-base sm:text-lg text-gray-800 leading-relaxed" data-i18n="space_p2">
+          We are not a clinical therapy service. We are a creative learning space designed to help children explore, communicate, and grow — while helping parents better understand their child's unique way of seeing the world.
+        </p>
+      </div>
+    </section>
+
+    <!-- Vision, Mission & Values Block -->
+    <section class="bg-[#ECEAE2] py-16 px-4 sm:px-8 border-t border-black/5">
+      <div class="max-w-5xl mx-auto">
+        
+        <!-- Crayon Burst Title Badge -->
+        <div class="text-center mb-12 relative flex justify-center">
+          <div class="relative inline-block px-8 py-4">
+            <!-- Crayon style sketch background -->
+            <svg class="absolute inset-0 w-full h-full text-black overflow-visible" viewBox="0 0 320 60" preserveAspectRatio="none" fill="none">
+              <!-- Radial Crayon Hatching Lines around title -->
+              <path d="M -10 30 L -25 25 M -8 15 L -20 5 M 10 -5 L 12 -20 M 50 -10 L 52 -25 M 160 -10 L 160 -25 M 270 -10 L 275 -22 M 330 15 L 345 8 M 330 35 L 348 40 M 310 65 L 320 78 M 160 65 L 160 80 M 30 65 L 20 78" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+              <path d="M 0 10 Q 160 -10 320 10 Q 330 30 320 50 Q 160 70 0 50 Q -10 30 0 10 Z" fill="white" stroke="currentColor" stroke-width="3" stroke-dasharray="120 4 80 3"/>
+            </svg>
+            <h2 class="relative z-10 text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-900 tracking-wide" data-i18n="vmv_title">
+              Our Vision, Mission & Values
+            </h2>
+          </div>
+        </div>
+
+        <!-- Vision & Mission Top Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          <!-- Vision Card -->
+          <div class="bg-[#E4CE52] p-6 sm:p-8 rounded-2xl border border-black/80 shadow-sm flex flex-col justify-center">
+            <h3 class="text-xl font-bold text-center mb-3 text-gray-900" data-i18n="vision_title">Vision</h3>
+            <p class="text-center text-sm sm:text-base text-gray-900 leading-relaxed" data-i18n="vision_desc">
+              To create a world where different ways of thinking, feeling, and expressing are understood, celebrated, and supported.
+            </p>
+          </div>
+
+          <!-- Mission Card -->
+          <div class="bg-[#FBC4BA] p-6 sm:p-8 rounded-2xl border border-black/80 shadow-sm flex flex-col justify-center">
+            <h3 class="text-xl font-bold text-center mb-3 text-gray-900" data-i18n="mission_title">Mission</h3>
+            <p class="text-center text-sm sm:text-base text-gray-900 leading-relaxed" data-i18n="mission_desc">
+              To provide playful, structured creative workshops that help children with special educational needs express themselves, build confidence, and connect with others — while giving parents tools and insight to support their child's growth.
+            </p>
+          </div>
+        </div>
+
+        <!-- 5 Values Cards Row -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          
+          <!-- Card 1: Curiosity (Yellow) -->
+          <div class="bg-[#E4CE52] p-4 rounded-xl border border-black/80 flex flex-col justify-between min-h-[260px] shadow-sm">
+            <div>
+              <div class="flex items-baseline gap-1 mb-2">
+                <span class="text-4xl font-black text-black">C</span>
+                <span class="text-sm font-bold text-gray-900" data-i18n="val_curiosity">Curiosity</span>
+              </div>
+              <p class="text-xs text-gray-900 leading-tight" data-i18n="val_curiosity_desc">
+                We follow questions, ideas, textures, mistakes, and unexpected discoveries.
+              </p>
+            </div>
+            <div class="mt-4 flex justify-center">
+              <!-- Flower character doodle -->
+              <svg class="w-16 h-16 text-black" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.8">
+                <circle cx="40" cy="40" r="14" fill="white"/>
+                <path d="M 40 12 C 32 12 32 26 40 26 C 48 26 48 12 40 12 Z"/>
+                <path d="M 40 54 C 32 54 32 68 40 68 C 48 68 48 54 40 54 Z"/>
+                <path d="M 12 40 C 12 32 26 32 26 40 C 26 48 12 48 12 40 Z"/>
+                <path d="M 54 40 C 54 32 68 32 68 40 C 68 48 54 48 54 40 Z"/>
+                <!-- Face -->
+                <circle cx="35" cy="38" r="1.5" fill="black"/>
+                <circle cx="45" cy="38" r="1.5" fill="black"/>
+                <path d="M 37 44 Q 40 47 43 44"/>
+                <path d="M 52 20 Q 56 16 60 22"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Card 2: Respect (Pink) -->
+          <div class="bg-[#FBC4BA] p-4 rounded-xl border border-black/80 flex flex-col justify-between min-h-[260px] shadow-sm">
+            <div>
+              <div class="flex items-baseline gap-1 mb-2">
+                <span class="text-4xl font-black text-black">R</span>
+                <span class="text-sm font-bold text-gray-900" data-i18n="val_respect">Respect</span>
+              </div>
+              <p class="text-xs text-gray-900 leading-tight" data-i18n="val_respect_desc">
+                Every child's pace, preference, and communication style matters.
+              </p>
+            </div>
+            <div class="mt-4 flex justify-center">
+              <!-- Party hat doodle -->
+              <svg class="w-16 h-16 text-black" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M 25 65 L 40 20 L 60 60 Z" fill="white"/>
+                <circle cx="40" cy="16" r="4" fill="white"/>
+                <path d="M 30 52 Q 42 48 55 54"/>
+                <path d="M 33 40 Q 42 36 50 42"/>
+                <path d="M 55 58 L 65 65 L 58 70 M 62 60 L 72 62"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Card 3: Creativity (Blue) -->
+          <div class="bg-[#A4C2E6] p-4 rounded-xl border border-black/80 flex flex-col justify-between min-h-[260px] shadow-sm">
+            <div>
+              <div class="flex items-baseline gap-1 mb-2">
+                <span class="text-4xl font-black text-black">C</span>
+                <span class="text-sm font-bold text-gray-900" data-i18n="val_creativity">Creativity</span>
+              </div>
+              <p class="text-xs text-gray-900 leading-tight" data-i18n="val_creativity_desc">
+                We use art as a language for expression, imagination, and connection.
+              </p>
+            </div>
+            <div class="mt-4 flex justify-center">
+              <!-- Beaker with stars doodle -->
+              <svg class="w-16 h-16 text-black" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M 32 20 L 48 20 M 36 20 L 36 35 L 20 62 C 16 68, 24 72, 40 72 C 56 72, 64 68, 60 62 L 44 35 L 44 20" fill="white"/>
+                <path d="M 26 52 Q 40 48 54 52" stroke-dasharray="2 2"/>
+                <polygon points="40,54 42,59 47,59 43,62 45,67 40,64 35,67 37,62 33,59 38,59" fill="black"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Card 4: Confidence (Olive) -->
+          <div class="bg-[#788863] p-4 rounded-xl border border-black/80 text-white flex flex-col justify-between min-h-[260px] shadow-sm">
+            <div>
+              <div class="flex items-baseline gap-1 mb-2">
+                <span class="text-4xl font-black text-white">C</span>
+                <span class="text-sm font-bold text-white" data-i18n="val_confidence">Confidence</span>
+              </div>
+              <p class="text-xs text-gray-100 leading-tight" data-i18n="val_confidence_desc">
+                We create low-pressure spaces where children can try, choose, and grow.
+              </p>
+            </div>
+            <div class="mt-4 flex justify-center">
+              <!-- Pencil box doodle -->
+              <svg class="w-16 h-16 text-white" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.8">
+                <rect x="20" y="35" width="40" height="32" rx="3" fill="#606E4E"/>
+                <path d="M 26 35 L 26 18 L 32 18 L 32 35"/>
+                <path d="M 36 35 L 36 12 L 42 12 L 42 35"/>
+                <path d="M 46 35 L 46 22 L 52 22 L 52 35"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Card 5: Connection (Terracotta/Rust) -->
+          <div class="bg-[#C85A32] p-4 rounded-xl border border-black/80 text-white flex flex-col justify-between min-h-[260px] shadow-sm">
+            <div>
+              <div class="flex items-baseline gap-1 mb-2">
+                <span class="text-4xl font-black text-white">C</span>
+                <span class="text-sm font-bold text-white" data-i18n="val_connection">Connection</span>
+              </div>
+              <p class="text-xs text-gray-100 leading-tight" data-i18n="val_connection_desc">
+                We help children, parents, and communities understand one another better.
+              </p>
+            </div>
+            <div class="mt-4 flex justify-center">
+              <!-- Friendly cloud puddle doodle -->
+              <svg class="w-16 h-16 text-white" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M 20 50 C 15 40 25 30 40 32 C 50 25 68 35 62 48 C 72 55 60 68 45 65 C 30 68 15 62 20 50 Z" fill="#B04923"/>
+                <circle cx="35" cy="46" r="1.5" fill="white"/>
+                <circle cx="48" cy="46" r="1.5" fill="white"/>
+                <path d="M 38 52 Q 41 55 45 52"/>
+              </svg>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Our Team Section -->
+    <section class="py-16 px-4 sm:px-8 max-w-5xl mx-auto text-center">
+      <!-- Sparkle Doodles Top -->
+      <div class="flex justify-center gap-2 mb-2 text-black">
+        <svg class="w-8 h-8" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M 20 5 L 20 35 M 5 20 L 35 20 M 10 10 L 30 30 M 30 10 L 10 30"/>
+        </svg>
+      </div>
+
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3" data-i18n="team_title">Our Team</h2>
+      <p class="text-sm sm:text-base text-gray-800 max-w-2xl mx-auto mb-10 leading-relaxed" data-i18n="team_subtitle">
+        Nonsense Lab is led by artists, educators, and creative thinkers who believe art can open new ways of learning and connecting.
+      </p>
+
+      <!-- Team Members Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+        
+        <!-- Sandy Wang -->
+        <div class="bg-white rounded-2xl border border-black/80 overflow-hidden flex flex-col sm:flex-row shadow-sm">
+          <!-- Pink Face Box -->
+          <div class="bg-[#FBC4BA] p-6 sm:w-2/5 flex items-center justify-center border-b sm:border-b-0 sm:border-r border-black/80 min-h-[160px]">
+            <svg class="w-24 h-24 text-black" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5">
+              <circle cx="50" cy="50" r="40" fill="none"/>
+              <line x1="32" y1="40" x2="32" y2="52" stroke-linecap="round"/>
+              <line x1="68" y1="40" x2="68" y2="52" stroke-linecap="round"/>
+              <path d="M 30 62 Q 50 82 70 62" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <!-- Bio Box -->
+          <div class="p-5 sm:w-3/5 flex flex-col justify-center">
+            <h3 class="font-bold text-base text-gray-900">Sandy Wang</h3>
+            <p class="text-xs font-semibold text-gray-700 mb-2" data-i18n="sandy_role">Co-Founder | Visual Artist | Educator</p>
+            <p class="text-xs text-gray-600 leading-relaxed" data-i18n="sandy_bio">
               Sandy Wang has a background in visual arts, academic research, and education. Her practice explores how creativity can support learning, communication, and self-expression. At Nonsense Lab, Sandy designs thoughtful experiences that combine structure, imagination, and sensory exploration.
             </p>
           </div>
         </div>
 
-        <!-- TEAM MEMBER 2 -->
-        <div class="team-card">
-          <div class="team-avatar avatar-blue">
-            <svg viewBox="0 0 100 100" class="doodle-svg">
-              <circle cx="50" cy="50" r="40" class="sketch-line" />
-              <circle cx="38" cy="42" r="3" fill="#1c1917" />
-              <circle cx="62" cy="42" r="3" fill="#1c1917" />
-              <path class="sketch-line" d="M 35 60 Q 50 72 65 60" />
+        <!-- Un Cheng -->
+        <div class="bg-white rounded-2xl border border-black/80 overflow-hidden flex flex-col sm:flex-row shadow-sm">
+          <!-- Blue Face Box -->
+          <div class="bg-[#A4C2E6] p-6 sm:w-2/5 flex items-center justify-center border-b sm:border-b-0 sm:border-r border-black/80 min-h-[160px]">
+            <svg class="w-24 h-24 text-black" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M 50 10 C 20 10 10 30 10 50 C 10 75 30 90 50 90 C 75 90 90 70 90 50 C 90 25 75 10 50 10 Z"/>
+              <circle cx="35" cy="45" r="2.5" fill="black"/>
+              <circle cx="65" cy="45" r="2.5" fill="black"/>
+              <path d="M 35 62 Q 50 75 65 62" stroke-linecap="round"/>
             </svg>
           </div>
-          <div class="team-info">
-            <h3 class="team-name">Un Cheng</h3>
-            <p class="team-role" data-en="Co-Founder | Artist | Art Historian | Educator" data-zh="共同創辦人 | 藝術家 | 藝術史學者 | 教育工作者">
-              Co-Founder | Artist | Art Historian | Educator
-            </p>
-            <p class="team-bio" data-en="Un Cheng has a background in art history, visual arts, oil painting, and education. Her work brings together artistic practice, cultural understanding, and hands-on learning. At Nonsense Lab, Un develops creative workshops that help children engage with art, stories, places, and materials in meaningful ways." data-zh="Un Cheng 具備藝術史、視覺藝術、油畫創作及教育專業。她的工作結合藝術實踐、文化理解與親手操作學習。在 Nonsense Lab，Un 研發富有啟發性的工作坊，引導孩子以深刻的方式探索藝術、故事、空間與媒材。">
+          <!-- Bio Box -->
+          <div class="p-5 sm:w-3/5 flex flex-col justify-center">
+            <h3 class="font-bold text-base text-gray-900">Un Cheng</h3>
+            <p class="text-xs font-semibold text-gray-700 mb-2" data-i18n="un_role">Co-Founder | Artist | Art Historian | Educator</p>
+            <p class="text-xs text-gray-600 leading-relaxed" data-i18n="un_bio">
               Un Cheng has a background in art history, visual arts, oil painting, and education. Her work brings together artistic practice, cultural understanding, and hands-on learning. At Nonsense Lab, Un develops creative workshops that help children engage with art, stories, places, and materials in meaningful ways.
             </p>
           </div>
         </div>
+
       </div>
     </section>
 
-    <!-- GALLERY / HAND-DRAWN CIRCLES GRID -->
-    <section class="gallery-section">
-      <div class="gallery-grid">
-        <div class="gallery-item">
-          <svg viewBox="0 0 200 200" class="doodle-svg">
-            <path class="sketch-line" d="M 100 20 C 150 15, 185 50, 180 100 C 175 150, 140 185, 90 180 C 40 175, 15 135, 20 85 C 25 35, 60 22, 100 20 Z" />
-            <path class="sketch-line" d="M 95 25 C 140 28, 172 58, 170 102 C 168 140, 130 172, 85 170 C 45 168, 28 130, 30 90 C 32 45, 68 24, 95 25 Z" opacity="0.6" />
-          </svg>
-        </div>
+    <!-- Sketchy Circular Frames Grid Banner -->
+    <section class="bg-[#ECEAE2] py-12 px-4 sm:px-8 border-t border-black/5">
+      <div class="max-w-5xl mx-auto bg-[#E2CD52] p-8 sm:p-12 rounded-3xl border border-black/80 shadow-sm">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          
+          <!-- Frame 1 -->
+          <div class="aspect-square relative flex items-center justify-center p-2 group cursor-pointer">
+            <svg class="w-full h-full text-black" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3">
+              <path d="M 100 15 C 150 12, 185 45, 188 98 C 190 150, 155 188, 98 185 C 45 182, 12 150, 15 98 C 18 45, 50 18, 100 15 Z"/>
+              <path d="M 102 10 C 158 15, 192 50, 182 105 C 175 155, 145 192, 92 180 C 40 175, 8 142, 20 90 C 25 40, 52 8, 102 10 Z" opacity="0.6"/>
+            </svg>
+            <div class="absolute inset-0 flex items-center justify-center p-8">
+              <span class="text-xs font-handwriting text-gray-800 text-center font-bold text-lg opacity-60 group-hover:opacity-100 transition-opacity" data-i18n="frame_1">Sensory Art</span>
+            </div>
+          </div>
 
-        <div class="gallery-item">
-          <svg viewBox="0 0 200 200" class="doodle-svg">
-            <path class="sketch-line" d="M 90 25 C 140 18, 180 60, 175 110 C 170 160, 130 180, 80 175 C 30 170, 20 120, 25 70 C 30 20, 70 28, 90 25 Z" />
-            <path class="sketch-line" d="M 105 20 C 155 30, 178 75, 168 115 C 158 155, 115 182, 70 170 C 25 158, 18 105, 28 60 Z" opacity="0.5" />
-          </svg>
-        </div>
+          <!-- Frame 2 -->
+          <div class="aspect-square relative flex items-center justify-center p-2 group cursor-pointer">
+            <svg class="w-full h-full text-black" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3">
+              <path d="M 95 18 C 148 10, 188 52, 182 102 C 178 152, 142 185, 92 182 C 42 180, 15 145, 18 92 C 20 42, 48 22, 95 18 Z"/>
+              <path d="M 98 22 C 142 25, 180 58, 175 108 C 170 148, 138 180, 88 175 C 38 170, 22 138, 25 88 C 28 48, 58 18, 98 22 Z" opacity="0.6"/>
+            </svg>
+            <div class="absolute inset-0 flex items-center justify-center p-8">
+              <span class="text-xs font-handwriting text-gray-800 text-center font-bold text-lg opacity-60 group-hover:opacity-100 transition-opacity" data-i18n="frame_2">Texture & Color</span>
+            </div>
+          </div>
 
-        <div class="gallery-item">
-          <svg viewBox="0 0 200 200" class="doodle-svg">
-            <path class="sketch-line" d="M 100 18 C 160 20, 182 70, 178 118 C 174 165, 125 185, 78 178 C 30 170, 18 125, 22 75 C 26 25, 65 16, 100 18 Z" />
-            <path class="sketch-line" d="M 92 22 C 138 20, 175 52, 172 108 C 169 152, 132 176, 88 174 C 42 172, 22 138, 25 82 Z" opacity="0.7" />
-          </svg>
-        </div>
+          <!-- Frame 3 -->
+          <div class="aspect-square relative flex items-center justify-center p-2 group cursor-pointer">
+            <svg class="w-full h-full text-black" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3">
+              <path d="M 102 20 C 152 22, 182 58, 180 105 C 178 152, 148 182, 98 185 C 48 188, 18 152, 15 102 C 12 52, 52 18, 102 20 Z"/>
+              <path d="M 95 15 C 145 18, 185 48, 185 98 C 185 148, 152 188, 102 182 C 52 178, 12 145, 18 95 C 22 45, 48 12, 95 15 Z" opacity="0.6"/>
+            </svg>
+            <div class="absolute inset-0 flex items-center justify-center p-8">
+              <span class="text-xs font-handwriting text-gray-800 text-center font-bold text-lg opacity-60 group-hover:opacity-100 transition-opacity" data-i18n="frame_3">Storytelling</span>
+            </div>
+          </div>
 
-        <div class="gallery-item">
-          <svg viewBox="0 0 200 200" class="doodle-svg">
-            <path class="sketch-line" d="M 85 22 C 135 15, 175 55, 178 105 C 180 155, 140 182, 92 178 C 45 174, 18 138, 20 88 C 22 38, 55 25, 85 22 Z" />
-            <path class="sketch-line" d="M 98 28 C 148 22, 182 62, 172 112 C 162 162, 122 175, 78 172 C 35 168, 25 125, 28 78 Z" opacity="0.6" />
-          </svg>
-        </div>
+          <!-- Frame 4 -->
+          <div class="aspect-square relative flex items-center justify-center p-2 group cursor-pointer">
+            <svg class="w-full h-full text-black" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3">
+              <path d="M 98 15 C 145 18, 182 52, 185 100 C 188 148, 152 185, 100 182 C 48 180, 15 148, 18 98 C 20 48, 50 12, 98 15 Z"/>
+              <path d="M 92 20 C 140 22, 178 55, 175 105 C 172 150, 142 180, 95 178 C 45 175, 20 142, 22 92 C 25 45, 52 18, 92 20 Z" opacity="0.6"/>
+            </svg>
+            <div class="absolute inset-0 flex items-center justify-center p-8">
+              <span class="text-xs font-handwriting text-gray-800 text-center font-bold text-lg opacity-60 group-hover:opacity-100 transition-opacity" data-i18n="frame_4">Movement</span>
+            </div>
+          </div>
 
-        <div class="gallery-item">
-          <svg viewBox="0 0 200 200" class="doodle-svg">
-            <path class="sketch-line" d="M 105 25 C 155 20, 180 65, 172 115 C 164 165, 125 180, 75 175 C 25 170, 20 120, 28 70 C 35 20, 75 28, 105 25 Z" />
-            <path class="sketch-line" d="M 90 20 C 138 25, 170 58, 168 102 C 165 145, 130 172, 85 168 C 40 164, 25 128, 30 82 Z" opacity="0.5" />
-          </svg>
-        </div>
+          <!-- Frame 5 -->
+          <div class="aspect-square relative flex items-center justify-center p-2 group cursor-pointer">
+            <svg class="w-full h-full text-black" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3">
+              <path d="M 100 18 C 150 20, 185 52, 182 102 C 180 152, 148 185, 95 182 C 45 180, 18 148, 15 95 C 12 45, 50 15, 100 18 Z"/>
+              <path d="M 105 12 C 155 15, 188 48, 188 98 C 188 148, 155 188, 100 185 C 48 182, 12 150, 12 98 C 12 48, 55 10, 105 12 Z" opacity="0.6"/>
+            </svg>
+            <div class="absolute inset-0 flex items-center justify-center p-8">
+              <span class="text-xs font-handwriting text-gray-800 text-center font-bold text-lg opacity-60 group-hover:opacity-100 transition-opacity" data-i18n="frame_5">Play & Discovery</span>
+            </div>
+          </div>
 
-        <div class="gallery-item">
-          <svg viewBox="0 0 200 200" class="doodle-svg">
-            <path class="sketch-line" d="M 95 18 C 145 22, 185 68, 175 120 C 165 172, 118 185, 70 178 C 22 170, 15 118, 22 68 C 28 18, 68 15, 95 18 Z" />
-            <path class="sketch-line" d="M 102 24 C 158 20, 172 75, 168 112 C 164 150, 128 178, 82 172 C 38 165, 20 130, 24 82 Z" opacity="0.6" />
-          </svg>
+          <!-- Frame 6 -->
+          <div class="aspect-square relative flex items-center justify-center p-2 group cursor-pointer">
+            <svg class="w-full h-full text-black" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3">
+              <path d="M 95 20 C 142 22, 180 55, 182 105 C 185 152, 145 182, 98 185 C 48 188, 15 152, 18 100 C 20 50, 48 18, 95 20 Z"/>
+              <path d="M 98 12 C 148 15, 188 45, 185 95 C 182 145, 150 188, 95 182 C 42 178, 10 142, 12 92 C 15 42, 48 10, 98 12 Z" opacity="0.6"/>
+            </svg>
+            <div class="absolute inset-0 flex items-center justify-center p-8">
+              <span class="text-xs font-handwriting text-gray-800 text-center font-bold text-lg opacity-60 group-hover:opacity-100 transition-opacity" data-i18n="frame_6">Reflection</span>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
 
-    <!-- CONTACT SECTION -->
-    <section class="contact-section" id="contact">
-      <div class="contact-container">
-        
-        <div class="contact-header">
-          <h2 class="section-title" data-en="Get in Touch" data-zh="聯絡我們">Get in Touch</h2>
-          <p class="contact-subtext" data-en="Have questions about our workshops, collaborations, or private sessions? Drop us a message!" data-zh="對我們的工作坊、跨界合作或私人課程有任何疑問？歡迎隨時留言給我們！">
-            Have questions about our workshops, collaborations, or private sessions? Drop us a message!
-          </p>
-        </div>
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 px-4 sm:px-8 max-w-4xl mx-auto">
+      <div class="bg-white rounded-3xl border border-black/80 p-6 sm:p-10 shadow-sm">
+        <h2 class="text-2xl sm:text-3xl font-bold text-center mb-2 text-gray-900" data-i18n="contact_title">Get in Touch</h2>
+        <p class="text-center text-sm text-gray-600 mb-8" data-i18n="contact_desc">Interested in our workshops, school collaborations, or parent consultations? Send us a message!</p>
 
-        <form class="contact-form" onsubmit="handleFormSubmit(event)">
-          <div class="form-group">
-            <label class="form-label" data-en="Your Name" data-zh="您的姓名">Your Name</label>
-            <input type="text" class="form-input" required placeholder="e.g. Alex Wong">
+        <form onsubmit="event.preventDefault(); alert('Thank you for reaching out! Nonsense Lab will get back to you shortly.');" class="space-y-4 max-w-xl mx-auto">
+          <div>
+            <label class="block text-xs font-bold text-gray-700 uppercase mb-1" data-i18n="form_name">Name</label>
+            <input type="text" required class="w-full px-4 py-2.5 rounded-xl border border-black/70 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-sm">
           </div>
-
-          <div class="form-group">
-            <label class="form-label" data-en="Email Address" data-zh="電郵地址">Email Address</label>
-            <input type="email" class="form-input" required placeholder="name@example.com">
+          <div>
+            <label class="block text-xs font-bold text-gray-700 uppercase mb-1" data-i18n="form_email">Email</label>
+            <input type="email" required class="w-full px-4 py-2.5 rounded-xl border border-black/70 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-sm">
           </div>
-
-          <div class="form-group">
-            <label class="form-label" data-en="Message" data-zh="留言內容">Message</label>
-            <textarea class="form-textarea" required placeholder="Tell us about your child or inquiry..."></textarea>
+          <div>
+            <label class="block text-xs font-bold text-gray-700 uppercase mb-1" data-i18n="form_role">I am a...</label>
+            <select class="w-full px-4 py-2.5 rounded-xl border border-black/70 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-sm bg-white">
+              <option data-i18n="opt_parent">Parent / Guardian</option>
+              <option data-i18n="opt_school">School / Educator</option>
+              <option data-i18n="opt_org">Community Organization / Heritage Partner</option>
+              <option data-i18n="opt_other">Other</option>
+            </select>
           </div>
-
-          <button type="submit" class="btn btn-yellow form-submit-btn" data-en="Send Message" data-zh="發送訊息">Send Message</button>
+          <div>
+            <label class="block text-xs font-bold text-gray-700 uppercase mb-1" data-i18n="form_message">Message</label>
+            <textarea rows="4" required class="w-full px-4 py-2.5 rounded-xl border border-black/70 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-sm"></textarea>
+          </div>
+          <button type="submit" class="w-full bg-[#E4CE52] hover:bg-[#d8c143] text-gray-900 font-bold py-3 rounded-full border border-black/80 transition-colors shadow-sm">
+            <span data-i18n="form_submit">Send Message</span>
+          </button>
         </form>
-
       </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-logo">nonsense LAB</div>
-      <p class="footer-text" data-en="Where nonsense, makes sense." data-zh="讓看似無意義的，變得有意義。">Where nonsense, makes sense.</p>
-      <p class="footer-copy">&copy; 2026 Nonsense Lab. All rights reserved.</p>
+  <!-- Footer -->
+  <footer class="bg-[#ECEAE2] py-8 px-4 text-center border-t border-black/10 text-xs text-gray-600">
+    <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="bg-[#C4C9D2] px-2.5 py-0.5 rounded-full border border-black/80 font-handwriting text-lg font-bold">nonsense LAB</span>
+        <span>© 2026 Nonsense Lab. All rights reserved.</span>
+      </div>
+      <div class="flex gap-4 text-gray-700 font-medium">
+        <a href="#about" class="hover:underline" data-i18n="nav_about">About Us</a>
+        <a href="#workshops" class="hover:underline" data-i18n="btn_workshops">Workshops</a>
+        <a href="#contact" class="hover:underline" data-i18n="nav_contact">Contact</a>
+      </div>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- Translation JavaScript Logic -->
+  <script>
+    const translations = {
+      en: {
+        tagline: "Where nonsense, makes sense",
+        nav_about: "About Us",
+        nav_contact: "Contact",
+        hero_text: "Nonsense Lab creates playful, structured art experiences for children aged 5–10 with special educational needs, while supporting parents with practical insight, confidence, and connection.",
+        btn_workshops: "Explore Our Workshops",
+        btn_contact: "Contact Us",
+        tab_children: "For Children",
+        tab_parents: "For Parents",
+        tab_communities: "For Communities",
+        desc_children: "Creative workshops designed for children aged 5–10 with special educational needs. Each session encourages imagination, self-expression, sensory exploration, and confidence through art-based activities.",
+        desc_parents: "We help parents understand their child's creative process, communication style, and emotional world through observation, discussion, and practical take-home ideas.",
+        desc_communities: "We collaborate with schools, museums, farms, heritage sites, and community spaces to create meaningful learning experiences beyond the classroom.",
+        quote: "We turn “I don’t know how to say it” into color, shape, texture, movement, and play.",
+        space_title: "A Creative Space Between\nLearning, Play & Understanding",
+        space_p1: "At Nonsense Lab, we believe creativity helps children express what words cannot always explain. Our workshops combine visual arts, sensory exploration, storytelling, movement, and reflection to support children with different learning needs in a safe, welcoming environment.",
+        space_p2: "We are not a clinical therapy service. We are a creative learning space designed to help children explore, communicate, and grow — while helping parents better understand their child's unique way of seeing the world.",
+        vmv_title: "Our Vision, Mission & Values",
+        vision_title: "Vision",
+        vision_desc: "To create a world where different ways of thinking, feeling, and expressing are understood, celebrated, and supported.",
+        mission_title: "Mission",
+        mission_desc: "To provide playful, structured creative workshops that help children with special educational needs express themselves, build confidence, and connect with others — while giving parents tools and insight to support their child's growth.",
+        val_curiosity: "Curiosity",
+        val_curiosity_desc: "We follow questions, ideas, textures, mistakes, and unexpected discoveries.",
+        val_respect: "Respect",
+        val_respect_desc: "Every child's pace, preference, and communication style matters.",
+        val_creativity: "Creativity",
+        val_creativity_desc: "We use art as a language for expression, imagination, and connection.",
+        val_confidence: "Confidence",
+        val_confidence_desc: "We create low-pressure spaces where children can try, choose, and grow.",
+        val_connection: "Connection",
+        val_connection_desc: "We help children, parents, and communities understand one another better.",
+        team_title: "Our Team",
+        team_subtitle: "Nonsense Lab is led by artists, educators, and creative thinkers who believe art can open new ways of learning and connecting.",
+        sandy_role: "Co-Founder | Visual Artist | Educator",
+        sandy_bio: "Sandy Wang has a background in visual arts, academic research, and education. Her practice explores how creativity can support learning, communication, and self-expression. At Nonsense Lab, Sandy designs thoughtful experiences that combine structure, imagination, and sensory exploration.",
+        un_role: "Co-Founder | Artist | Art Historian | Educator",
+        un_bio: "Un Cheng has a background in art history, visual arts, oil painting, and education. Her work brings together artistic practice, cultural understanding, and hands-on learning. At Nonsense Lab, Un develops creative workshops that help children engage with art, stories, places, and materials in meaningful ways.",
+        frame_1: "Sensory Art",
+        frame_2: "Texture & Color",
+        frame_3: "Storytelling",
+        frame_4: "Movement",
+        frame_5: "Play & Discovery",
+        frame_6: "Reflection",
+        contact_title: "Get in Touch",
+        contact_desc: "Interested in our workshops, school collaborations, or parent consultations? Send us a message!",
+        form_name: "Name",
+        form_email: "Email",
+        form_role: "I am a...",
+        opt_parent: "Parent / Guardian",
+        opt_school: "School / Educator",
+        opt_org: "Community Organization / Heritage Partner",
+        opt_other: "Other",
+        form_message: "Message",
+        form_submit: "Send Message"
+      },
+      zh: {
+        tagline: "讓看似無意義的，變得有意義",
+        nav_about: "關於我們",
+        nav_contact: "聯絡我們",
+        hero_text: "Nonsense Lab 為 5 至 10 歲有特殊教育需要的兒童設計充滿樂趣與結構性的藝術體驗，同時為家長提供實用的洞察、信心與連結。",
+        btn_workshops: "探索我們的工作坊",
+        btn_contact: "聯絡我們",
+        tab_children: "給兒童",
+        tab_parents: "給家長",
+        tab_communities: "給社區",
+        desc_children: "專為 5–10 歲有特殊教育需要的兒童設計的創意工作坊。每節課堂透過藝術活動鼓勵想像力、自我表達、感官探索與建立自信。",
+        desc_parents: "我們透過觀察、交流與實用的回家提案，協助家長了解孩子的創意過程、溝通方式與情感世界。",
+        desc_communities: "我們與學校、博物館、農場、文化遺產場所及社區空間合作，在課堂之外創造有意義的學習體驗。",
+        quote: "我們將「我不知該如何表達」轉化為色彩、形狀、質感、律動與遊戲。",
+        space_title: "介於學習、遊戲與理解之間的\n創意空間",
+        space_p1: "在 Nonsense Lab，我們相信創意能幫助孩子表達言語未必能完全解釋的事情。我們的工作坊結合視覺藝術、感官探索、故事講述、肢體律動與反思，在安全包容的環境中支持擁有不同學習需求的兒童。",
+        space_p2: "我們並非臨床治療機構，而是一個旨在協助孩子探索、溝通與成長的創意學習空間 — 同時幫助家長更好地理解孩子看待世界的獨特方式。",
+        vmv_title: "我們的願景、使命與價值觀",
+        vision_title: "願景",
+        vision_desc: "創造一個不同的思考、感受與表達方式都能被理解、慶祝和支持的世界。",
+        mission_title: "使命",
+        mission_desc: "提供富趣味性與結構性的創意工作坊，協助有特殊教育需要的兒童表達自我、建立自信並與他人連結 — 同時為家長提供工具與洞察，支持孩子的成長。",
+        val_curiosity: "好奇心 Curiosity",
+        val_curiosity_desc: "我們追隨提問、想法、質感、錯誤以及意想不到的新發現。",
+        val_respect: "尊重 Respect",
+        val_respect_desc: "每個孩子的步調、偏好與溝通方式都至關重要。",
+        val_creativity: "創造力 Creativity",
+        val_creativity_desc: "我們以藝術作為表達、想像與建立連結的語言。",
+        val_confidence: "自信 Confidence",
+        val_confidence_desc: "我們創造低壓力的空間，讓孩子勇於嘗試、選擇與成長。",
+        val_connection: "連結 Connection",
+        val_connection_desc: "我們幫助兒童、家長與社區更好地彼此理解。",
+        team_title: "我們的團隊",
+        team_subtitle: "Nonsense Lab 由藝術家、教育者與創意思考者共同領導，我們相信藝術能開啟學習與連結的新途徑。",
+        sandy_role: "共同創辦人 | 視覺藝術家 | 教育者",
+        sandy_bio: "Sandy Wang 擁有視覺藝術、學術研究及教育背景。她的實踐探討創意如何支持學習、溝通與自我表達。在 Nonsense Lab，Sandy 設計結合結構、想像力與感官探索的用心體驗。",
+        un_role: "共同創辦人 | 藝術家 | 藝術史學家 | 教育者",
+        un_bio: "Un Cheng 擁有藝術史、視覺藝術、油畫及教育背景。她的工作將藝術實踐、文化理解與手作學習融為一體。在 Nonsense Lab，Un 開展創意工作坊，引導孩子以深刻的方式接觸藝術、故事、場域與材料。",
+        frame_1: "感官藝術",
+        frame_2: "質感與色彩",
+        frame_3: "故事繪本",
+        frame_4: "肢體律動",
+        frame_5: "遊戲與探索",
+        frame_6: "觀察反思",
+        contact_title: "聯絡我們",
+        contact_desc: "對我們的工作坊、學校合作或家長諮詢感興趣？歡迎傳送訊息給我們！",
+        form_name: "姓名",
+        form_email: "電郵",
+        form_role: "我是...",
+        opt_parent: "家長 / 監護人",
+        opt_school: "學校 / 教育工作者",
+        opt_org: "社區機構 / 文化遺產夥伴",
+        opt_other: "其他",
+        form_message: "訊息內容",
+        form_submit: "送出訊息"
+      }
+    };
+
+    let currentLang = 'en';
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'en' ? 'zh' : 'en';
+      document.getElementById('lang-text').innerText = currentLang === 'en' ? '繁體中文' : 'English';
+      
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[currentLang][key]) {
+          el.innerText = translations[currentLang][key];
+        }
+      });
+    }
+  </script>
 </body>
 </html>
