@@ -1,79 +1,649 @@
-/* * {
+/* ==========================================================================
+   RESET & BASE STYLES
+   ========================================================================== */
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+:root {
+  /* Color Palette matching reference image */
+  --color-cream: #fbf9f1;
+  --color-yellow: #f1dd6b;
+  --color-yellow-soft: #fbf3be;
+  --color-pink: #f6b1b1;
+  --color-pink-soft: #fcdcdc;
+  --color-blue: #a3bedc;
+  --color-olive: #738059;
+  --color-rust: #c8633a;
+  --color-dark: #1c1917;
+  --color-gray-bg: #eceae1;
+
+  /* Typography */
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-hand: 'Caveat', cursive;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background-color: #0d1117;
-  color: #c9d1d9;
+  font-family: var(--font-body);
+  background-color: var(--color-cream);
+  color: var(--color-dark);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+/* Common SVG sketch line */
+.sketch-line {
+  fill: none;
+  stroke: var(--color-dark);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.doodle-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Button Component */
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  color: var(--color-dark);
+  border: 2px solid var(--color-dark);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 2px 3px 0px var(--color-dark);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 4px 6px 0px var(--color-dark);
+}
+
+.btn-pink { background-color: var(--color-pink); }
+.btn-blue { background-color: var(--color-blue); }
+.btn-yellow { background-color: var(--color-yellow); }
+
+/* ==========================================================================
+   HEADER & NAVIGATION
+   ========================================================================== */
+.navbar {
   display: flex;
-  justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  justify-content: space-between;
+  padding: 16px 40px;
+  background-color: var(--color-cream);
+  border-bottom: 2px solid var(--color-dark);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-.container {
-  padding: 20px;
+.logo-box {
+  background-color: var(--color-blue);
+  padding: 6px 18px;
+  border-radius: 4px;
+  border: 2px solid var(--color-dark);
 }
 
-.card {
-  background: #161b22;
-  border: 1px solid #30363d;
-  border-radius: 12px;
-  padding: 40px 48px;
-  text-align: center;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  max-width: 400px;
+.logo-text {
+  font-family: var(--font-hand);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-dark);
+  letter-spacing: -0.5px;
+}
+
+.tagline-badge {
+  background-color: var(--color-pink-soft);
+  padding: 8px 24px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: 2px solid var(--color-dark);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav-btn {
+  padding: 8px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  color: var(--color-dark);
+  font-weight: 700;
+  font-size: 0.9rem;
+  border: 2px solid var(--color-dark);
+}
+
+.nav-btn.bg-yellow { background-color: var(--color-yellow); }
+.nav-btn.transparent { background-color: transparent; }
+
+.lang-toggle-btn {
+  background-color: #fff;
+  border: 2px solid var(--color-dark);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background-color: var(--color-dark);
+  border-radius: 2px;
+}
+
+/* ==========================================================================
+   HERO SECTION
+   ========================================================================== */
+.hero-section {
+  padding: 60px 40px;
   position: relative;
 }
 
-.pulse-indicator {
-  width: 12px;
-  height: 12px;
-  background-color: #238636;
-  border-radius: 50%;
-  margin: 0 auto 16px auto;
-  box-shadow: 0 0 0 0 rgba(35, 134, 54, 0.7);
-  animation: pulse 1.8s infinite;
+.hero-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
 }
 
-@keyframes pulse {
-  0% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(35, 134, 54, 0.7);
-  }
-  70% {
-    transform: scale(1);
-    box-shadow: 0 0 0 10px rgba(35, 134, 54, 0);
-  }
-  100% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(35, 134, 54, 0);
-  }
+.hero-doodle {
+  width: 140px;
+  height: 140px;
+  flex-shrink: 0;
 }
 
-h1 {
-  font-size: 2rem;
+.hero-content {
+  text-align: center;
+  max-width: 750px;
+}
+
+.hero-title {
+  font-size: 1.65rem;
   font-weight: 700;
-  color: #f0f6fc;
+  line-height: 1.4;
+  margin-bottom: 28px;
+  letter-spacing: -0.2px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   3-COLUMNS BENEFIT BANNER
+   ========================================================================== */
+.banner-3col {
+  background-color: var(--color-yellow);
+  border-top: 2px solid var(--color-dark);
+  border-bottom: 2px solid var(--color-dark);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.banner-col {
+  padding: 30px 24px;
+  text-align: center;
+}
+
+.banner-col:nth-child(1) { background-color: var(--color-rust); color: #fff; }
+.banner-col:nth-child(2) { background-color: var(--color-yellow); }
+.banner-col:nth-child(3) { background-color: #d89635; color: #fff; }
+
+.col-header {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.col-text {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   BRIDGE STATEMENT BANNER
+   ========================================================================== */
+.bridge-banner {
+  background-color: var(--color-yellow);
+  padding: 36px 20px;
+  text-align: center;
+  border-bottom: 2px solid var(--color-dark);
+}
+
+.bridge-container {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.bridge-quote {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 1px 1px 0px var(--color-dark);
+}
+
+.hand-arrow {
+  width: 80px;
+  height: 35px;
+  margin-top: 8px;
+}
+
+/* ==========================================================================
+   PHILOSOPHY SECTION
+   ========================================================================== */
+.philosophy-section {
+  padding: 80px 40px;
+}
+
+.philosophy-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.doodle-scissors { width: 150px; height: 150px; flex-shrink: 0; }
+.doodle-star-person { width: 130px; height: 130px; flex-shrink: 0; }
+
+.philosophy-content {
+  text-align: center;
+  flex-grow: 1;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.lead-text {
+  font-size: 1.15rem;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.body-text {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+.highlight-dark {
+  font-weight: 800;
+  color: var(--color-dark);
+}
+
+/* ==========================================================================
+   VISION, MISSION & VALUES
+   ========================================================================== */
+.vmv-section {
+  padding: 60px 40px;
+}
+
+.sunburst-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.sunburst-svg {
+  width: 260px;
+  height: 50px;
+  margin: 0 auto -10px auto;
+}
+
+.vm-grid {
+  max-width: 1000px;
+  margin: 0 auto 30px auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.vm-card {
+  padding: 32px;
+  border-radius: 12px;
+  border: 2px solid var(--color-dark);
+  text-align: center;
+  box-shadow: 3px 4px 0px var(--color-dark);
+}
+
+.bg-yellow-soft { background-color: var(--color-yellow-soft); }
+.bg-pink-soft { background-color: var(--color-pink-soft); }
+
+.vm-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.vm-text {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.values-grid {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+.value-card {
+  padding: 20px 14px;
+  border-radius: 12px;
+  border: 2px solid var(--color-dark);
+  text-align: center;
+  box-shadow: 2px 3px 0px var(--color-dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.val-yellow { background-color: var(--color-yellow); }
+.val-pink { background-color: var(--color-pink); }
+.val-blue { background-color: var(--color-blue); }
+.val-olive { background-color: var(--color-olive); color: #fff; }
+.val-rust { background-color: var(--color-rust); color: #fff; }
+
+.value-letter {
+  font-size: 3.2rem;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.value-name {
+  font-size: 1rem;
+  font-weight: 800;
   margin-bottom: 8px;
 }
 
-.subtitle {
-  font-size: 1rem;
-  color: #8b949e;
-  margin-bottom: 24px;
+.value-desc {
+  font-size: 0.78rem;
+  line-height: 1.35;
+  margin-bottom: 16px;
 }
 
-.status-badge {
-  display: inline-block;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #3fb950;
-  background: rgba(46, 160, 67, 0.15);
-  padding: 6px 16px;
-  border-radius: 20px;
-  border: 1px solid rgba(63, 185, 80, 0.3);
-} */
+.val-olive .sketch-line,
+.val-rust .sketch-line {
+  stroke: #fff;
+}
+
+.value-doodle {
+  width: 45px;
+  height: 45px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   OUR TEAM
+   ========================================================================== */
+.team-section {
+  background-color: var(--color-gray-bg);
+  padding: 70px 40px;
+  border-top: 2px solid var(--color-dark);
+  border-bottom: 2px solid var(--color-dark);
+}
+
+.team-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 40px auto;
+}
+
+.sparkles-icon {
+  width: 50px;
+  height: 35px;
+  margin: 0 auto 8px auto;
+}
+
+.team-subtext {
+  font-size: 1rem;
+  color: #555;
+}
+
+.team-grid {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.team-card {
+  background-color: #fff;
+  border: 2px solid var(--color-dark);
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  gap: 20px;
+  box-shadow: 3px 4px 0px var(--color-dark);
+}
+
+.team-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 8px;
+  border: 2px solid var(--color-dark);
+  flex-shrink: 0;
+  padding: 8px;
+}
+
+.avatar-pink { background-color: var(--color-pink); }
+.avatar-blue { background-color: var(--color-blue); }
+
+.team-name {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.team-role {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.team-bio {
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: #333;
+}
+
+/* ==========================================================================
+   GALLERY / HAND-DRAWN CIRCLES GRID
+   ========================================================================== */
+.gallery-section {
+  padding: 60px 40px;
+}
+
+.gallery-grid {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.gallery-item {
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+/* ==========================================================================
+   CONTACT SECTION
+   ========================================================================== */
+.contact-section {
+  background-color: var(--color-yellow-soft);
+  padding: 70px 40px;
+  border-top: 2px solid var(--color-dark);
+}
+
+.contact-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.contact-subtext {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.contact-form {
+  background-color: #fff;
+  padding: 32px;
+  border-radius: 12px;
+  border: 2px solid var(--color-dark);
+  box-shadow: 4px 6px 0px var(--color-dark);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+}
+
+.form-input, .form-textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 2px solid var(--color-dark);
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+.form-textarea {
+  height: 120px;
+  resize: vertical;
+}
+
+.form-submit-btn {
+  width: 100%;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.footer {
+  background-color: var(--color-dark);
+  color: #fff;
+  padding: 40px;
+  text-align: center;
+}
+
+.footer-logo {
+  font-family: var(--font-hand);
+  font-size: 2rem;
+  margin-bottom: 6px;
+}
+
+.footer-text {
+  font-size: 0.9rem;
+  color: #ccc;
+  margin-bottom: 16px;
+}
+
+.footer-copy {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (MOBILE / TABLET)
+   ========================================================================== */
+@media (max-width: 900px) {
+  .tagline-badge { display: none; }
+  .banner-3col { grid-template-columns: 1fr; }
+  .values-grid { grid-template-columns: 1fr 1fr; }
+  .team-grid { grid-template-columns: 1fr; }
+  .vm-grid { grid-template-columns: 1fr; }
+  
+  .hero-container {
+    flex-direction: column;
+  }
+
+  .hero-doodle {
+    display: none;
+  }
+
+  .philosophy-container {
+    flex-direction: column;
+  }
+
+  .doodle-scissors, .doodle-star-person {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--color-cream);
+    flex-direction: column;
+    padding: 20px;
+    border-bottom: 2px solid var(--color-dark);
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
